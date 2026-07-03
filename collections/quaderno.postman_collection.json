@@ -1,0 +1,422 @@
+{
+  "info": {
+    "name": "Quaderno API",
+    "description": "Tax compliance, invoicing, and sales-tax / VAT automation REST API. Base URL is account-scoped: https://ACCOUNT_NAME.quadernoapp.com/api. Authenticate with your private API key as the HTTP Basic Auth username (any value for password). All endpoint paths end in .json and all payloads are JSON. Rate limit: 100 requests per 15 seconds (429 on excess).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "basic",
+    "basic": [
+      { "key": "username", "value": "{{apiKey}}", "type": "string" },
+      { "key": "password", "value": "x", "type": "string" }
+    ]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://ACCOUNT_NAME.quadernoapp.com/api", "type": "string" },
+    { "key": "apiKey", "value": "", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Ping the API",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/ping.json", "host": ["{{baseUrl}}"], "path": ["ping.json"] },
+            "description": "Tests availability, validates the API key, and returns remaining allowance without consuming rate limit."
+          }
+        },
+        {
+          "name": "Get authorization details",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/authorization.json", "host": ["{{baseUrl}}"], "path": ["authorization.json"] },
+            "description": "Returns the identity and account-scoped API URL for the authenticated key."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Contacts",
+      "item": [
+        {
+          "name": "List contacts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/contacts.json?page=1", "host": ["{{baseUrl}}"], "path": ["contacts.json"], "query": [{ "key": "page", "value": "1" }] },
+            "description": "Lists contacts (customers and vendors) with optional search and pagination."
+          }
+        },
+        {
+          "name": "Create a contact",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"kind\": \"company\",\n  \"contact_name\": \"Acme Inc\",\n  \"country\": \"US\",\n  \"email\": \"billing@acme.example\"\n}" },
+            "url": { "raw": "{{baseUrl}}/contacts.json", "host": ["{{baseUrl}}"], "path": ["contacts.json"] },
+            "description": "Creates a new contact."
+          }
+        },
+        {
+          "name": "Retrieve a contact",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/contacts/:id.json", "host": ["{{baseUrl}}"], "path": ["contacts", ":id.json"], "variable": [{ "key": "id", "value": "" }] },
+            "description": "Retrieves a contact by ID."
+          }
+        },
+        {
+          "name": "Update a contact",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"email\": \"new@acme.example\"\n}" },
+            "url": { "raw": "{{baseUrl}}/contacts/:id.json", "host": ["{{baseUrl}}"], "path": ["contacts", ":id.json"], "variable": [{ "key": "id", "value": "" }] },
+            "description": "Updates a contact."
+          }
+        },
+        {
+          "name": "Delete a contact",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/contacts/:id.json", "host": ["{{baseUrl}}"], "path": ["contacts", ":id.json"], "variable": [{ "key": "id", "value": "" }] },
+            "description": "Deletes a contact."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Items",
+      "item": [
+        {
+          "name": "List items",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/items.json", "host": ["{{baseUrl}}"], "path": ["items.json"] },
+            "description": "Lists catalog items."
+          }
+        },
+        {
+          "name": "Create an item",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Pro Plan\",\n  \"unit_cost\": 99.0,\n  \"tax_code\": \"eservice\"\n}" },
+            "url": { "raw": "{{baseUrl}}/items.json", "host": ["{{baseUrl}}"], "path": ["items.json"] },
+            "description": "Creates a catalog item."
+          }
+        },
+        {
+          "name": "Retrieve an item",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/items/:id.json", "host": ["{{baseUrl}}"], "path": ["items", ":id.json"], "variable": [{ "key": "id", "value": "" }] },
+            "description": "Retrieves an item by ID."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Invoices",
+      "item": [
+        {
+          "name": "List invoices",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/invoices.json?page=1", "host": ["{{baseUrl}}"], "path": ["invoices.json"], "query": [{ "key": "page", "value": "1" }] },
+            "description": "Lists invoices with optional search, state filter, and pagination."
+          }
+        },
+        {
+          "name": "Create an invoice",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"contact_id\": \"CONTACT_ID\",\n  \"currency\": \"USD\",\n  \"items_attributes\": [\n    { \"description\": \"Pro Plan\", \"quantity\": 1, \"unit_price\": 99.0, \"tax_code\": \"eservice\" }\n  ]\n}" },
+            "url": { "raw": "{{baseUrl}}/invoices.json", "host": ["{{baseUrl}}"], "path": ["invoices.json"] },
+            "description": "Creates an invoice."
+          }
+        },
+        {
+          "name": "Retrieve an invoice",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/invoices/:id.json", "host": ["{{baseUrl}}"], "path": ["invoices", ":id.json"], "variable": [{ "key": "id", "value": "" }] },
+            "description": "Retrieves an invoice by ID."
+          }
+        },
+        {
+          "name": "Update an invoice",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"po_number\": \"PO-123\"\n}" },
+            "url": { "raw": "{{baseUrl}}/invoices/:id.json", "host": ["{{baseUrl}}"], "path": ["invoices", ":id.json"], "variable": [{ "key": "id", "value": "" }] },
+            "description": "Updates an invoice."
+          }
+        },
+        {
+          "name": "Delete an invoice",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/invoices/:id.json", "host": ["{{baseUrl}}"], "path": ["invoices", ":id.json"], "variable": [{ "key": "id", "value": "" }] },
+            "description": "Deletes an invoice."
+          }
+        },
+        {
+          "name": "Deliver an invoice by email",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/invoices/:id/deliver.json", "host": ["{{baseUrl}}"], "path": ["invoices", ":id", "deliver.json"], "variable": [{ "key": "id", "value": "" }] },
+            "description": "Emails the invoice to the contact."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Payments",
+      "item": [
+        {
+          "name": "Add a payment to an invoice",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"amount\": 99.0,\n  \"payment_method\": \"credit_card\",\n  \"date\": \"2026-07-03\"\n}" },
+            "url": { "raw": "{{baseUrl}}/invoices/:id/payments.json", "host": ["{{baseUrl}}"], "path": ["invoices", ":id", "payments.json"], "variable": [{ "key": "id", "value": "" }] },
+            "description": "Records a payment against an invoice."
+          }
+        },
+        {
+          "name": "Remove a payment from an invoice",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/invoices/:id/payments/:payment_id.json", "host": ["{{baseUrl}}"], "path": ["invoices", ":id", "payments", ":payment_id.json"], "variable": [{ "key": "id", "value": "" }, { "key": "payment_id", "value": "" }] },
+            "description": "Removes a payment from an invoice."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Credits",
+      "item": [
+        {
+          "name": "List credit notes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/credits.json", "host": ["{{baseUrl}}"], "path": ["credits.json"] },
+            "description": "Lists credit notes."
+          }
+        },
+        {
+          "name": "Create a credit note",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"contact_id\": \"CONTACT_ID\",\n  \"invoice_id\": \"INVOICE_ID\",\n  \"items_attributes\": [\n    { \"description\": \"Refund\", \"quantity\": 1, \"unit_price\": 99.0 }\n  ]\n}" },
+            "url": { "raw": "{{baseUrl}}/credits.json", "host": ["{{baseUrl}}"], "path": ["credits.json"] },
+            "description": "Creates a credit note against an invoice."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Estimates",
+      "item": [
+        {
+          "name": "List estimates",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/estimates.json", "host": ["{{baseUrl}}"], "path": ["estimates.json"] },
+            "description": "Lists estimates / quotes."
+          }
+        },
+        {
+          "name": "Create an estimate",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"contact_id\": \"CONTACT_ID\",\n  \"currency\": \"USD\",\n  \"items_attributes\": [\n    { \"description\": \"Consulting\", \"quantity\": 10, \"unit_price\": 150.0 }\n  ]\n}" },
+            "url": { "raw": "{{baseUrl}}/estimates.json", "host": ["{{baseUrl}}"], "path": ["estimates.json"] },
+            "description": "Creates an estimate."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Expenses",
+      "item": [
+        {
+          "name": "List expenses",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/expenses.json", "host": ["{{baseUrl}}"], "path": ["expenses.json"] },
+            "description": "Lists expenses / vendor bills."
+          }
+        },
+        {
+          "name": "Create an expense",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"contact_id\": \"VENDOR_ID\",\n  \"currency\": \"USD\",\n  \"items_attributes\": [\n    { \"description\": \"Hosting\", \"quantity\": 1, \"unit_price\": 200.0 }\n  ]\n}" },
+            "url": { "raw": "{{baseUrl}}/expenses.json", "host": ["{{baseUrl}}"], "path": ["expenses.json"] },
+            "description": "Creates an expense."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Recurring",
+      "item": [
+        {
+          "name": "List recurring documents",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/recurring.json", "host": ["{{baseUrl}}"], "path": ["recurring.json"] },
+            "description": "Lists recurring document templates."
+          }
+        },
+        {
+          "name": "Create a recurring document",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"contact_id\": \"CONTACT_ID\",\n  \"currency\": \"USD\",\n  \"period\": 1,\n  \"frequency\": \"monthly\",\n  \"start_date\": \"2026-08-01\",\n  \"items_attributes\": [\n    { \"description\": \"Subscription\", \"quantity\": 1, \"unit_price\": 99.0 }\n  ]\n}" },
+            "url": { "raw": "{{baseUrl}}/recurring.json", "host": ["{{baseUrl}}"], "path": ["recurring.json"] },
+            "description": "Creates a recurring document template."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Transactions",
+      "item": [
+        {
+          "name": "Create a sales transaction",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"customer\": {\n    \"first_name\": \"Tony\",\n    \"last_name\": \"Stark\",\n    \"email\": \"tony@stark.example\",\n    \"country\": \"US\",\n    \"region\": \"NY\",\n    \"postal_code\": \"10001\"\n  },\n  \"items\": [\n    { \"description\": \"Pro Plan\", \"quantity\": 1, \"unit_price\": 99.0, \"tax_code\": \"eservice\" }\n  ],\n  \"payment_method\": \"credit_card\"\n}" },
+            "url": { "raw": "{{baseUrl}}/transactions.json", "host": ["{{baseUrl}}"], "path": ["transactions.json"] },
+            "description": "Records a sale and calculates its tax in one call."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Taxes",
+      "item": [
+        {
+          "name": "Calculate a tax rate",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/tax_rates/calculate.json?country=US&region=NY&postal_code=10001&tax_code=eservice", "host": ["{{baseUrl}}"], "path": ["tax_rates", "calculate.json"], "query": [{ "key": "country", "value": "US" }, { "key": "region", "value": "NY" }, { "key": "postal_code", "value": "10001" }, { "key": "tax_code", "value": "eservice" }] },
+            "description": "Calculates the applicable tax rate with a reasoning status (taxable, non_taxable, not_registered)."
+          }
+        },
+        {
+          "name": "Validate a tax ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/tax_ids/validate.json?country=IE&tax_id=IE6388047V", "host": ["{{baseUrl}}"], "path": ["tax_ids", "validate.json"], "query": [{ "key": "country", "value": "IE" }, { "key": "tax_id", "value": "IE6388047V" }] },
+            "description": "Validates a customer VAT number / tax ID against the relevant registry."
+          }
+        },
+        {
+          "name": "List tax jurisdictions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/tax_jurisdictions.json", "host": ["{{baseUrl}}"], "path": ["tax_jurisdictions.json"] },
+            "description": "Lists jurisdictions the account is registered in."
+          }
+        },
+        {
+          "name": "List tax codes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/tax_codes.json", "host": ["{{baseUrl}}"], "path": ["tax_codes.json"] },
+            "description": "Lists product tax codes."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Checkout",
+      "item": [
+        {
+          "name": "Create a checkout session",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"success_url\": \"https://example.com/success\",\n  \"cancel_url\": \"https://example.com/cancel\",\n  \"currency\": \"USD\",\n  \"items\": [\n    { \"description\": \"Pro Plan\", \"quantity\": 1, \"unit_price\": 99.0, \"tax_code\": \"eservice\" }\n  ]\n}" },
+            "url": { "raw": "{{baseUrl}}/checkout/sessions.json", "host": ["{{baseUrl}}"], "path": ["checkout", "sessions.json"] },
+            "description": "Creates a hosted Checkout session."
+          }
+        },
+        {
+          "name": "Retrieve a checkout session",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/checkout/sessions/:id.json", "host": ["{{baseUrl}}"], "path": ["checkout", "sessions", ":id.json"], "variable": [{ "key": "id", "value": "" }] },
+            "description": "Retrieves a Checkout session by ID."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Webhooks",
+      "item": [
+        {
+          "name": "List webhooks",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/webhooks.json", "host": ["{{baseUrl}}"], "path": ["webhooks.json"] },
+            "description": "Lists webhook subscriptions."
+          }
+        },
+        {
+          "name": "Create a webhook",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"url\": \"https://example.com/webhooks/quaderno\",\n  \"events_types\": [\"invoice.created\", \"checkout.succeeded\"]\n}" },
+            "url": { "raw": "{{baseUrl}}/webhooks.json", "host": ["{{baseUrl}}"], "path": ["webhooks.json"] },
+            "description": "Subscribes a URL to event notifications."
+          }
+        },
+        {
+          "name": "Delete a webhook",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/webhooks/:id.json", "host": ["{{baseUrl}}"], "path": ["webhooks", ":id.json"], "variable": [{ "key": "id", "value": "" }] },
+            "description": "Deletes a webhook subscription."
+          }
+        }
+      ]
+    }
+  ]
+}

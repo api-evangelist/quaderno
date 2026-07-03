@@ -1,0 +1,151 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Quaderno
+providerId: quaderno
+created: '2026-07-03'
+modified: '2026-07-03'
+reconciled: false
+tags:
+- Tax Compliance
+- Sales Tax
+- VAT
+- Invoicing
+- Billing
+- Plans
+description: >-
+  Quaderno sells flat-rate monthly subscriptions metered primarily by the number
+  of transactions processed per month (and the number of tax jurisdictions),
+  rather than by API call. The API is included with every paid plan at no
+  separate fee. Published tiers are Startup, Business, and Growth, with an
+  Enterprise tier for high volume; a 14-day free trial is offered and there is no
+  permanently free plan. All plans include worldwide tax compliance, automatic
+  tax receipts, Quaderno Checkout, tax reports, unlimited users, and API access.
+  Prices below reflect publicly listed figures at the review date and must be
+  reconciled against the live pricing page.
+notes: >-
+  Transaction allowances and monthly prices change; verify current tiers,
+  jurisdiction counts, and overage handling on https://quaderno.io/pricing/
+  during reconciliation. Annual billing typically discounts the monthly figures.
+sources:
+- https://quaderno.io/pricing/
+- https://support.quaderno.io/article/492-plans-pricing
+- https://developers.quaderno.io/
+plans:
+- id: quaderno-trial
+  name: Free Trial
+  type: trial
+  description: >-
+    14-day free trial of the full platform, including API access and Checkout,
+    with no permanently free tier afterward.
+  entries:
+  - label: Trial Period
+    name: trial_period
+    type: flat
+    metric: days
+    limit: 14
+    timeFrame: day
+    geo: global
+    unit: 1
+    price: free for 14 days
+    userMultiplied: false
+  elements:
+  - name: Full Platform Access
+  - name: API Access
+  - name: Quaderno Checkout
+- id: quaderno-startup
+  name: Startup
+  type: paid
+  description: >-
+    Entry paid plan for small sellers, with a monthly transaction allowance and
+    full tax compliance, invoicing, Checkout, and API access.
+  entries:
+  - label: Included Transactions
+    name: startup_transactions
+    type: usage
+    metric: transactions
+    limit: 250
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: approx. $49/month (verify)
+    userMultiplied: false
+  elements:
+  - name: Worldwide Tax Compliance
+  - name: Automatic Tax Receipts
+  - name: Quaderno Checkout
+  - name: Tax Reports
+  - name: API Access
+  - name: Unlimited Users
+- id: quaderno-business
+  name: Business
+  type: paid
+  description: >-
+    Mid-tier paid plan with a larger monthly transaction allowance and more tax
+    jurisdictions.
+  entries:
+  - label: Included Transactions
+    name: business_transactions
+    type: usage
+    metric: transactions
+    limit: 1000
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: approx. $99/month (verify)
+    userMultiplied: false
+  elements:
+  - name: Worldwide Tax Compliance
+  - name: Automatic Tax Receipts
+  - name: Quaderno Checkout
+  - name: Multichannel Tax Reports
+  - name: API Access
+  - name: Unlimited Integrations
+- id: quaderno-growth
+  name: Growth
+  type: paid
+  description: >-
+    Higher-volume paid plan with an expanded monthly transaction allowance and
+    additional jurisdictions and priority support.
+  entries:
+  - label: Included Transactions
+    name: growth_transactions
+    type: usage
+    metric: transactions
+    limit: 2500
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: approx. $149/month (verify)
+    userMultiplied: false
+  elements:
+  - name: Worldwide Tax Compliance
+  - name: Multichannel Tax Reports
+  - name: Quaderno Checkout
+  - name: API Access
+  - name: Priority Support
+- id: quaderno-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    Custom plan for sellers processing more than the Growth allowance, with
+    negotiated transaction volume, additional jurisdictions, and dedicated
+    support. Contact Quaderno.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Custom Transaction Volume
+  - name: Additional Jurisdictions
+  - name: Dedicated Support
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

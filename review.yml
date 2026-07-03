@@ -1,0 +1,108 @@
+aid: quaderno
+name: Quaderno
+review:
+  question: Does Quaderno expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-03'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. Quaderno's public API surface is
+    request/response REST over HTTPS (account-scoped at
+    https://ACCOUNT_NAME.quadernoapp.com/api). Quaderno's real-time delivery is
+    via outbound webhooks - Quaderno POSTs a JSON event payload to a
+    subscriber-registered HTTPS URL - which is server-to-endpoint HTTP, not a
+    server-push streaming transport (WebSocket or SSE) on Quaderno's own API to
+    model. There is therefore no in-scope streaming transport to describe in an
+    AsyncAPI document.
+findings:
+  summary: |
+    Quaderno does not publish a documented public WebSocket API. Quaderno is a
+    tax compliance, invoicing, and sales-tax / VAT automation platform. Its
+    public API is a REST API scoped per account at
+    https://ACCOUNT_NAME.quadernoapp.com/api, authenticated with a private API
+    key via HTTP Basic Auth, with every endpoint path ending in .json and all
+    payloads JSON. Real-time updates are delivered through outbound webhooks
+    (Quaderno POSTs a JSON payload over HTTPS to a subscribed URL, retrying
+    hourly for up to 72 hours on non-200 responses), not through a WebSocket.
+    No realtime, bidirectional, or streaming WebSocket (ws:// or wss://)
+    endpoint is documented anywhere in Quaderno's developer documentation,
+    API reference, Checkout guide, or webhook guide as of the review date.
+  openSource: |
+    Quaderno is a proprietary SaaS. The API itself is closed, but Quaderno
+    publishes open-source client SDKs (for example quaderno-ruby, quaderno-php,
+    and quaderno-swift under github.com/quaderno) and a browser library,
+    Quaderno.js, for rendering hosted Checkout. The SDKs confirm the
+    account-scoped REST base URL and the resource paths modeled here.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://ACCOUNT_NAME.quadernoapp.com/api
+      documented: true
+      note: Account-scoped REST API; HTTP Basic Auth with a private API key; all paths end in .json.
+    - protocol: Webhook
+      scheme: https
+      documented: true
+      note: Outbound webhooks POST a JSON event payload to a subscriber URL over HTTPS, with hourly retries for up to 72 hours. Server-to-endpoint HTTP, not WebSocket.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented in Quaderno's API reference, Checkout guide, or webhook guide as of the review date.
+  endpointsConfirmedRest:
+    - GET    https://ACCOUNT_NAME.quadernoapp.com/api/ping.json
+    - GET    https://ACCOUNT_NAME.quadernoapp.com/api/authorization.json
+    - GET    https://ACCOUNT_NAME.quadernoapp.com/api/contacts.json
+    - POST   https://ACCOUNT_NAME.quadernoapp.com/api/contacts.json
+    - GET    https://ACCOUNT_NAME.quadernoapp.com/api/contacts/{id}.json
+    - PUT    https://ACCOUNT_NAME.quadernoapp.com/api/contacts/{id}.json
+    - DELETE https://ACCOUNT_NAME.quadernoapp.com/api/contacts/{id}.json
+    - GET    https://ACCOUNT_NAME.quadernoapp.com/api/items.json
+    - GET    https://ACCOUNT_NAME.quadernoapp.com/api/invoices.json
+    - POST   https://ACCOUNT_NAME.quadernoapp.com/api/invoices.json
+    - GET    https://ACCOUNT_NAME.quadernoapp.com/api/invoices/{id}.json
+    - PUT    https://ACCOUNT_NAME.quadernoapp.com/api/invoices/{id}.json
+    - DELETE https://ACCOUNT_NAME.quadernoapp.com/api/invoices/{id}.json
+    - GET    https://ACCOUNT_NAME.quadernoapp.com/api/credits.json
+    - GET    https://ACCOUNT_NAME.quadernoapp.com/api/estimates.json
+    - GET    https://ACCOUNT_NAME.quadernoapp.com/api/expenses.json
+    - GET    https://ACCOUNT_NAME.quadernoapp.com/api/recurring.json
+    - POST   https://ACCOUNT_NAME.quadernoapp.com/api/transactions.json
+    - GET    https://ACCOUNT_NAME.quadernoapp.com/api/tax_rates/calculate.json
+    - GET    https://ACCOUNT_NAME.quadernoapp.com/api/tax_ids/validate.json
+    - GET    https://ACCOUNT_NAME.quadernoapp.com/api/tax_jurisdictions.json
+    - GET    https://ACCOUNT_NAME.quadernoapp.com/api/tax_codes.json
+    - POST   https://ACCOUNT_NAME.quadernoapp.com/api/checkout/sessions.json
+    - GET    https://ACCOUNT_NAME.quadernoapp.com/api/webhooks.json
+    - POST   https://ACCOUNT_NAME.quadernoapp.com/api/webhooks.json
+  endpointsModeled:
+    - Full CRUD field-level request/response bodies for every resource (contacts, items, invoices, credits, estimates, expenses, recurring, transactions, checkout sessions, webhooks) are modeled in openapi/quaderno-openapi.yml and should be verified against the live API reference.
+    - Nested payment endpoints (POST /invoices/{id}/payments.json and DELETE /invoices/{id}/payments/{payment_id}.json) and invoice delivery (GET /invoices/{id}/deliver.json) are modeled from the SDK's payment and deliver behaviors.
+    - The tax_rates/calculate status codes (taxable, non_taxable, not_registered) are documented; individual response field names are modeled.
+sources:
+  - url: https://developers.quaderno.io/api/
+    type: APIReference
+    note: API reference. Account-scoped REST base URL, Basic Auth, .json paths, 100 req / 15 s rate limit returning 429. No WebSocket mentioned.
+  - url: https://developers.quaderno.io/
+    type: Documentation
+    note: Developer hub. REST API, SDKs, and Quaderno.js; no WebSocket surface.
+  - url: https://developers.quaderno.io/guides/webhooks/
+    type: Documentation
+    note: Webhooks deliver real-time updates as an HTTPS JSON POST with hourly retries up to 72 hours - outbound HTTP, not WebSocket.
+  - url: https://developers.quaderno.io/guides/checkout/
+    type: Documentation
+    note: Hosted Checkout via checkout/sessions and Quaderno.js; checkout.succeeded / failed / abandoned events fire over webhooks, not WebSocket.
+  - url: https://github.com/quaderno/quaderno-ruby
+    type: SourceCode
+    note: Official Ruby SDK confirming the quadernoapp.com/api base URL and resource paths (invoices, contacts, tax_rates/calculate, tax_ids/validate, checkout/sessions, transactions, webhooks).
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists. Quaderno's public API is
+    request/response REST, and its only real-time mechanism is outbound
+    webhooks (server-to-endpoint HTTPS POST), which is not a server-push
+    streaming transport on Quaderno's own API. No AsyncAPI document was created
+    because there is no in-scope WebSocket or SSE transport to model.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

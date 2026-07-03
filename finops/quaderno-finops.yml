@@ -1,0 +1,91 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Quaderno
+providerId: quaderno
+created: '2026-07-03'
+modified: '2026-07-03'
+reconciled: false
+tags:
+- Tax Compliance
+- Sales Tax
+- VAT
+- Invoicing
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Quaderno spend. Quaderno bills a flat monthly subscription
+  priced by tier (Startup, Business, Growth, Enterprise), with the dominant cost
+  driver being the number of transactions processed per month and the number of
+  tax jurisdictions covered. API access and Quaderno Checkout are included in the
+  subscription at no metered per-call cost, so cost management centers on
+  choosing the right transaction-allowance tier and avoiding overage rather than
+  on API call volume.
+notes: >-
+  Per-tier prices and transaction allowances are not reconciled here; verify on
+  https://quaderno.io/pricing/. The API rate limit (100 requests per 15 seconds)
+  governs throughput but does not itself incur charges - billing tracks processed
+  documents/transactions, not API requests.
+sources:
+- https://quaderno.io/pricing/
+- https://support.quaderno.io/article/492-plans-pricing
+- https://developers.quaderno.io/
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Quaderno
+serviceCategory: Tax Compliance and Billing
+billingModel:
+  pricingCategory: Subscription
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Purchase
+  - Usage
+focusColumns:
+  ServiceName: Quaderno
+  ServiceCategory: Tax Compliance and Billing
+  ProviderName: Quaderno
+  PublisherName: Quaderno
+  InvoiceIssuerName: Quaderno
+  BillingCurrency: USD
+  ChargeCategory: Purchase
+  PricingCategory: Subscription
+meters:
+- name: subscription_tier
+  description: Flat monthly subscription fee for the selected plan tier.
+  unit: months
+  aggregation: sum
+  dimensions:
+  - account
+  - plan
+- name: transactions
+  description: Number of transactions (issued documents) processed per month against the plan allowance.
+  unit: transactions
+  aggregation: sum
+  dimensions:
+  - account
+  - plan
+- name: tax_jurisdictions
+  description: Number of tax jurisdictions the account is registered and filing in, which factors into tier selection.
+  unit: jurisdictions
+  aggregation: max
+  dimensions:
+  - account
+principles:
+- name: Visibility
+  description: Track monthly transaction counts against the plan allowance and monitor how many jurisdictions are active.
+- name: Allocation
+  description: Attribute the flat subscription and transaction usage to the products, channels, or entities generating the sales documents.
+- name: Optimization
+  description: Right-size the plan tier to actual monthly transaction volume; consolidate low-volume channels to avoid an oversized tier, and negotiate Enterprise terms above the Growth allowance.
+- name: Accountability
+  description: Assign an owner to review transaction volume vs. allowance each month and to reconcile tier price and jurisdiction coverage against the pricing page.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

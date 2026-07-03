@@ -1,0 +1,362 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Quaderno API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{apiKey}}",
+      "password": "x"
+    }
+  },
+  "items": [
+    {
+      "info": { "name": "Authentication", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Ping the API.", "type": "http" },
+          "http": { "method": "GET", "url": "https://ACCOUNT_NAME.quadernoapp.com/api/ping.json" },
+          "docs": "Tests availability, validates the API key, and returns remaining allowance without consuming rate limit."
+        },
+        {
+          "info": { "name": "Get authorization details.", "type": "http" },
+          "http": { "method": "GET", "url": "https://ACCOUNT_NAME.quadernoapp.com/api/authorization.json" },
+          "docs": "Returns the identity and account-scoped API URL for the authenticated key."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Contacts", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List contacts.", "type": "http" },
+          "http": { "method": "GET", "url": "https://ACCOUNT_NAME.quadernoapp.com/api/contacts.json" },
+          "docs": "Lists contacts (customers and vendors) with optional search and pagination."
+        },
+        {
+          "info": { "name": "Create a contact.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://ACCOUNT_NAME.quadernoapp.com/api/contacts.json",
+            "body": { "type": "json", "data": "{\"kind\":\"company\",\"contact_name\":\"Acme Inc\",\"country\":\"US\",\"email\":\"billing@acme.example\"}" }
+          },
+          "docs": "Creates a new contact."
+        },
+        {
+          "info": { "name": "Retrieve a contact.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://ACCOUNT_NAME.quadernoapp.com/api/contacts/:id.json",
+            "params": [{ "name": "id", "value": "", "type": "path", "description": "The contact ID." }]
+          },
+          "docs": "Retrieves a contact by ID."
+        },
+        {
+          "info": { "name": "Update a contact.", "type": "http" },
+          "http": {
+            "method": "PUT",
+            "url": "https://ACCOUNT_NAME.quadernoapp.com/api/contacts/:id.json",
+            "params": [{ "name": "id", "value": "", "type": "path", "description": "The contact ID." }],
+            "body": { "type": "json", "data": "{\"email\":\"new@acme.example\"}" }
+          },
+          "docs": "Updates a contact."
+        },
+        {
+          "info": { "name": "Delete a contact.", "type": "http" },
+          "http": {
+            "method": "DELETE",
+            "url": "https://ACCOUNT_NAME.quadernoapp.com/api/contacts/:id.json",
+            "params": [{ "name": "id", "value": "", "type": "path", "description": "The contact ID." }]
+          },
+          "docs": "Deletes a contact."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Items", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List items.", "type": "http" },
+          "http": { "method": "GET", "url": "https://ACCOUNT_NAME.quadernoapp.com/api/items.json" },
+          "docs": "Lists catalog items."
+        },
+        {
+          "info": { "name": "Create an item.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://ACCOUNT_NAME.quadernoapp.com/api/items.json",
+            "body": { "type": "json", "data": "{\"name\":\"Pro Plan\",\"unit_cost\":99.0,\"tax_code\":\"eservice\"}" }
+          },
+          "docs": "Creates a catalog item."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Invoices", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List invoices.", "type": "http" },
+          "http": { "method": "GET", "url": "https://ACCOUNT_NAME.quadernoapp.com/api/invoices.json" },
+          "docs": "Lists invoices with optional search, state filter, and pagination."
+        },
+        {
+          "info": { "name": "Create an invoice.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://ACCOUNT_NAME.quadernoapp.com/api/invoices.json",
+            "body": { "type": "json", "data": "{\"contact_id\":\"CONTACT_ID\",\"currency\":\"USD\",\"items_attributes\":[{\"description\":\"Pro Plan\",\"quantity\":1,\"unit_price\":99.0,\"tax_code\":\"eservice\"}]}" }
+          },
+          "docs": "Creates an invoice."
+        },
+        {
+          "info": { "name": "Retrieve an invoice.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://ACCOUNT_NAME.quadernoapp.com/api/invoices/:id.json",
+            "params": [{ "name": "id", "value": "", "type": "path", "description": "The invoice ID." }]
+          },
+          "docs": "Retrieves an invoice by ID."
+        },
+        {
+          "info": { "name": "Update an invoice.", "type": "http" },
+          "http": {
+            "method": "PUT",
+            "url": "https://ACCOUNT_NAME.quadernoapp.com/api/invoices/:id.json",
+            "params": [{ "name": "id", "value": "", "type": "path", "description": "The invoice ID." }],
+            "body": { "type": "json", "data": "{\"po_number\":\"PO-123\"}" }
+          },
+          "docs": "Updates an invoice."
+        },
+        {
+          "info": { "name": "Delete an invoice.", "type": "http" },
+          "http": {
+            "method": "DELETE",
+            "url": "https://ACCOUNT_NAME.quadernoapp.com/api/invoices/:id.json",
+            "params": [{ "name": "id", "value": "", "type": "path", "description": "The invoice ID." }]
+          },
+          "docs": "Deletes an invoice."
+        },
+        {
+          "info": { "name": "Deliver an invoice by email.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://ACCOUNT_NAME.quadernoapp.com/api/invoices/:id/deliver.json",
+            "params": [{ "name": "id", "value": "", "type": "path", "description": "The invoice ID." }]
+          },
+          "docs": "Emails the invoice to the contact."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Payments", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Add a payment to an invoice.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://ACCOUNT_NAME.quadernoapp.com/api/invoices/:id/payments.json",
+            "params": [{ "name": "id", "value": "", "type": "path", "description": "The invoice ID." }],
+            "body": { "type": "json", "data": "{\"amount\":99.0,\"payment_method\":\"credit_card\",\"date\":\"2026-07-03\"}" }
+          },
+          "docs": "Records a payment against an invoice."
+        },
+        {
+          "info": { "name": "Remove a payment from an invoice.", "type": "http" },
+          "http": {
+            "method": "DELETE",
+            "url": "https://ACCOUNT_NAME.quadernoapp.com/api/invoices/:id/payments/:payment_id.json",
+            "params": [
+              { "name": "id", "value": "", "type": "path", "description": "The invoice ID." },
+              { "name": "payment_id", "value": "", "type": "path", "description": "The payment ID." }
+            ]
+          },
+          "docs": "Removes a payment from an invoice."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Credits", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List credit notes.", "type": "http" },
+          "http": { "method": "GET", "url": "https://ACCOUNT_NAME.quadernoapp.com/api/credits.json" },
+          "docs": "Lists credit notes."
+        },
+        {
+          "info": { "name": "Create a credit note.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://ACCOUNT_NAME.quadernoapp.com/api/credits.json",
+            "body": { "type": "json", "data": "{\"contact_id\":\"CONTACT_ID\",\"invoice_id\":\"INVOICE_ID\",\"items_attributes\":[{\"description\":\"Refund\",\"quantity\":1,\"unit_price\":99.0}]}" }
+          },
+          "docs": "Creates a credit note against an invoice."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Estimates", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List estimates.", "type": "http" },
+          "http": { "method": "GET", "url": "https://ACCOUNT_NAME.quadernoapp.com/api/estimates.json" },
+          "docs": "Lists estimates / quotes."
+        },
+        {
+          "info": { "name": "Create an estimate.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://ACCOUNT_NAME.quadernoapp.com/api/estimates.json",
+            "body": { "type": "json", "data": "{\"contact_id\":\"CONTACT_ID\",\"currency\":\"USD\",\"items_attributes\":[{\"description\":\"Consulting\",\"quantity\":10,\"unit_price\":150.0}]}" }
+          },
+          "docs": "Creates an estimate."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Expenses", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List expenses.", "type": "http" },
+          "http": { "method": "GET", "url": "https://ACCOUNT_NAME.quadernoapp.com/api/expenses.json" },
+          "docs": "Lists expenses / vendor bills."
+        },
+        {
+          "info": { "name": "Create an expense.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://ACCOUNT_NAME.quadernoapp.com/api/expenses.json",
+            "body": { "type": "json", "data": "{\"contact_id\":\"VENDOR_ID\",\"currency\":\"USD\",\"items_attributes\":[{\"description\":\"Hosting\",\"quantity\":1,\"unit_price\":200.0}]}" }
+          },
+          "docs": "Creates an expense."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Recurring", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List recurring documents.", "type": "http" },
+          "http": { "method": "GET", "url": "https://ACCOUNT_NAME.quadernoapp.com/api/recurring.json" },
+          "docs": "Lists recurring document templates."
+        },
+        {
+          "info": { "name": "Create a recurring document.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://ACCOUNT_NAME.quadernoapp.com/api/recurring.json",
+            "body": { "type": "json", "data": "{\"contact_id\":\"CONTACT_ID\",\"currency\":\"USD\",\"period\":1,\"frequency\":\"monthly\",\"start_date\":\"2026-08-01\",\"items_attributes\":[{\"description\":\"Subscription\",\"quantity\":1,\"unit_price\":99.0}]}" }
+          },
+          "docs": "Creates a recurring document template."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Transactions", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Create a sales transaction.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://ACCOUNT_NAME.quadernoapp.com/api/transactions.json",
+            "body": { "type": "json", "data": "{\"customer\":{\"first_name\":\"Tony\",\"last_name\":\"Stark\",\"email\":\"tony@stark.example\",\"country\":\"US\",\"region\":\"NY\",\"postal_code\":\"10001\"},\"items\":[{\"description\":\"Pro Plan\",\"quantity\":1,\"unit_price\":99.0,\"tax_code\":\"eservice\"}],\"payment_method\":\"credit_card\"}" }
+          },
+          "docs": "Records a sale and calculates its tax in one call."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Taxes", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Calculate a tax rate.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://ACCOUNT_NAME.quadernoapp.com/api/tax_rates/calculate.json",
+            "params": [
+              { "name": "country", "value": "US", "type": "query", "description": "ISO country code." },
+              { "name": "region", "value": "NY", "type": "query", "description": "State/region (US sales tax)." },
+              { "name": "postal_code", "value": "10001", "type": "query", "description": "Postal / ZIP code." },
+              { "name": "tax_code", "value": "eservice", "type": "query", "description": "Product tax code." }
+            ]
+          },
+          "docs": "Calculates the applicable tax rate with a reasoning status (taxable, non_taxable, not_registered)."
+        },
+        {
+          "info": { "name": "Validate a tax ID.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://ACCOUNT_NAME.quadernoapp.com/api/tax_ids/validate.json",
+            "params": [
+              { "name": "country", "value": "IE", "type": "query", "description": "ISO country code." },
+              { "name": "tax_id", "value": "IE6388047V", "type": "query", "description": "VAT number / tax ID." }
+            ]
+          },
+          "docs": "Validates a customer VAT number / tax ID against the relevant registry."
+        },
+        {
+          "info": { "name": "List tax jurisdictions.", "type": "http" },
+          "http": { "method": "GET", "url": "https://ACCOUNT_NAME.quadernoapp.com/api/tax_jurisdictions.json" },
+          "docs": "Lists jurisdictions the account is registered in."
+        },
+        {
+          "info": { "name": "List tax codes.", "type": "http" },
+          "http": { "method": "GET", "url": "https://ACCOUNT_NAME.quadernoapp.com/api/tax_codes.json" },
+          "docs": "Lists product tax codes."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Checkout", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Create a checkout session.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://ACCOUNT_NAME.quadernoapp.com/api/checkout/sessions.json",
+            "body": { "type": "json", "data": "{\"success_url\":\"https://example.com/success\",\"cancel_url\":\"https://example.com/cancel\",\"currency\":\"USD\",\"items\":[{\"description\":\"Pro Plan\",\"quantity\":1,\"unit_price\":99.0,\"tax_code\":\"eservice\"}]}" }
+          },
+          "docs": "Creates a hosted Checkout session."
+        },
+        {
+          "info": { "name": "Retrieve a checkout session.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://ACCOUNT_NAME.quadernoapp.com/api/checkout/sessions/:id.json",
+            "params": [{ "name": "id", "value": "", "type": "path", "description": "The checkout session ID." }]
+          },
+          "docs": "Retrieves a Checkout session by ID."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Webhooks", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List webhooks.", "type": "http" },
+          "http": { "method": "GET", "url": "https://ACCOUNT_NAME.quadernoapp.com/api/webhooks.json" },
+          "docs": "Lists webhook subscriptions."
+        },
+        {
+          "info": { "name": "Create a webhook.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://ACCOUNT_NAME.quadernoapp.com/api/webhooks.json",
+            "body": { "type": "json", "data": "{\"url\":\"https://example.com/webhooks/quaderno\",\"events_types\":[\"invoice.created\",\"checkout.succeeded\"]}" }
+          },
+          "docs": "Subscribes a URL to event notifications."
+        },
+        {
+          "info": { "name": "Delete a webhook.", "type": "http" },
+          "http": {
+            "method": "DELETE",
+            "url": "https://ACCOUNT_NAME.quadernoapp.com/api/webhooks/:id.json",
+            "params": [{ "name": "id", "value": "", "type": "path", "description": "The webhook ID." }]
+          },
+          "docs": "Deletes a webhook subscription."
+        }
+      ]
+    }
+  ]
+}

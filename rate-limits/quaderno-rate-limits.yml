@@ -1,0 +1,61 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Quaderno
+providerId: quaderno
+created: '2026-07-03'
+modified: '2026-07-03'
+reconciled: false
+tags:
+- Tax Compliance
+- Sales Tax
+- VAT
+- Invoicing
+- Rate Limiting
+- Quotas
+description: >-
+  Quaderno documents a fixed rate limit on its REST API: 100 requests per 15
+  seconds per account. Exceeding the limit returns HTTP 429 (Too Many Requests).
+  Quaderno notes it may tune the limit but keeps it high enough for a
+  well-behaving interactive app. The rate limit is separate from a plan's
+  monthly transaction allowance, which meters billed documents rather than API
+  calls. The /ping endpoint can be used to check availability and remaining
+  allowance without consuming rate limit.
+notes: >-
+  An older generation of the API documented a per-day request cap with
+  X-RateLimit-Limit / X-RateLimit-Remaining headers; the current documented
+  limit is 100 requests per 15 seconds returning 429 on excess. Verify current
+  numbers and any per-endpoint nuances on https://developers.quaderno.io/api/
+  during reconciliation. Tax calculation and validation calls count toward the
+  same limit.
+sources:
+- https://developers.quaderno.io/api/
+- https://developers.quaderno.io/
+responseCodes:
+  throttled: 429
+limits:
+- name: API Requests
+  scope: account
+  metric: requests
+  limit: 100 per 15 seconds
+  notes: Documented account-wide REST API rate limit; excess returns HTTP 429.
+- name: Ping
+  scope: account
+  metric: requests
+  limit: no rate-limit cost
+  notes: The /ping endpoint checks availability and remaining allowance without consuming rate limit.
+- name: Monthly Transactions
+  scope: account
+  metric: transactions
+  limit: per plan
+  notes: Not a request-rate limit - a billing allowance of processed documents per plan tier.
+policies:
+- name: Throttling Response
+  description: Requests beyond 100 per 15 seconds receive HTTP 429 (Too Many Requests).
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and retry 429 responses after a short delay.
+- name: Server Error Retry
+  description: 5xx responses (500, 502, 503, 504) are transient and should be retried later by the client.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
