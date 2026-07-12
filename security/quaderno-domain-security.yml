@@ -1,0 +1,43 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: quaderno.io
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Aug 21 05:59:45 2026 GMT
+  hsts: false
+- host: developers.quaderno.io
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Aug 21 07:10:03 2026 GMT
+  hsts: false
+- host: account_name.quadernoapp.com
+  https: true
+  tls_cert_error: '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch,
+    certificate is not valid for ''account_nam'
+  hsts: null
+domains:
+- domain: quaderno.io
+  dnssec: false
+  caa:
+  - 0 issue "amazon.com"
+  - 0 issue "amazonaws.com"
+  - 0 issue "amazontrust.com"
+  - 0 issue "awstrust.com"
+  - 0 issue "comodoca.com"
+  - 0 issue "digicert.com; cansignhttpexchanges=yes"
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine
+- domain: quadernoapp.com
+  dnssec: false
+  caa:
+  - 0 issuewild "ssl.com"
+  - 0 issue "amazon.com"
+  - 0 issue "amazonaws.com"
+  - 0 issue "amazontrust.com"
+  - 0 issue "awstrust.com"
+  - 0 issue "comodoca.com"
+  spf: true
+  dmarc: false

@@ -1,0 +1,14 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/quaderno-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: basicAuth
+  type: http
+  scheme: basic
+  description: HTTP Basic Authentication. Use your private API key as the username; the password
+    can be any value. API keys are managed in the Quaderno account settings.
+  sources:
+  - openapi/quaderno-openapi.yml

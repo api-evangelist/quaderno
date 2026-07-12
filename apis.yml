@@ -262,6 +262,10 @@ apis:
     HTTPS - create, list, retrieve, update, and delete webhooks for document and
     checkout events, with automatic hourly retries for up to 72 hours on failure.
 common:
+- type: DomainSecurity
+  url: security/quaderno-domain-security.yml
+- type: Authentication
+  url: authentication/quaderno-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/quaderno
 - type: LinkedIn
