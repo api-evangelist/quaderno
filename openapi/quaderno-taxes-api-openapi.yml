@@ -1,0 +1,229 @@
+openapi: 3.0.3
+info:
+  title: Quaderno Authentication Taxes API
+  description: 'The Quaderno API is a REST API for tax compliance, invoicing, and sales tax / VAT automation. It exposes resources with predictable, account-scoped URLs and uses standard HTTP features - HTTP Basic Authentication, standard methods, and response codes. All requests and responses are JSON, and every endpoint path ends in `.json` to indicate JSON serialization.
+
+    The base URL is account-scoped: `https://ACCOUNT_NAME.quadernoapp.com/api`, where `ACCOUNT_NAME` is your Quaderno account subdomain. Authenticate with your private API key as the HTTP Basic Auth username (any value for the password). Sandbox testing is available on a separate sandbox host.
+
+    Core resources include Contacts, Items, Invoices, Credits, Estimates, Expenses, Recurring documents, Payments, Transactions, Checkout Sessions, Webhooks, and the tax engine (tax rate calculation, tax jurisdictions, tax codes, and tax ID validation). Endpoint paths and the account-scoped base URL are confirmed against Quaderno''s public developer documentation and the official quaderno-ruby SDK; request and response bodies are modeled and should be verified against the live API reference.'
+  version: '1.0'
+  contact:
+    name: Quaderno
+    url: https://developers.quaderno.io
+  license:
+    name: Proprietary
+    url: https://quaderno.io/terms/
+servers:
+- url: https://{account}.quadernoapp.com/api
+  description: Production (account-scoped)
+  variables:
+    account:
+      default: ACCOUNT_NAME
+      description: Your Quaderno account subdomain.
+security:
+- basicAuth: []
+tags:
+- name: Taxes
+  description: Real-time tax rate calculation, jurisdictions, tax codes, and tax ID validation.
+paths:
+  /tax_rates/calculate.json:
+    get:
+      operationId: calculateTaxRate
+      tags:
+      - Taxes
+      summary: Calculate a tax rate
+      description: Calculates the applicable tax rate for a sale given the customer's country, region, postal code, tax ID, and optional product tax code. The response includes the rate, the tax name, and a status code explaining the reasoning (for example taxable, non_taxable, or not_registered).
+      parameters:
+      - name: country
+        in: query
+        required: true
+        description: ISO 3166-1 alpha-2 country code of the customer.
+        schema:
+          type: string
+      - name: postal_code
+        in: query
+        required: false
+        description: Customer postal / ZIP code.
+        schema:
+          type: string
+      - name: region
+        in: query
+        required: false
+        description: State or region code (required for US sales tax).
+        schema:
+          type: string
+      - name: tax_id
+        in: query
+        required: false
+        description: Customer tax ID / VAT number, when applicable for reverse charge.
+        schema:
+          type: string
+      - name: tax_code
+        in: query
+        required: false
+        description: Product tax code identifying the taxability of the item.
+        schema:
+          type: string
+      - name: amount
+        in: query
+        required: false
+        description: Transaction amount used for threshold-sensitive determinations.
+        schema:
+          type: number
+      responses:
+        '200':
+          description: The calculated tax rate.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaxCalculation'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /tax_ids/validate.json:
+    get:
+      operationId: validateTaxId
+      tags:
+      - Taxes
+      summary: Validate a tax ID
+      description: Validates a customer tax ID / VAT number against the relevant government registry (for example VIES for EU VAT numbers).
+      parameters:
+      - name: country
+        in: query
+        required: true
+        description: ISO 3166-1 alpha-2 country code.
+        schema:
+          type: string
+      - name: tax_id
+        in: query
+        required: true
+        description: The tax ID / VAT number to validate.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Validation result.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  valid:
+                    type: boolean
+                  tax_id:
+                    type: string
+                  country:
+                    type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /tax_jurisdictions.json:
+    get:
+      operationId: listTaxJurisdictions
+      tags:
+      - Taxes
+      summary: List tax jurisdictions
+      description: Lists the tax jurisdictions the account is registered in, with the jurisdiction name, country, and region.
+      parameters:
+      - name: country
+        in: query
+        required: false
+        description: Filter jurisdictions by country code.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A list of tax jurisdictions.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TaxJurisdiction'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /tax_codes.json:
+    get:
+      operationId: listTaxCodes
+      tags:
+      - Taxes
+      summary: List tax codes
+      description: Lists the product tax codes available for classifying item taxability.
+      responses:
+        '200':
+          description: A list of tax codes.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TaxCode'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    TaxCode:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+    TaxJurisdiction:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        country:
+          type: string
+        region:
+          type: string
+    TaxCalculation:
+      type: object
+      properties:
+        country:
+          type: string
+        region:
+          type: string
+        county:
+          type: string
+        city:
+          type: string
+        name:
+          type: string
+          description: Human-readable tax name (for example VAT, GST, Sales Tax).
+        rate:
+          type: number
+        tax_behavior:
+          type: string
+        notes:
+          type: string
+        status:
+          type: string
+          enum:
+          - taxable
+          - non_taxable
+          - not_registered
+          description: Reasoning for the calculated rate.
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        errors:
+          type: object
+          additionalProperties: true
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Authentication. Use your private API key as the username; the password can be any value. API keys are managed in the Quaderno account settings.

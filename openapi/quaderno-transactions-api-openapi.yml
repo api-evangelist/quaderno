@@ -1,0 +1,125 @@
+openapi: 3.0.3
+info:
+  title: Quaderno Authentication Transactions API
+  description: 'The Quaderno API is a REST API for tax compliance, invoicing, and sales tax / VAT automation. It exposes resources with predictable, account-scoped URLs and uses standard HTTP features - HTTP Basic Authentication, standard methods, and response codes. All requests and responses are JSON, and every endpoint path ends in `.json` to indicate JSON serialization.
+
+    The base URL is account-scoped: `https://ACCOUNT_NAME.quadernoapp.com/api`, where `ACCOUNT_NAME` is your Quaderno account subdomain. Authenticate with your private API key as the HTTP Basic Auth username (any value for the password). Sandbox testing is available on a separate sandbox host.
+
+    Core resources include Contacts, Items, Invoices, Credits, Estimates, Expenses, Recurring documents, Payments, Transactions, Checkout Sessions, Webhooks, and the tax engine (tax rate calculation, tax jurisdictions, tax codes, and tax ID validation). Endpoint paths and the account-scoped base URL are confirmed against Quaderno''s public developer documentation and the official quaderno-ruby SDK; request and response bodies are modeled and should be verified against the live API reference.'
+  version: '1.0'
+  contact:
+    name: Quaderno
+    url: https://developers.quaderno.io
+  license:
+    name: Proprietary
+    url: https://quaderno.io/terms/
+servers:
+- url: https://{account}.quadernoapp.com/api
+  description: Production (account-scoped)
+  variables:
+    account:
+      default: ACCOUNT_NAME
+      description: Your Quaderno account subdomain.
+security:
+- basicAuth: []
+tags:
+- name: Transactions
+  description: Unified sales transactions that both record a sale and calculate tax.
+paths:
+  /transactions.json:
+    post:
+      operationId: createTransaction
+      tags:
+      - Transactions
+      summary: Create a sales transaction
+      description: Records a sale and its tax in a single call. Quaderno determines the applicable tax from the customer's location evidence and the item tax codes, then creates the corresponding document.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransactionInput'
+      responses:
+        '201':
+          description: The created transaction.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+components:
+  responses:
+    ValidationError:
+      description: The request payload failed validation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Transaction:
+      allOf:
+      - $ref: '#/components/schemas/TransactionInput'
+      - type: object
+        properties:
+          id:
+            type: string
+          total:
+            type: number
+          taxes:
+            type: number
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        errors:
+          type: object
+          additionalProperties: true
+    TransactionInput:
+      type: object
+      required:
+      - customer
+      - items
+      properties:
+        customer:
+          type: object
+          description: Customer identity and location details used for tax determination.
+          properties:
+            first_name:
+              type: string
+            last_name:
+              type: string
+            email:
+              type: string
+            country:
+              type: string
+            postal_code:
+              type: string
+            region:
+              type: string
+            tax_id:
+              type: string
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              description:
+                type: string
+              quantity:
+                type: number
+              unit_price:
+                type: number
+              tax_code:
+                type: string
+        payment_method:
+          type: string
+        evidence:
+          type: object
+          additionalProperties: true
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Authentication. Use your private API key as the username; the password can be any value. API keys are managed in the Quaderno account settings.

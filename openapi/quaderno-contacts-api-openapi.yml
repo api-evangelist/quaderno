@@ -1,0 +1,219 @@
+openapi: 3.0.3
+info:
+  title: Quaderno Authentication Contacts API
+  description: 'The Quaderno API is a REST API for tax compliance, invoicing, and sales tax / VAT automation. It exposes resources with predictable, account-scoped URLs and uses standard HTTP features - HTTP Basic Authentication, standard methods, and response codes. All requests and responses are JSON, and every endpoint path ends in `.json` to indicate JSON serialization.
+
+    The base URL is account-scoped: `https://ACCOUNT_NAME.quadernoapp.com/api`, where `ACCOUNT_NAME` is your Quaderno account subdomain. Authenticate with your private API key as the HTTP Basic Auth username (any value for the password). Sandbox testing is available on a separate sandbox host.
+
+    Core resources include Contacts, Items, Invoices, Credits, Estimates, Expenses, Recurring documents, Payments, Transactions, Checkout Sessions, Webhooks, and the tax engine (tax rate calculation, tax jurisdictions, tax codes, and tax ID validation). Endpoint paths and the account-scoped base URL are confirmed against Quaderno''s public developer documentation and the official quaderno-ruby SDK; request and response bodies are modeled and should be verified against the live API reference.'
+  version: '1.0'
+  contact:
+    name: Quaderno
+    url: https://developers.quaderno.io
+  license:
+    name: Proprietary
+    url: https://quaderno.io/terms/
+servers:
+- url: https://{account}.quadernoapp.com/api
+  description: Production (account-scoped)
+  variables:
+    account:
+      default: ACCOUNT_NAME
+      description: Your Quaderno account subdomain.
+security:
+- basicAuth: []
+tags:
+- name: Contacts
+  description: Customers and vendors.
+paths:
+  /contacts.json:
+    get:
+      operationId: listContacts
+      tags:
+      - Contacts
+      summary: List contacts
+      description: Lists contacts (customers and vendors), with optional filtering and pagination.
+      parameters:
+      - $ref: '#/components/parameters/Page'
+      - name: q
+        in: query
+        required: false
+        description: Full-text search across contact fields.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A list of contacts.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Contact'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createContact
+      tags:
+      - Contacts
+      summary: Create a contact
+      description: Creates a new contact.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContactInput'
+      responses:
+        '201':
+          description: The created contact.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contact'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /contacts/{id}.json:
+    parameters:
+    - $ref: '#/components/parameters/Id'
+    get:
+      operationId: getContact
+      tags:
+      - Contacts
+      summary: Retrieve a contact
+      responses:
+        '200':
+          description: The requested contact.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contact'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateContact
+      tags:
+      - Contacts
+      summary: Update a contact
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContactInput'
+      responses:
+        '200':
+          description: The updated contact.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contact'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+    delete:
+      operationId: deleteContact
+      tags:
+      - Contacts
+      summary: Delete a contact
+      responses:
+        '204':
+          description: The contact was deleted.
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ValidationError:
+      description: The request payload failed validation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    Id:
+      name: id
+      in: path
+      required: true
+      description: The unique ID of the resource.
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Page number for paginated results (25 records per page).
+      schema:
+        type: integer
+        default: 1
+  schemas:
+    ContactInput:
+      type: object
+      required:
+      - kind
+      properties:
+        kind:
+          type: string
+          enum:
+          - company
+          - person
+          description: Whether the contact is a company or a person.
+        first_name:
+          type: string
+        last_name:
+          type: string
+        contact_name:
+          type: string
+        street_line_1:
+          type: string
+        city:
+          type: string
+        postal_code:
+          type: string
+        region:
+          type: string
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
+        email:
+          type: string
+        tax_id:
+          type: string
+    Contact:
+      allOf:
+      - $ref: '#/components/schemas/ContactInput'
+      - type: object
+        properties:
+          id:
+            type: string
+          full_name:
+            type: string
+          created_at:
+            type: integer
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        errors:
+          type: object
+          additionalProperties: true
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Authentication. Use your private API key as the username; the password can be any value. API keys are managed in the Quaderno account settings.

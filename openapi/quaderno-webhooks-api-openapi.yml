@@ -1,0 +1,176 @@
+openapi: 3.0.3
+info:
+  title: Quaderno Authentication Webhooks API
+  description: 'The Quaderno API is a REST API for tax compliance, invoicing, and sales tax / VAT automation. It exposes resources with predictable, account-scoped URLs and uses standard HTTP features - HTTP Basic Authentication, standard methods, and response codes. All requests and responses are JSON, and every endpoint path ends in `.json` to indicate JSON serialization.
+
+    The base URL is account-scoped: `https://ACCOUNT_NAME.quadernoapp.com/api`, where `ACCOUNT_NAME` is your Quaderno account subdomain. Authenticate with your private API key as the HTTP Basic Auth username (any value for the password). Sandbox testing is available on a separate sandbox host.
+
+    Core resources include Contacts, Items, Invoices, Credits, Estimates, Expenses, Recurring documents, Payments, Transactions, Checkout Sessions, Webhooks, and the tax engine (tax rate calculation, tax jurisdictions, tax codes, and tax ID validation). Endpoint paths and the account-scoped base URL are confirmed against Quaderno''s public developer documentation and the official quaderno-ruby SDK; request and response bodies are modeled and should be verified against the live API reference.'
+  version: '1.0'
+  contact:
+    name: Quaderno
+    url: https://developers.quaderno.io
+  license:
+    name: Proprietary
+    url: https://quaderno.io/terms/
+servers:
+- url: https://{account}.quadernoapp.com/api
+  description: Production (account-scoped)
+  variables:
+    account:
+      default: ACCOUNT_NAME
+      description: Your Quaderno account subdomain.
+security:
+- basicAuth: []
+tags:
+- name: Webhooks
+  description: Subscriptions that deliver real-time event notifications to your app.
+paths:
+  /webhooks.json:
+    get:
+      operationId: listWebhooks
+      tags:
+      - Webhooks
+      summary: List webhooks
+      responses:
+        '200':
+          description: A list of webhook subscriptions.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Webhook'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createWebhook
+      tags:
+      - Webhooks
+      summary: Create a webhook
+      description: Subscribes a URL to real-time event notifications. Quaderno POSTs a JSON payload over HTTPS when subscribed events occur and retries hourly (up to 72 hours) if the endpoint does not respond with a 200.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookInput'
+      responses:
+        '201':
+          description: The created webhook subscription.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /webhooks/{id}.json:
+    parameters:
+    - $ref: '#/components/parameters/Id'
+    get:
+      operationId: getWebhook
+      tags:
+      - Webhooks
+      summary: Retrieve a webhook
+      responses:
+        '200':
+          description: The requested webhook subscription.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateWebhook
+      tags:
+      - Webhooks
+      summary: Update a webhook
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookInput'
+      responses:
+        '200':
+          description: The updated webhook subscription.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteWebhook
+      tags:
+      - Webhooks
+      summary: Delete a webhook
+      responses:
+        '204':
+          description: The webhook subscription was deleted.
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ValidationError:
+      description: The request payload failed validation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    Id:
+      name: id
+      in: path
+      required: true
+      description: The unique ID of the resource.
+      schema:
+        type: string
+  schemas:
+    Webhook:
+      allOf:
+      - $ref: '#/components/schemas/WebhookInput'
+      - type: object
+        properties:
+          id:
+            type: string
+    WebhookInput:
+      type: object
+      required:
+      - url
+      - events_types
+      properties:
+        url:
+          type: string
+          format: uri
+        events_types:
+          type: array
+          description: Event types to subscribe to (for example invoice.created, invoice.updated, checkout.succeeded, checkout.failed, checkout.abandoned).
+          items:
+            type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        errors:
+          type: object
+          additionalProperties: true
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Authentication. Use your private API key as the username; the password can be any value. API keys are managed in the Quaderno account settings.

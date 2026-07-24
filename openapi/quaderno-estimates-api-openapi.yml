@@ -1,0 +1,250 @@
+openapi: 3.0.3
+info:
+  title: Quaderno Authentication Estimates API
+  description: 'The Quaderno API is a REST API for tax compliance, invoicing, and sales tax / VAT automation. It exposes resources with predictable, account-scoped URLs and uses standard HTTP features - HTTP Basic Authentication, standard methods, and response codes. All requests and responses are JSON, and every endpoint path ends in `.json` to indicate JSON serialization.
+
+    The base URL is account-scoped: `https://ACCOUNT_NAME.quadernoapp.com/api`, where `ACCOUNT_NAME` is your Quaderno account subdomain. Authenticate with your private API key as the HTTP Basic Auth username (any value for the password). Sandbox testing is available on a separate sandbox host.
+
+    Core resources include Contacts, Items, Invoices, Credits, Estimates, Expenses, Recurring documents, Payments, Transactions, Checkout Sessions, Webhooks, and the tax engine (tax rate calculation, tax jurisdictions, tax codes, and tax ID validation). Endpoint paths and the account-scoped base URL are confirmed against Quaderno''s public developer documentation and the official quaderno-ruby SDK; request and response bodies are modeled and should be verified against the live API reference.'
+  version: '1.0'
+  contact:
+    name: Quaderno
+    url: https://developers.quaderno.io
+  license:
+    name: Proprietary
+    url: https://quaderno.io/terms/
+servers:
+- url: https://{account}.quadernoapp.com/api
+  description: Production (account-scoped)
+  variables:
+    account:
+      default: ACCOUNT_NAME
+      description: Your Quaderno account subdomain.
+security:
+- basicAuth: []
+tags:
+- name: Estimates
+  description: Quotes and estimates issued to customers.
+paths:
+  /estimates.json:
+    get:
+      operationId: listEstimates
+      tags:
+      - Estimates
+      summary: List estimates
+      parameters:
+      - $ref: '#/components/parameters/Page'
+      responses:
+        '200':
+          description: A list of estimates.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Estimate'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createEstimate
+      tags:
+      - Estimates
+      summary: Create an estimate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EstimateInput'
+      responses:
+        '201':
+          description: The created estimate.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Estimate'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /estimates/{id}.json:
+    parameters:
+    - $ref: '#/components/parameters/Id'
+    get:
+      operationId: getEstimate
+      tags:
+      - Estimates
+      summary: Retrieve an estimate
+      responses:
+        '200':
+          description: The requested estimate.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Estimate'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateEstimate
+      tags:
+      - Estimates
+      summary: Update an estimate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EstimateInput'
+      responses:
+        '200':
+          description: The updated estimate.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Estimate'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteEstimate
+      tags:
+      - Estimates
+      summary: Delete an estimate
+      responses:
+        '204':
+          description: The estimate was deleted.
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    EstimateInput:
+      type: object
+      required:
+      - contact_id
+      properties:
+        contact_id:
+          type: string
+        contact:
+          $ref: '#/components/schemas/ContactInput'
+        currency:
+          type: string
+        po_number:
+          type: string
+        items_attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentItem'
+        notes:
+          type: string
+    DocumentItem:
+      type: object
+      description: A line item on a document.
+      properties:
+        description:
+          type: string
+        quantity:
+          type: number
+        unit_price:
+          type: number
+        discount_rate:
+          type: number
+        tax_1_name:
+          type: string
+        tax_1_rate:
+          type: number
+        tax_code:
+          type: string
+        reference:
+          type: string
+    ContactInput:
+      type: object
+      required:
+      - kind
+      properties:
+        kind:
+          type: string
+          enum:
+          - company
+          - person
+          description: Whether the contact is a company or a person.
+        first_name:
+          type: string
+        last_name:
+          type: string
+        contact_name:
+          type: string
+        street_line_1:
+          type: string
+        city:
+          type: string
+        postal_code:
+          type: string
+        region:
+          type: string
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
+        email:
+          type: string
+        tax_id:
+          type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        errors:
+          type: object
+          additionalProperties: true
+    Estimate:
+      allOf:
+      - $ref: '#/components/schemas/EstimateInput'
+      - type: object
+        properties:
+          id:
+            type: string
+          number:
+            type: string
+          issue_date:
+            type: string
+          state:
+            type: string
+          total:
+            type: number
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ValidationError:
+      description: The request payload failed validation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    Id:
+      name: id
+      in: path
+      required: true
+      description: The unique ID of the resource.
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Page number for paginated results (25 records per page).
+      schema:
+        type: integer
+        default: 1
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Authentication. Use your private API key as the username; the password can be any value. API keys are managed in the Quaderno account settings.
