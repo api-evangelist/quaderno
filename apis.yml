@@ -11,7 +11,20 @@ description: Quaderno is a tax compliance, invoicing, and sales-tax / VAT automa
   webhooks, plus a tax engine for rate calculation, jurisdictions, tax codes, and
   tax ID validation. Requests use HTTP Basic Auth with a private API key and return
   JSON; every endpoint path ends in .json.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: true
+  try_now: true
+  public: false
+  label: Freemium (free trial) · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/quaderno.png
 tags:
 - Tax Compliance
 - Sales Tax
@@ -23,244 +36,314 @@ created: '2026-07-03'
 modified: '2026-07-03'
 specificationVersion: '0.19'
 apis:
-- aid: quaderno:quaderno-invoices-api
-  name: Quaderno Invoices API
-  tags:
-  - Invoices
-  - Billing
-  - Documents
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+- aid: quaderno:quaderno-authentication-api
+  name: Quaderno Authentication API
+  description: Ping the API and inspect the authenticated account and rate-limit state.
   humanURL: https://developers.quaderno.io/api/
   baseURL: https://ACCOUNT_NAME.quadernoapp.com/api
-  properties:
-  - url: https://developers.quaderno.io/api/
-    type: Documentation
-  - url: https://developers.quaderno.io/api/
-    type: APIReference
-  - url: openapi/quaderno-openapi.yml
-    type: OpenAPI
-  - url: collections/quaderno.postman_collection.json
-    type: PostmanCollection
-  - url: collections/quaderno.opencollection.json
-    type: OpenCollection
-  description: Create, list, retrieve, update, delete, and deliver tax-compliant sales
-    invoices, each with line items, taxes, discounts, currency, and a public
-    permalink. Invoices carry nested payments and can be emailed to the contact.
-- aid: quaderno:quaderno-credits-api
-  name: Quaderno Credits API
   tags:
-  - Credit Notes
-  - Refunds
-  - Documents
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developers.quaderno.io/api/
-  baseURL: https://ACCOUNT_NAME.quadernoapp.com/api
+  - Authentication
   properties:
-  - url: https://developers.quaderno.io/api/
-    type: APIReference
-  - url: openapi/quaderno-openapi.yml
-    type: OpenAPI
-  - url: collections/quaderno.postman_collection.json
-    type: PostmanCollection
-  - url: collections/quaderno.opencollection.json
-    type: OpenCollection
-  description: Issue and manage credit notes against invoices - create, list, retrieve,
-    update, and delete credits with their own line items, taxes, and totals for
-    refunds and corrections.
-- aid: quaderno:quaderno-estimates-api
-  name: Quaderno Estimates API
-  tags:
-  - Estimates
-  - Quotes
-  - Documents
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developers.quaderno.io/api/
-  baseURL: https://ACCOUNT_NAME.quadernoapp.com/api
-  properties:
-  - url: https://developers.quaderno.io/api/
-    type: APIReference
-  - url: openapi/quaderno-openapi.yml
-    type: OpenAPI
-  - url: collections/quaderno.postman_collection.json
-    type: PostmanCollection
-  - url: collections/quaderno.opencollection.json
-    type: OpenCollection
-  description: Create, list, retrieve, update, and delete estimates and quotes issued
-    to customers, with line items, taxes, and state tracking - convertible into
-    invoices once accepted.
-- aid: quaderno:quaderno-expenses-api
-  name: Quaderno Expenses API
-  tags:
-  - Expenses
-  - Purchases
-  - Documents
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developers.quaderno.io/api/
-  baseURL: https://ACCOUNT_NAME.quadernoapp.com/api
-  properties:
-  - url: https://developers.quaderno.io/api/
-    type: APIReference
-  - url: openapi/quaderno-openapi.yml
-    type: OpenAPI
-  - url: collections/quaderno.postman_collection.json
-    type: PostmanCollection
-  - url: collections/quaderno.opencollection.json
-    type: OpenCollection
-  description: Record and manage vendor bills and purchases - create, list, retrieve,
-    update, and delete expenses with line items, taxes, and payment methods for
-    input-tax tracking and reporting.
-- aid: quaderno:quaderno-contacts-api
-  name: Quaderno Contacts API
-  tags:
-  - Contacts
-  - Customers
-  - CRM
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developers.quaderno.io/api/
-  baseURL: https://ACCOUNT_NAME.quadernoapp.com/api
-  properties:
-  - url: https://developers.quaderno.io/api/
-    type: APIReference
-  - url: openapi/quaderno-openapi.yml
-    type: OpenAPI
-  - url: collections/quaderno.postman_collection.json
-    type: PostmanCollection
-  - url: collections/quaderno.opencollection.json
-    type: OpenCollection
-  description: Manage customers and vendors - create, list, search, retrieve, update,
-    and delete contacts (companies or people) with billing address, country,
-    email, and tax ID used for tax determination.
-- aid: quaderno:quaderno-items-api
-  name: Quaderno Items API
-  tags:
-  - Items
-  - Products
-  - Catalog
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developers.quaderno.io/api/
-  baseURL: https://ACCOUNT_NAME.quadernoapp.com/api
-  properties:
-  - url: https://developers.quaderno.io/api/
-    type: APIReference
-  - url: openapi/quaderno-openapi.yml
-    type: OpenAPI
-  - url: collections/quaderno.postman_collection.json
-    type: PostmanCollection
-  - url: collections/quaderno.opencollection.json
-    type: OpenCollection
-  description: Maintain the catalog of reusable products and services - create, list,
-    retrieve, update, and delete items with unit cost, code, stock, and a tax code
-    that drives taxability on documents.
-- aid: quaderno:quaderno-taxes-api
-  name: Quaderno Taxes API
-  tags:
-  - Tax Calculation
-  - Sales Tax
-  - VAT
-  - Jurisdictions
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developers.quaderno.io/api/
-  baseURL: https://ACCOUNT_NAME.quadernoapp.com/api
-  properties:
-  - url: https://developers.quaderno.io/api/
-    type: APIReference
-  - url: openapi/quaderno-openapi.yml
-    type: OpenAPI
-  - url: collections/quaderno.postman_collection.json
-    type: PostmanCollection
-  - url: collections/quaderno.opencollection.json
-    type: OpenCollection
-  description: The tax engine - calculate the correct sales tax, VAT, or GST rate in
-    real time (tax_rates/calculate) with a reasoning status of taxable,
-    non_taxable, or not_registered; list the tax jurisdictions you are registered
-    in; list product tax codes; and validate customer tax IDs / VAT numbers.
-- aid: quaderno:quaderno-payments-api
-  name: Quaderno Payments API
-  tags:
-  - Payments
-  - Reconciliation
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developers.quaderno.io/api/
-  baseURL: https://ACCOUNT_NAME.quadernoapp.com/api
-  properties:
-  - url: https://developers.quaderno.io/api/
-    type: APIReference
-  - url: openapi/quaderno-openapi.yml
-    type: OpenAPI
-  - url: collections/quaderno.postman_collection.json
-    type: PostmanCollection
-  - url: collections/quaderno.opencollection.json
-    type: OpenCollection
-  description: Record and remove payments against invoices, credits, and expenses -
-    add a payment with amount, method, and date to mark a document paid, or delete
-    a payment to reverse it.
-- aid: quaderno:quaderno-transactions-api
-  name: Quaderno Transactions API
-  tags:
-  - Transactions
-  - Sales
-  - Tax
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developers.quaderno.io/api/
-  baseURL: https://ACCOUNT_NAME.quadernoapp.com/api
-  properties:
-  - url: https://developers.quaderno.io/api/
-    type: APIReference
-  - url: openapi/quaderno-openapi.yml
-    type: OpenAPI
-  - url: collections/quaderno.postman_collection.json
-    type: PostmanCollection
-  - url: collections/quaderno.opencollection.json
-    type: OpenCollection
-  description: Record a sale and calculate its tax in a single call - the transactions
-    endpoint determines tax from customer location evidence and item tax codes and
-    creates the corresponding tax-compliant document.
+  - type: OpenAPI
+    url: openapi/quaderno-authentication-api-openapi.yml
+  - type: Documentation
+    url: https://developers.quaderno.io/api/
+  - type: APIReference
+    url: https://developers.quaderno.io/api/
+  - type: PostmanCollection
+    url: collections/quaderno.postman_collection.json
+  - type: OpenCollection
+    url: collections/quaderno.opencollection.json
+  - type: Documentation
+    url: https://developers.quaderno.io/guides/checkout/
+  - type: Documentation
+    url: https://developers.quaderno.io/guides/webhooks/
 - aid: quaderno:quaderno-checkout-api
   name: Quaderno Checkout API
+  description: Hosted checkout sessions for collecting tax-compliant payments.
+  humanURL: https://developers.quaderno.io/api/
+  baseURL: https://ACCOUNT_NAME.quadernoapp.com/api
   tags:
   - Checkout
-  - Payments
-  - Hosted
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developers.quaderno.io/guides/checkout/
-  baseURL: https://ACCOUNT_NAME.quadernoapp.com/api
   properties:
-  - url: https://developers.quaderno.io/guides/checkout/
-    type: Documentation
-  - url: https://developers.quaderno.io/api/
-    type: APIReference
-  - url: openapi/quaderno-openapi.yml
-    type: OpenAPI
-  - url: collections/quaderno.postman_collection.json
-    type: PostmanCollection
-  - url: collections/quaderno.opencollection.json
-    type: OpenCollection
-  description: Create and retrieve hosted Checkout sessions that collect tax-compliant
-    payments - rendered client-side with Quaderno.js or as a hosted page - and
-    surface checkout.succeeded, checkout.failed, and checkout.abandoned events.
+  - type: OpenAPI
+    url: openapi/quaderno-checkout-api-openapi.yml
+  - type: Documentation
+    url: https://developers.quaderno.io/api/
+  - type: APIReference
+    url: https://developers.quaderno.io/api/
+  - type: PostmanCollection
+    url: collections/quaderno.postman_collection.json
+  - type: OpenCollection
+    url: collections/quaderno.opencollection.json
+  - type: Documentation
+    url: https://developers.quaderno.io/guides/checkout/
+  - type: Documentation
+    url: https://developers.quaderno.io/guides/webhooks/
+- aid: quaderno:quaderno-contacts-api
+  name: Quaderno Contacts API
+  description: Customers and vendors.
+  humanURL: https://developers.quaderno.io/api/
+  baseURL: https://ACCOUNT_NAME.quadernoapp.com/api
+  tags:
+  - Contacts
+  properties:
+  - type: OpenAPI
+    url: openapi/quaderno-contacts-api-openapi.yml
+  - type: Documentation
+    url: https://developers.quaderno.io/api/
+  - type: APIReference
+    url: https://developers.quaderno.io/api/
+  - type: PostmanCollection
+    url: collections/quaderno.postman_collection.json
+  - type: OpenCollection
+    url: collections/quaderno.opencollection.json
+  - type: Documentation
+    url: https://developers.quaderno.io/guides/checkout/
+  - type: Documentation
+    url: https://developers.quaderno.io/guides/webhooks/
+- aid: quaderno:quaderno-credits-api
+  name: Quaderno Credits API
+  description: Credit notes issued against invoices.
+  humanURL: https://developers.quaderno.io/api/
+  baseURL: https://ACCOUNT_NAME.quadernoapp.com/api
+  tags:
+  - Credits
+  properties:
+  - type: OpenAPI
+    url: openapi/quaderno-credits-api-openapi.yml
+  - type: Documentation
+    url: https://developers.quaderno.io/api/
+  - type: APIReference
+    url: https://developers.quaderno.io/api/
+  - type: PostmanCollection
+    url: collections/quaderno.postman_collection.json
+  - type: OpenCollection
+    url: collections/quaderno.opencollection.json
+  - type: Documentation
+    url: https://developers.quaderno.io/guides/checkout/
+  - type: Documentation
+    url: https://developers.quaderno.io/guides/webhooks/
+- aid: quaderno:quaderno-estimates-api
+  name: Quaderno Estimates API
+  description: Quotes and estimates issued to customers.
+  humanURL: https://developers.quaderno.io/api/
+  baseURL: https://ACCOUNT_NAME.quadernoapp.com/api
+  tags:
+  - Estimates
+  properties:
+  - type: OpenAPI
+    url: openapi/quaderno-estimates-api-openapi.yml
+  - type: Documentation
+    url: https://developers.quaderno.io/api/
+  - type: APIReference
+    url: https://developers.quaderno.io/api/
+  - type: PostmanCollection
+    url: collections/quaderno.postman_collection.json
+  - type: OpenCollection
+    url: collections/quaderno.opencollection.json
+  - type: Documentation
+    url: https://developers.quaderno.io/guides/checkout/
+  - type: Documentation
+    url: https://developers.quaderno.io/guides/webhooks/
+- aid: quaderno:quaderno-evidences-api
+  name: Quaderno Evidences API
+  description: Location evidence records supporting tax determination for a transaction.
+  humanURL: https://developers.quaderno.io/api/
+  baseURL: https://ACCOUNT_NAME.quadernoapp.com/api
+  tags:
+  - Evidences
+  properties:
+  - type: OpenAPI
+    url: openapi/quaderno-evidences-api-openapi.yml
+  - type: Documentation
+    url: https://developers.quaderno.io/api/
+  - type: APIReference
+    url: https://developers.quaderno.io/api/
+  - type: PostmanCollection
+    url: collections/quaderno.postman_collection.json
+  - type: OpenCollection
+    url: collections/quaderno.opencollection.json
+  - type: Documentation
+    url: https://developers.quaderno.io/guides/checkout/
+  - type: Documentation
+    url: https://developers.quaderno.io/guides/webhooks/
+- aid: quaderno:quaderno-expenses-api
+  name: Quaderno Expenses API
+  description: Purchases and vendor bills recorded against the account.
+  humanURL: https://developers.quaderno.io/api/
+  baseURL: https://ACCOUNT_NAME.quadernoapp.com/api
+  tags:
+  - Expenses
+  properties:
+  - type: OpenAPI
+    url: openapi/quaderno-expenses-api-openapi.yml
+  - type: Documentation
+    url: https://developers.quaderno.io/api/
+  - type: APIReference
+    url: https://developers.quaderno.io/api/
+  - type: PostmanCollection
+    url: collections/quaderno.postman_collection.json
+  - type: OpenCollection
+    url: collections/quaderno.opencollection.json
+  - type: Documentation
+    url: https://developers.quaderno.io/guides/checkout/
+  - type: Documentation
+    url: https://developers.quaderno.io/guides/webhooks/
+- aid: quaderno:quaderno-invoices-api
+  name: Quaderno Invoices API
+  description: Sales invoices issued to customers.
+  humanURL: https://developers.quaderno.io/api/
+  baseURL: https://ACCOUNT_NAME.quadernoapp.com/api
+  tags:
+  - Invoices
+  properties:
+  - type: OpenAPI
+    url: openapi/quaderno-invoices-api-openapi.yml
+  - type: Documentation
+    url: https://developers.quaderno.io/api/
+  - type: APIReference
+    url: https://developers.quaderno.io/api/
+  - type: PostmanCollection
+    url: collections/quaderno.postman_collection.json
+  - type: OpenCollection
+    url: collections/quaderno.opencollection.json
+  - type: Documentation
+    url: https://developers.quaderno.io/guides/checkout/
+  - type: Documentation
+    url: https://developers.quaderno.io/guides/webhooks/
+- aid: quaderno:quaderno-items-api
+  name: Quaderno Items API
+  description: Reusable products and services used as document line items.
+  humanURL: https://developers.quaderno.io/api/
+  baseURL: https://ACCOUNT_NAME.quadernoapp.com/api
+  tags:
+  - Items
+  properties:
+  - type: OpenAPI
+    url: openapi/quaderno-items-api-openapi.yml
+  - type: Documentation
+    url: https://developers.quaderno.io/api/
+  - type: APIReference
+    url: https://developers.quaderno.io/api/
+  - type: PostmanCollection
+    url: collections/quaderno.postman_collection.json
+  - type: OpenCollection
+    url: collections/quaderno.opencollection.json
+  - type: Documentation
+    url: https://developers.quaderno.io/guides/checkout/
+  - type: Documentation
+    url: https://developers.quaderno.io/guides/webhooks/
+- aid: quaderno:quaderno-payments-api
+  name: Quaderno Payments API
+  description: Payments recorded against invoices, credits, and expenses.
+  humanURL: https://developers.quaderno.io/api/
+  baseURL: https://ACCOUNT_NAME.quadernoapp.com/api
+  tags:
+  - Payments
+  properties:
+  - type: OpenAPI
+    url: openapi/quaderno-payments-api-openapi.yml
+  - type: Documentation
+    url: https://developers.quaderno.io/api/
+  - type: APIReference
+    url: https://developers.quaderno.io/api/
+  - type: PostmanCollection
+    url: collections/quaderno.postman_collection.json
+  - type: OpenCollection
+    url: collections/quaderno.opencollection.json
+  - type: Documentation
+    url: https://developers.quaderno.io/guides/checkout/
+  - type: Documentation
+    url: https://developers.quaderno.io/guides/webhooks/
+- aid: quaderno:quaderno-recurring-api
+  name: Quaderno Recurring API
+  description: Recurring document templates that auto-generate invoices.
+  humanURL: https://developers.quaderno.io/api/
+  baseURL: https://ACCOUNT_NAME.quadernoapp.com/api
+  tags:
+  - Recurring
+  properties:
+  - type: OpenAPI
+    url: openapi/quaderno-recurring-api-openapi.yml
+  - type: Documentation
+    url: https://developers.quaderno.io/api/
+  - type: APIReference
+    url: https://developers.quaderno.io/api/
+  - type: PostmanCollection
+    url: collections/quaderno.postman_collection.json
+  - type: OpenCollection
+    url: collections/quaderno.opencollection.json
+  - type: Documentation
+    url: https://developers.quaderno.io/guides/checkout/
+  - type: Documentation
+    url: https://developers.quaderno.io/guides/webhooks/
+- aid: quaderno:quaderno-taxes-api
+  name: Quaderno Taxes API
+  description: Real-time tax rate calculation, jurisdictions, tax codes, and tax ID validation.
+  humanURL: https://developers.quaderno.io/api/
+  baseURL: https://ACCOUNT_NAME.quadernoapp.com/api
+  tags:
+  - Taxes
+  properties:
+  - type: OpenAPI
+    url: openapi/quaderno-taxes-api-openapi.yml
+  - type: Documentation
+    url: https://developers.quaderno.io/api/
+  - type: APIReference
+    url: https://developers.quaderno.io/api/
+  - type: PostmanCollection
+    url: collections/quaderno.postman_collection.json
+  - type: OpenCollection
+    url: collections/quaderno.opencollection.json
+  - type: Documentation
+    url: https://developers.quaderno.io/guides/checkout/
+  - type: Documentation
+    url: https://developers.quaderno.io/guides/webhooks/
+- aid: quaderno:quaderno-transactions-api
+  name: Quaderno Transactions API
+  description: Unified sales transactions that both record a sale and calculate tax.
+  humanURL: https://developers.quaderno.io/api/
+  baseURL: https://ACCOUNT_NAME.quadernoapp.com/api
+  tags:
+  - Transactions
+  properties:
+  - type: OpenAPI
+    url: openapi/quaderno-transactions-api-openapi.yml
+  - type: Documentation
+    url: https://developers.quaderno.io/api/
+  - type: APIReference
+    url: https://developers.quaderno.io/api/
+  - type: PostmanCollection
+    url: collections/quaderno.postman_collection.json
+  - type: OpenCollection
+    url: collections/quaderno.opencollection.json
+  - type: Documentation
+    url: https://developers.quaderno.io/guides/checkout/
+  - type: Documentation
+    url: https://developers.quaderno.io/guides/webhooks/
 - aid: quaderno:quaderno-webhooks-api
   name: Quaderno Webhooks API
+  description: Subscriptions that deliver real-time event notifications to your app.
+  humanURL: https://developers.quaderno.io/api/
+  baseURL: https://ACCOUNT_NAME.quadernoapp.com/api
   tags:
   - Webhooks
-  - Events
-  - Notifications
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developers.quaderno.io/guides/webhooks/
-  baseURL: https://ACCOUNT_NAME.quadernoapp.com/api
   properties:
-  - url: https://developers.quaderno.io/guides/webhooks/
-    type: Documentation
-  - url: https://developers.quaderno.io/api/
-    type: APIReference
-  - url: openapi/quaderno-openapi.yml
-    type: OpenAPI
-  - url: collections/quaderno.postman_collection.json
-    type: PostmanCollection
-  - url: collections/quaderno.opencollection.json
-    type: OpenCollection
-  description: Subscribe URLs to real-time event notifications delivered as JSON over
-    HTTPS - create, list, retrieve, update, and delete webhooks for document and
-    checkout events, with automatic hourly retries for up to 72 hours on failure.
+  - type: OpenAPI
+    url: openapi/quaderno-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://developers.quaderno.io/api/
+  - type: APIReference
+    url: https://developers.quaderno.io/api/
+  - type: PostmanCollection
+    url: collections/quaderno.postman_collection.json
+  - type: OpenCollection
+    url: collections/quaderno.opencollection.json
+  - type: Documentation
+    url: https://developers.quaderno.io/guides/checkout/
+  - type: Documentation
+    url: https://developers.quaderno.io/guides/webhooks/
 common:
 - type: AgenticAccess
   url: agentic-access/quaderno-agentic-access.yml
