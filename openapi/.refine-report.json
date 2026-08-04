@@ -1,0 +1,40 @@
+{
+  "provider": "quaderno",
+  "sources": [
+    "quaderno-authentication-api-openapi.yml",
+    "quaderno-checkout-api-openapi.yml",
+    "quaderno-contacts-api-openapi.yml",
+    "quaderno-credits-api-openapi.yml",
+    "quaderno-estimates-api-openapi.yml",
+    "quaderno-evidences-api-openapi.yml",
+    "quaderno-expenses-api-openapi.yml",
+    "quaderno-invoices-api-openapi.yml",
+    "quaderno-items-api-openapi.yml",
+    "quaderno-payments-api-openapi.yml",
+    "quaderno-recurring-api-openapi.yml",
+    "quaderno-taxes-api-openapi.yml",
+    "quaderno-transactions-api-openapi.yml",
+    "quaderno-webhooks-api-openapi.yml"
+  ],
+  "outputs": [
+    "quaderno-authentication-api-openapi.yml",
+    "quaderno-checkout-api-openapi.yml",
+    "quaderno-contacts-api-openapi.yml",
+    "quaderno-credits-api-openapi.yml",
+    "quaderno-estimates-api-openapi.yml",
+    "quaderno-evidences-api-openapi.yml",
+    "quaderno-expenses-api-openapi.yml",
+    "quaderno-invoices-api-openapi.yml",
+    "quaderno-items-api-openapi.yml",
+    "quaderno-payments-api-openapi.yml",
+    "quaderno-recurring-api-openapi.yml",
+    "quaderno-taxes-api-openapi.yml",
+    "quaderno-transactions-api-openapi.yml",
+    "quaderno-webhooks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

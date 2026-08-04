@@ -1,0 +1,1625 @@
+openapi: 3.0.3
+info:
+  title: Quaderno API
+  description: >-
+    The Quaderno API is a REST API for tax compliance, invoicing, and sales
+    tax / VAT automation. It exposes resources with predictable, account-scoped
+    URLs and uses standard HTTP features - HTTP Basic Authentication, standard
+    methods, and response codes. All requests and responses are JSON, and every
+    endpoint path ends in `.json` to indicate JSON serialization.
+
+    The base URL is account-scoped: `https://ACCOUNT_NAME.quadernoapp.com/api`,
+    where `ACCOUNT_NAME` is your Quaderno account subdomain. Authenticate with
+    your private API key as the HTTP Basic Auth username (any value for the
+    password). Sandbox testing is available on a separate sandbox host.
+
+    Core resources include Contacts, Items, Invoices, Credits, Estimates,
+    Expenses, Recurring documents, Payments, Transactions, Checkout Sessions,
+    Webhooks, and the tax engine (tax rate calculation, tax jurisdictions, tax
+    codes, and tax ID validation). Endpoint paths and the account-scoped base
+    URL are confirmed against Quaderno's public developer documentation and the
+    official quaderno-ruby SDK; request and response bodies are modeled and
+    should be verified against the live API reference.
+  version: '1.0'
+  contact:
+    name: Quaderno
+    url: https://developers.quaderno.io
+  license:
+    name: Proprietary
+    url: https://quaderno.io/terms/
+servers:
+  - url: https://{account}.quadernoapp.com/api
+    description: Production (account-scoped)
+    variables:
+      account:
+        default: ACCOUNT_NAME
+        description: Your Quaderno account subdomain.
+security:
+  - basicAuth: []
+tags:
+  - name: Authentication
+    description: Ping the API and inspect the authenticated account and rate-limit state.
+  - name: Contacts
+    description: Customers and vendors.
+  - name: Items
+    description: Reusable products and services used as document line items.
+  - name: Invoices
+    description: Sales invoices issued to customers.
+  - name: Credits
+    description: Credit notes issued against invoices.
+  - name: Estimates
+    description: Quotes and estimates issued to customers.
+  - name: Expenses
+    description: Purchases and vendor bills recorded against the account.
+  - name: Recurring
+    description: Recurring document templates that auto-generate invoices.
+  - name: Payments
+    description: Payments recorded against invoices, credits, and expenses.
+  - name: Transactions
+    description: Unified sales transactions that both record a sale and calculate tax.
+  - name: Taxes
+    description: Real-time tax rate calculation, jurisdictions, tax codes, and tax ID validation.
+  - name: Checkout
+    description: Hosted checkout sessions for collecting tax-compliant payments.
+  - name: Webhooks
+    description: Subscriptions that deliver real-time event notifications to your app.
+  - name: Evidences
+    description: Location evidence records supporting tax determination for a transaction.
+paths:
+  /ping.json:
+    get:
+      operationId: ping
+      tags:
+        - Authentication
+      summary: Ping the API
+      description: >-
+        Tests service availability, validates your API key, and returns your
+        remaining request allowance without consuming rate limit.
+      responses:
+        '200':
+          description: The service is available and the token is valid.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /authorization.json:
+    get:
+      operationId: getAuthorization
+      tags:
+        - Authentication
+      summary: Get authorization details
+      description: >-
+        Returns the identity and account details associated with the
+        authenticated API key, including the account-scoped API URL to use.
+      responses:
+        '200':
+          description: Authorization details for the authenticated key.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /contacts.json:
+    get:
+      operationId: listContacts
+      tags:
+        - Contacts
+      summary: List contacts
+      description: Lists contacts (customers and vendors), with optional filtering and pagination.
+      parameters:
+        - $ref: '#/components/parameters/Page'
+        - name: q
+          in: query
+          required: false
+          description: Full-text search across contact fields.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of contacts.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Contact'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createContact
+      tags:
+        - Contacts
+      summary: Create a contact
+      description: Creates a new contact.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContactInput'
+      responses:
+        '201':
+          description: The created contact.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contact'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /contacts/{id}.json:
+    parameters:
+      - $ref: '#/components/parameters/Id'
+    get:
+      operationId: getContact
+      tags:
+        - Contacts
+      summary: Retrieve a contact
+      responses:
+        '200':
+          description: The requested contact.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contact'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateContact
+      tags:
+        - Contacts
+      summary: Update a contact
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContactInput'
+      responses:
+        '200':
+          description: The updated contact.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contact'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+    delete:
+      operationId: deleteContact
+      tags:
+        - Contacts
+      summary: Delete a contact
+      responses:
+        '204':
+          description: The contact was deleted.
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /items.json:
+    get:
+      operationId: listItems
+      tags:
+        - Items
+      summary: List items
+      parameters:
+        - $ref: '#/components/parameters/Page'
+      responses:
+        '200':
+          description: A list of items.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Item'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createItem
+      tags:
+        - Items
+      summary: Create an item
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemInput'
+      responses:
+        '201':
+          description: The created item.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Item'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /items/{id}.json:
+    parameters:
+      - $ref: '#/components/parameters/Id'
+    get:
+      operationId: getItem
+      tags:
+        - Items
+      summary: Retrieve an item
+      responses:
+        '200':
+          description: The requested item.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Item'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateItem
+      tags:
+        - Items
+      summary: Update an item
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemInput'
+      responses:
+        '200':
+          description: The updated item.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Item'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteItem
+      tags:
+        - Items
+      summary: Delete an item
+      responses:
+        '204':
+          description: The item was deleted.
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /invoices.json:
+    get:
+      operationId: listInvoices
+      tags:
+        - Invoices
+      summary: List invoices
+      parameters:
+        - $ref: '#/components/parameters/Page'
+        - name: q
+          in: query
+          required: false
+          description: Full-text search across invoice fields.
+          schema:
+            type: string
+        - name: state
+          in: query
+          required: false
+          description: Filter by invoice state.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of invoices.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Invoice'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createInvoice
+      tags:
+        - Invoices
+      summary: Create an invoice
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InvoiceInput'
+      responses:
+        '201':
+          description: The created invoice.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /invoices/{id}.json:
+    parameters:
+      - $ref: '#/components/parameters/Id'
+    get:
+      operationId: getInvoice
+      tags:
+        - Invoices
+      summary: Retrieve an invoice
+      responses:
+        '200':
+          description: The requested invoice.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateInvoice
+      tags:
+        - Invoices
+      summary: Update an invoice
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InvoiceInput'
+      responses:
+        '200':
+          description: The updated invoice.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteInvoice
+      tags:
+        - Invoices
+      summary: Delete an invoice
+      responses:
+        '204':
+          description: The invoice was deleted.
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /invoices/{id}/deliver.json:
+    parameters:
+      - $ref: '#/components/parameters/Id'
+    get:
+      operationId: deliverInvoice
+      tags:
+        - Invoices
+      summary: Deliver an invoice by email
+      description: Sends the invoice to the contact's email address.
+      responses:
+        '200':
+          description: Delivery accepted.
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /invoices/{id}/payments.json:
+    parameters:
+      - $ref: '#/components/parameters/Id'
+    post:
+      operationId: createInvoicePayment
+      tags:
+        - Payments
+      summary: Add a payment to an invoice
+      description: Records a payment against the invoice.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentInput'
+      responses:
+        '201':
+          description: The created payment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payment'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /invoices/{id}/payments/{payment_id}.json:
+    parameters:
+      - $ref: '#/components/parameters/Id'
+      - name: payment_id
+        in: path
+        required: true
+        description: The ID of the payment.
+        schema:
+          type: string
+    delete:
+      operationId: deleteInvoicePayment
+      tags:
+        - Payments
+      summary: Remove a payment from an invoice
+      responses:
+        '204':
+          description: The payment was removed.
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /credits.json:
+    get:
+      operationId: listCredits
+      tags:
+        - Credits
+      summary: List credit notes
+      parameters:
+        - $ref: '#/components/parameters/Page'
+      responses:
+        '200':
+          description: A list of credit notes.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Credit'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createCredit
+      tags:
+        - Credits
+      summary: Create a credit note
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreditInput'
+      responses:
+        '201':
+          description: The created credit note.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Credit'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /credits/{id}.json:
+    parameters:
+      - $ref: '#/components/parameters/Id'
+    get:
+      operationId: getCredit
+      tags:
+        - Credits
+      summary: Retrieve a credit note
+      responses:
+        '200':
+          description: The requested credit note.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Credit'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateCredit
+      tags:
+        - Credits
+      summary: Update a credit note
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreditInput'
+      responses:
+        '200':
+          description: The updated credit note.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Credit'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteCredit
+      tags:
+        - Credits
+      summary: Delete a credit note
+      responses:
+        '204':
+          description: The credit note was deleted.
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /estimates.json:
+    get:
+      operationId: listEstimates
+      tags:
+        - Estimates
+      summary: List estimates
+      parameters:
+        - $ref: '#/components/parameters/Page'
+      responses:
+        '200':
+          description: A list of estimates.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Estimate'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createEstimate
+      tags:
+        - Estimates
+      summary: Create an estimate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EstimateInput'
+      responses:
+        '201':
+          description: The created estimate.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Estimate'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /estimates/{id}.json:
+    parameters:
+      - $ref: '#/components/parameters/Id'
+    get:
+      operationId: getEstimate
+      tags:
+        - Estimates
+      summary: Retrieve an estimate
+      responses:
+        '200':
+          description: The requested estimate.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Estimate'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateEstimate
+      tags:
+        - Estimates
+      summary: Update an estimate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EstimateInput'
+      responses:
+        '200':
+          description: The updated estimate.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Estimate'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteEstimate
+      tags:
+        - Estimates
+      summary: Delete an estimate
+      responses:
+        '204':
+          description: The estimate was deleted.
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /expenses.json:
+    get:
+      operationId: listExpenses
+      tags:
+        - Expenses
+      summary: List expenses
+      parameters:
+        - $ref: '#/components/parameters/Page'
+      responses:
+        '200':
+          description: A list of expenses.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Expense'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createExpense
+      tags:
+        - Expenses
+      summary: Create an expense
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExpenseInput'
+      responses:
+        '201':
+          description: The created expense.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Expense'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /expenses/{id}.json:
+    parameters:
+      - $ref: '#/components/parameters/Id'
+    get:
+      operationId: getExpense
+      tags:
+        - Expenses
+      summary: Retrieve an expense
+      responses:
+        '200':
+          description: The requested expense.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Expense'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateExpense
+      tags:
+        - Expenses
+      summary: Update an expense
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExpenseInput'
+      responses:
+        '200':
+          description: The updated expense.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Expense'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteExpense
+      tags:
+        - Expenses
+      summary: Delete an expense
+      responses:
+        '204':
+          description: The expense was deleted.
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /recurring.json:
+    get:
+      operationId: listRecurring
+      tags:
+        - Recurring
+      summary: List recurring documents
+      parameters:
+        - $ref: '#/components/parameters/Page'
+      responses:
+        '200':
+          description: A list of recurring documents.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Recurring'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createRecurring
+      tags:
+        - Recurring
+      summary: Create a recurring document
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecurringInput'
+      responses:
+        '201':
+          description: The created recurring document.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recurring'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /recurring/{id}.json:
+    parameters:
+      - $ref: '#/components/parameters/Id'
+    get:
+      operationId: getRecurring
+      tags:
+        - Recurring
+      summary: Retrieve a recurring document
+      responses:
+        '200':
+          description: The requested recurring document.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recurring'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateRecurring
+      tags:
+        - Recurring
+      summary: Update a recurring document
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecurringInput'
+      responses:
+        '200':
+          description: The updated recurring document.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recurring'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteRecurring
+      tags:
+        - Recurring
+      summary: Delete a recurring document
+      responses:
+        '204':
+          description: The recurring document was deleted.
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /transactions.json:
+    post:
+      operationId: createTransaction
+      tags:
+        - Transactions
+      summary: Create a sales transaction
+      description: >-
+        Records a sale and its tax in a single call. Quaderno determines the
+        applicable tax from the customer's location evidence and the item tax
+        codes, then creates the corresponding document.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransactionInput'
+      responses:
+        '201':
+          description: The created transaction.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /tax_rates/calculate.json:
+    get:
+      operationId: calculateTaxRate
+      tags:
+        - Taxes
+      summary: Calculate a tax rate
+      description: >-
+        Calculates the applicable tax rate for a sale given the customer's
+        country, region, postal code, tax ID, and optional product tax code.
+        The response includes the rate, the tax name, and a status code
+        explaining the reasoning (for example taxable, non_taxable, or
+        not_registered).
+      parameters:
+        - name: country
+          in: query
+          required: true
+          description: ISO 3166-1 alpha-2 country code of the customer.
+          schema:
+            type: string
+        - name: postal_code
+          in: query
+          required: false
+          description: Customer postal / ZIP code.
+          schema:
+            type: string
+        - name: region
+          in: query
+          required: false
+          description: State or region code (required for US sales tax).
+          schema:
+            type: string
+        - name: tax_id
+          in: query
+          required: false
+          description: Customer tax ID / VAT number, when applicable for reverse charge.
+          schema:
+            type: string
+        - name: tax_code
+          in: query
+          required: false
+          description: Product tax code identifying the taxability of the item.
+          schema:
+            type: string
+        - name: amount
+          in: query
+          required: false
+          description: Transaction amount used for threshold-sensitive determinations.
+          schema:
+            type: number
+      responses:
+        '200':
+          description: The calculated tax rate.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaxCalculation'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /tax_ids/validate.json:
+    get:
+      operationId: validateTaxId
+      tags:
+        - Taxes
+      summary: Validate a tax ID
+      description: >-
+        Validates a customer tax ID / VAT number against the relevant
+        government registry (for example VIES for EU VAT numbers).
+      parameters:
+        - name: country
+          in: query
+          required: true
+          description: ISO 3166-1 alpha-2 country code.
+          schema:
+            type: string
+        - name: tax_id
+          in: query
+          required: true
+          description: The tax ID / VAT number to validate.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Validation result.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  valid:
+                    type: boolean
+                  tax_id:
+                    type: string
+                  country:
+                    type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /tax_jurisdictions.json:
+    get:
+      operationId: listTaxJurisdictions
+      tags:
+        - Taxes
+      summary: List tax jurisdictions
+      description: >-
+        Lists the tax jurisdictions the account is registered in, with the
+        jurisdiction name, country, and region.
+      parameters:
+        - name: country
+          in: query
+          required: false
+          description: Filter jurisdictions by country code.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of tax jurisdictions.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TaxJurisdiction'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /tax_codes.json:
+    get:
+      operationId: listTaxCodes
+      tags:
+        - Taxes
+      summary: List tax codes
+      description: Lists the product tax codes available for classifying item taxability.
+      responses:
+        '200':
+          description: A list of tax codes.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TaxCode'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /checkout/sessions.json:
+    post:
+      operationId: createCheckoutSession
+      tags:
+        - Checkout
+      summary: Create a checkout session
+      description: >-
+        Creates a hosted checkout session for collecting a tax-compliant
+        payment. The session can be rendered with Quaderno.js or redirected to
+        a hosted checkout page.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckoutSessionInput'
+      responses:
+        '201':
+          description: The created checkout session.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckoutSession'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /checkout/sessions/{id}.json:
+    parameters:
+      - $ref: '#/components/parameters/Id'
+    get:
+      operationId: getCheckoutSession
+      tags:
+        - Checkout
+      summary: Retrieve a checkout session
+      responses:
+        '200':
+          description: The requested checkout session.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckoutSession'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /webhooks.json:
+    get:
+      operationId: listWebhooks
+      tags:
+        - Webhooks
+      summary: List webhooks
+      responses:
+        '200':
+          description: A list of webhook subscriptions.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Webhook'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createWebhook
+      tags:
+        - Webhooks
+      summary: Create a webhook
+      description: >-
+        Subscribes a URL to real-time event notifications. Quaderno POSTs a
+        JSON payload over HTTPS when subscribed events occur and retries hourly
+        (up to 72 hours) if the endpoint does not respond with a 200.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookInput'
+      responses:
+        '201':
+          description: The created webhook subscription.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /webhooks/{id}.json:
+    parameters:
+      - $ref: '#/components/parameters/Id'
+    get:
+      operationId: getWebhook
+      tags:
+        - Webhooks
+      summary: Retrieve a webhook
+      responses:
+        '200':
+          description: The requested webhook subscription.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateWebhook
+      tags:
+        - Webhooks
+      summary: Update a webhook
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookInput'
+      responses:
+        '200':
+          description: The updated webhook subscription.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteWebhook
+      tags:
+        - Webhooks
+      summary: Delete a webhook
+      responses:
+        '204':
+          description: The webhook subscription was deleted.
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /evidences.json:
+    get:
+      operationId: listEvidences
+      tags:
+        - Evidences
+      summary: List evidences
+      description: Lists location evidence records supporting tax determination.
+      parameters:
+        - $ref: '#/components/parameters/Page'
+      responses:
+        '200':
+          description: A list of evidence records.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Evidence'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: >-
+        HTTP Basic Authentication. Use your private API key as the username;
+        the password can be any value. API keys are managed in the Quaderno
+        account settings.
+  parameters:
+    Id:
+      name: id
+      in: path
+      required: true
+      description: The unique ID of the resource.
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Page number for paginated results (25 records per page).
+      schema:
+        type: integer
+        default: 1
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ValidationError:
+      description: The request payload failed validation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        errors:
+          type: object
+          additionalProperties: true
+    DocumentItem:
+      type: object
+      description: A line item on a document.
+      properties:
+        description:
+          type: string
+        quantity:
+          type: number
+        unit_price:
+          type: number
+        discount_rate:
+          type: number
+        tax_1_name:
+          type: string
+        tax_1_rate:
+          type: number
+        tax_code:
+          type: string
+        reference:
+          type: string
+    ContactInput:
+      type: object
+      required:
+        - kind
+      properties:
+        kind:
+          type: string
+          enum:
+            - company
+            - person
+          description: Whether the contact is a company or a person.
+        first_name:
+          type: string
+        last_name:
+          type: string
+        contact_name:
+          type: string
+        street_line_1:
+          type: string
+        city:
+          type: string
+        postal_code:
+          type: string
+        region:
+          type: string
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
+        email:
+          type: string
+        tax_id:
+          type: string
+    Contact:
+      allOf:
+        - $ref: '#/components/schemas/ContactInput'
+        - type: object
+          properties:
+            id:
+              type: string
+            full_name:
+              type: string
+            created_at:
+              type: integer
+    ItemInput:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+        code:
+          type: string
+        unit_cost:
+          type: number
+        tax_code:
+          type: string
+        stock:
+          type: integer
+    Item:
+      allOf:
+        - $ref: '#/components/schemas/ItemInput'
+        - type: object
+          properties:
+            id:
+              type: string
+    InvoiceInput:
+      type: object
+      required:
+        - contact_id
+      properties:
+        contact_id:
+          type: string
+        contact:
+          $ref: '#/components/schemas/ContactInput'
+        po_number:
+          type: string
+        currency:
+          type: string
+          description: ISO 4217 currency code.
+        tag_list:
+          type: string
+        payment_method:
+          type: string
+        items_attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentItem'
+        notes:
+          type: string
+    Invoice:
+      allOf:
+        - $ref: '#/components/schemas/InvoiceInput'
+        - type: object
+          properties:
+            id:
+              type: string
+            number:
+              type: string
+            issue_date:
+              type: string
+            state:
+              type: string
+            subtotal:
+              type: number
+            taxes:
+              type: number
+            total:
+              type: number
+            payments:
+              type: array
+              items:
+                $ref: '#/components/schemas/Payment'
+            permalink:
+              type: string
+    CreditInput:
+      type: object
+      required:
+        - contact_id
+      properties:
+        contact_id:
+          type: string
+        invoice_id:
+          type: string
+          description: The invoice this credit note is issued against.
+        currency:
+          type: string
+        items_attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentItem'
+        notes:
+          type: string
+    Credit:
+      allOf:
+        - $ref: '#/components/schemas/CreditInput'
+        - type: object
+          properties:
+            id:
+              type: string
+            number:
+              type: string
+            issue_date:
+              type: string
+            total:
+              type: number
+    EstimateInput:
+      type: object
+      required:
+        - contact_id
+      properties:
+        contact_id:
+          type: string
+        contact:
+          $ref: '#/components/schemas/ContactInput'
+        currency:
+          type: string
+        po_number:
+          type: string
+        items_attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentItem'
+        notes:
+          type: string
+    Estimate:
+      allOf:
+        - $ref: '#/components/schemas/EstimateInput'
+        - type: object
+          properties:
+            id:
+              type: string
+            number:
+              type: string
+            issue_date:
+              type: string
+            state:
+              type: string
+            total:
+              type: number
+    ExpenseInput:
+      type: object
+      required:
+        - contact_id
+      properties:
+        contact_id:
+          type: string
+        contact:
+          $ref: '#/components/schemas/ContactInput'
+        currency:
+          type: string
+        payment_method:
+          type: string
+        items_attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentItem'
+        notes:
+          type: string
+    Expense:
+      allOf:
+        - $ref: '#/components/schemas/ExpenseInput'
+        - type: object
+          properties:
+            id:
+              type: string
+            number:
+              type: string
+            issue_date:
+              type: string
+            total:
+              type: number
+    RecurringInput:
+      type: object
+      required:
+        - contact_id
+        - period
+        - frequency
+      properties:
+        contact_id:
+          type: string
+        currency:
+          type: string
+        period:
+          type: integer
+          description: Interval count between generated documents.
+        frequency:
+          type: string
+          enum:
+            - daily
+            - weekly
+            - monthly
+            - yearly
+        start_date:
+          type: string
+        end_date:
+          type: string
+        items_attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentItem'
+    Recurring:
+      allOf:
+        - $ref: '#/components/schemas/RecurringInput'
+        - type: object
+          properties:
+            id:
+              type: string
+    PaymentInput:
+      type: object
+      required:
+        - amount
+      properties:
+        amount:
+          type: number
+        payment_method:
+          type: string
+          enum:
+            - credit_card
+            - cash
+            - wire_transfer
+            - direct_debit
+            - check
+            - paypal
+            - other
+        date:
+          type: string
+    Payment:
+      allOf:
+        - $ref: '#/components/schemas/PaymentInput'
+        - type: object
+          properties:
+            id:
+              type: string
+    TransactionInput:
+      type: object
+      required:
+        - customer
+        - items
+      properties:
+        customer:
+          type: object
+          description: Customer identity and location details used for tax determination.
+          properties:
+            first_name:
+              type: string
+            last_name:
+              type: string
+            email:
+              type: string
+            country:
+              type: string
+            postal_code:
+              type: string
+            region:
+              type: string
+            tax_id:
+              type: string
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              description:
+                type: string
+              quantity:
+                type: number
+              unit_price:
+                type: number
+              tax_code:
+                type: string
+        payment_method:
+          type: string
+        evidence:
+          type: object
+          additionalProperties: true
+    Transaction:
+      allOf:
+        - $ref: '#/components/schemas/TransactionInput'
+        - type: object
+          properties:
+            id:
+              type: string
+            total:
+              type: number
+            taxes:
+              type: number
+    TaxCalculation:
+      type: object
+      properties:
+        country:
+          type: string
+        region:
+          type: string
+        county:
+          type: string
+        city:
+          type: string
+        name:
+          type: string
+          description: Human-readable tax name (for example VAT, GST, Sales Tax).
+        rate:
+          type: number
+        tax_behavior:
+          type: string
+        notes:
+          type: string
+        status:
+          type: string
+          enum:
+            - taxable
+            - non_taxable
+            - not_registered
+          description: Reasoning for the calculated rate.
+    TaxJurisdiction:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        country:
+          type: string
+        region:
+          type: string
+    TaxCode:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+    CheckoutSessionInput:
+      type: object
+      properties:
+        success_url:
+          type: string
+        cancel_url:
+          type: string
+        currency:
+          type: string
+        customer:
+          $ref: '#/components/schemas/ContactInput'
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              description:
+                type: string
+              quantity:
+                type: number
+              unit_price:
+                type: number
+              tax_code:
+                type: string
+    CheckoutSession:
+      allOf:
+        - $ref: '#/components/schemas/CheckoutSessionInput'
+        - type: object
+          properties:
+            id:
+              type: string
+            url:
+              type: string
+            status:
+              type: string
+    WebhookInput:
+      type: object
+      required:
+        - url
+        - events_types
+      properties:
+        url:
+          type: string
+          format: uri
+        events_types:
+          type: array
+          description: >-
+            Event types to subscribe to (for example invoice.created,
+            invoice.updated, checkout.succeeded, checkout.failed,
+            checkout.abandoned).
+          items:
+            type: string
+    Webhook:
+      allOf:
+        - $ref: '#/components/schemas/WebhookInput'
+        - type: object
+          properties:
+            id:
+              type: string
+    Evidence:
+      type: object
+      properties:
+        id:
+          type: string
+        billing_country:
+          type: string
+        ip_address:
+          type: string
+        bank_country:
+          type: string
+        evidence_type:
+          type: string
