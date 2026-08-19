@@ -1,0 +1,839 @@
+{
+  "item": [
+    {
+      "id": "766cd7cd-e310-44e9-85b2-49ad0dcc7fa4",
+      "name": "Credits",
+      "description": {
+        "content": "Credit notes issued against invoices.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2a6cf9ad-ef85-477e-b99f-eee43d404617",
+          "name": "List credit notes",
+          "request": {
+            "name": "List credit notes",
+            "description": {},
+            "url": {
+              "path": [
+                "credits.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for paginated results (25 records per page)."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your Quaderno account subdomain.",
+                  "type": "any",
+                  "value": "{{account}}",
+                  "key": "account"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "903b9542-223b-474c-8d96-7fde8b168a9c",
+              "name": "A list of credit notes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "credits.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Quaderno account subdomain.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"contact_id\": \"string\",\n    \"invoice_id\": \"string\",\n    \"currency\": \"string\",\n    \"items_attributes\": [\n      {\n        \"description\": \"string\",\n        \"quantity\": 3542.232456186154,\n        \"unit_price\": 2999.4746100883276,\n        \"discount_rate\": 5995.147121768073,\n        \"tax_1_name\": \"string\",\n        \"tax_1_rate\": 5520.520865391386,\n        \"tax_code\": \"string\",\n        \"reference\": \"string\"\n      },\n      {\n        \"description\": \"string\",\n        \"quantity\": 9777.841663929554,\n        \"unit_price\": 7817.143352078198,\n        \"discount_rate\": 6029.036929226,\n        \"tax_1_name\": \"string\",\n        \"tax_1_rate\": 5037.4086668414375,\n        \"tax_code\": \"string\",\n        \"reference\": \"string\"\n      }\n    ],\n    \"notes\": \"string\",\n    \"id\": \"string\",\n    \"number\": \"string\",\n    \"issue_date\": \"string\",\n    \"total\": 8884.32405477372\n  },\n  {\n    \"contact_id\": \"string\",\n    \"invoice_id\": \"string\",\n    \"currency\": \"string\",\n    \"items_attributes\": [\n      {\n        \"description\": \"string\",\n        \"quantity\": 1600.1067531194947,\n        \"unit_price\": 5316.765090191856,\n        \"discount_rate\": 2143.7831200162505,\n        \"tax_1_name\": \"string\",\n        \"tax_1_rate\": 8821.635329663552,\n        \"tax_code\": \"string\",\n        \"reference\": \"string\"\n      },\n      {\n        \"description\": \"string\",\n        \"quantity\": 3032.2681235040995,\n        \"unit_price\": 3809.3216099270776,\n        \"discount_rate\": 3138.43512275323,\n        \"tax_1_name\": \"string\",\n        \"tax_1_rate\": 7170.9297101567345,\n        \"tax_code\": \"string\",\n        \"reference\": \"string\"\n      }\n    ],\n    \"notes\": \"string\",\n    \"id\": \"string\",\n    \"number\": \"string\",\n    \"issue_date\": \"string\",\n    \"total\": 8002.345365828003\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c88067c9-7a41-4ab1-9d32-3d3d64a10ba9",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "credits.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Quaderno account subdomain.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"errors\": {\n    \"key_0\": 210\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "23231188-bd0a-4e25-ab17-a58ddf7c0487",
+          "name": "Create a credit note",
+          "request": {
+            "name": "Create a credit note",
+            "description": {},
+            "url": {
+              "path": [
+                "credits.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Quaderno account subdomain.",
+                  "type": "any",
+                  "value": "{{account}}",
+                  "key": "account"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"contact_id\": \"<string>\",\n  \"invoice_id\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"items_attributes\": [\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    }\n  ],\n  \"notes\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2e500868-c2de-4942-817c-29da783ca6a3",
+              "name": "The created credit note.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "credits.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Quaderno account subdomain.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contact_id\": \"<string>\",\n  \"invoice_id\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"items_attributes\": [\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    }\n  ],\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"contact_id\": \"<string>\",\n  \"invoice_id\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"items_attributes\": [\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    }\n  ],\n  \"notes\": \"<string>\",\n  \"id\": \"string\",\n  \"number\": \"string\",\n  \"issue_date\": \"string\",\n  \"total\": 4826.816125857175\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5bf3e807-9e5d-456b-80d8-6a0e0b2e3ccb",
+              "name": "The request payload failed validation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "credits.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Quaderno account subdomain.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contact_id\": \"<string>\",\n  \"invoice_id\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"items_attributes\": [\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    }\n  ],\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"errors\": {\n    \"key_0\": 210\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "91e8524c-72fc-44a0-9450-3269a0534720",
+          "name": "Retrieve a credit note",
+          "request": {
+            "name": "Retrieve a credit note",
+            "description": {},
+            "url": {
+              "path": [
+                "credits",
+                "{{id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Quaderno account subdomain.",
+                  "type": "any",
+                  "value": "{{account}}",
+                  "key": "account"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "58636806-bfab-4827-aa0e-720d8faf04dd",
+              "name": "The requested credit note.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "credits",
+                    "{{id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Quaderno account subdomain.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"contact_id\": \"<string>\",\n  \"invoice_id\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"items_attributes\": [\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    }\n  ],\n  \"notes\": \"<string>\",\n  \"id\": \"string\",\n  \"number\": \"string\",\n  \"issue_date\": \"string\",\n  \"total\": 4826.816125857175\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1de59328-e160-4d6f-a192-e8d6a65a95fe",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "credits",
+                    "{{id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Quaderno account subdomain.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"errors\": {\n    \"key_0\": 210\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4c50942e-55f1-496b-80f1-72879b14e248",
+          "name": "Update a credit note",
+          "request": {
+            "name": "Update a credit note",
+            "description": {},
+            "url": {
+              "path": [
+                "credits",
+                "{{id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Quaderno account subdomain.",
+                  "type": "any",
+                  "value": "{{account}}",
+                  "key": "account"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"contact_id\": \"<string>\",\n  \"invoice_id\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"items_attributes\": [\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    }\n  ],\n  \"notes\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "aa75a7f5-2c69-46a0-8c20-77416325b05b",
+              "name": "The updated credit note.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "credits",
+                    "{{id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Quaderno account subdomain.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contact_id\": \"<string>\",\n  \"invoice_id\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"items_attributes\": [\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    }\n  ],\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"contact_id\": \"<string>\",\n  \"invoice_id\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"items_attributes\": [\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    }\n  ],\n  \"notes\": \"<string>\",\n  \"id\": \"string\",\n  \"number\": \"string\",\n  \"issue_date\": \"string\",\n  \"total\": 4826.816125857175\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a9ada636-3ae2-4a3c-98b0-466b7feb9983",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "credits",
+                    "{{id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Quaderno account subdomain.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contact_id\": \"<string>\",\n  \"invoice_id\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"items_attributes\": [\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    }\n  ],\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"errors\": {\n    \"key_0\": 210\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ec5b5cbd-21a3-486b-9127-a8d1209fc84b",
+          "name": "Delete a credit note",
+          "request": {
+            "name": "Delete a credit note",
+            "description": {},
+            "url": {
+              "path": [
+                "credits",
+                "{{id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Quaderno account subdomain.",
+                  "type": "any",
+                  "value": "{{account}}",
+                  "key": "account"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4fe73009-390f-4513-82d8-7f75c1569da8",
+              "name": "The credit note was deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "credits",
+                    "{{id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Quaderno account subdomain.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c4787b46-ac14-467d-b4a1-2e5dbc458e56",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "credits",
+                    "{{id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Quaderno account subdomain.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"errors\": {\n    \"key_0\": 210\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Quaderno account subdomain.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "ACCOUNT_NAME",
+      "key": "account"
+    },
+    {
+      "type": "string",
+      "value": "https://{{account}}.quadernoapp.com/api",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) The unique ID of the resource.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "id"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ac9aa914-dbf2-48b0-8a1b-f0f8c859b98b",
+    "name": "Quaderno Authentication Credits API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Quaderno API is a REST API for tax compliance, invoicing, and sales tax / VAT automation. It exposes resources with predictable, account-scoped URLs and uses standard HTTP features - HTTP Basic Authentication, standard methods, and response codes. All requests and responses are JSON, and every endpoint path ends in `.json` to indicate JSON serialization.\nThe base URL is account-scoped: `https://ACCOUNT_NAME.quadernoapp.com/api`, where `ACCOUNT_NAME` is your Quaderno account subdomain. Authenticate with your private API key as the HTTP Basic Auth username (any value for the password). Sandbox testing is available on a separate sandbox host.\nCore resources include Contacts, Items, Invoices, Credits, Estimates, Expenses, Recurring documents, Payments, Transactions, Checkout Sessions, Webhooks, and the tax engine (tax rate calculation, tax jurisdictions, tax codes, and tax ID validation). Endpoint paths and the account-scoped base URL are confirmed against Quaderno's public developer documentation and the official quaderno-ruby SDK; request and response bodies are modeled and should be verified against the live API reference.\n\nContact Support:\n Name: Quaderno",
+      "type": "text/plain"
+    }
+  }
+}

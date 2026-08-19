@@ -1,0 +1,120 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Quaderno Authentication Recurring API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Recurring",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List recurring documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{account}.quadernoapp.com/api/recurring.json",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for paginated results (25 records per page)."
+              }
+            ]
+          },
+          "docs": "List recurring documents"
+        },
+        {
+          "info": {
+            "name": "Create a recurring document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{account}.quadernoapp.com/api/recurring.json",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a recurring document"
+        },
+        {
+          "info": {
+            "name": "Retrieve a recurring document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{account}.quadernoapp.com/api/recurring/:id.json",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the resource."
+              }
+            ]
+          },
+          "docs": "Retrieve a recurring document"
+        },
+        {
+          "info": {
+            "name": "Update a recurring document",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{account}.quadernoapp.com/api/recurring/:id.json",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a recurring document"
+        },
+        {
+          "info": {
+            "name": "Delete a recurring document",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{account}.quadernoapp.com/api/recurring/:id.json",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the resource."
+              }
+            ]
+          },
+          "docs": "Delete a recurring document"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Quaderno Authentication Transactions API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Transactions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a sales transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{account}.quadernoapp.com/api/transactions.json",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Records a sale and its tax in a single call. Quaderno determines the applicable tax from the customer's location evidence and the item tax codes, then creates the corresponding document."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

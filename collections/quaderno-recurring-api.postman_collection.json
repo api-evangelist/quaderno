@@ -1,0 +1,839 @@
+{
+  "item": [
+    {
+      "id": "74e4d753-3b7b-45ce-803f-c39a801ee990",
+      "name": "Recurring",
+      "description": {
+        "content": "Recurring document templates that auto-generate invoices.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b6c29d3d-726e-49a2-92c9-066a8c92ddd2",
+          "name": "List recurring documents",
+          "request": {
+            "name": "List recurring documents",
+            "description": {},
+            "url": {
+              "path": [
+                "recurring.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for paginated results (25 records per page)."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your Quaderno account subdomain.",
+                  "type": "any",
+                  "value": "{{account}}",
+                  "key": "account"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bc89fdf2-1379-4513-ae9c-dc6e50c91b4a",
+              "name": "A list of recurring documents.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recurring.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Quaderno account subdomain.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"contact_id\": \"string\",\n    \"period\": 6128,\n    \"frequency\": \"yearly\",\n    \"currency\": \"string\",\n    \"start_date\": \"string\",\n    \"end_date\": \"string\",\n    \"items_attributes\": [\n      {\n        \"description\": \"string\",\n        \"quantity\": 9568.419687838128,\n        \"unit_price\": 9978.952446139321,\n        \"discount_rate\": 2944.554104463775,\n        \"tax_1_name\": \"string\",\n        \"tax_1_rate\": 6433.221907503689,\n        \"tax_code\": \"string\",\n        \"reference\": \"string\"\n      },\n      {\n        \"description\": \"string\",\n        \"quantity\": 6178.1698956386235,\n        \"unit_price\": 5869.80332730089,\n        \"discount_rate\": 6422.332861891059,\n        \"tax_1_name\": \"string\",\n        \"tax_1_rate\": 6492.40339459846,\n        \"tax_code\": \"string\",\n        \"reference\": \"string\"\n      }\n    ],\n    \"id\": \"string\"\n  },\n  {\n    \"contact_id\": \"string\",\n    \"period\": 6642,\n    \"frequency\": \"daily\",\n    \"currency\": \"string\",\n    \"start_date\": \"string\",\n    \"end_date\": \"string\",\n    \"items_attributes\": [\n      {\n        \"description\": \"string\",\n        \"quantity\": 2054.1025621066688,\n        \"unit_price\": 1921.5926916029969,\n        \"discount_rate\": 5339.740358102493,\n        \"tax_1_name\": \"string\",\n        \"tax_1_rate\": 8413.793409562257,\n        \"tax_code\": \"string\",\n        \"reference\": \"string\"\n      },\n      {\n        \"description\": \"string\",\n        \"quantity\": 6257.519440719174,\n        \"unit_price\": 8349.33409898169,\n        \"discount_rate\": 1565.4311715335189,\n        \"tax_1_name\": \"string\",\n        \"tax_1_rate\": 3490.0584233036748,\n        \"tax_code\": \"string\",\n        \"reference\": \"string\"\n      }\n    ],\n    \"id\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "375839d2-f8ea-4ba4-aada-ba8b4736d311",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recurring.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Quaderno account subdomain.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"errors\": {\n    \"key_0\": 1928,\n    \"key_1\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4bcf2ae1-4a31-44a0-8e6a-f3e00b590acc",
+          "name": "Create a recurring document",
+          "request": {
+            "name": "Create a recurring document",
+            "description": {},
+            "url": {
+              "path": [
+                "recurring.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Quaderno account subdomain.",
+                  "type": "any",
+                  "value": "{{account}}",
+                  "key": "account"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"contact_id\": \"<string>\",\n  \"period\": \"<integer>\",\n  \"frequency\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"start_date\": \"<string>\",\n  \"end_date\": \"<string>\",\n  \"items_attributes\": [\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b2b90f1f-29a3-420f-8140-c57f2f355c02",
+              "name": "The created recurring document.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recurring.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Quaderno account subdomain.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contact_id\": \"<string>\",\n  \"period\": \"<integer>\",\n  \"frequency\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"start_date\": \"<string>\",\n  \"end_date\": \"<string>\",\n  \"items_attributes\": [\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"contact_id\": \"<string>\",\n  \"period\": \"<integer>\",\n  \"frequency\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"start_date\": \"<string>\",\n  \"end_date\": \"<string>\",\n  \"items_attributes\": [\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    }\n  ],\n  \"id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cbe16bc5-08e7-41e9-880a-60e4b1035fde",
+              "name": "The request payload failed validation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recurring.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Quaderno account subdomain.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contact_id\": \"<string>\",\n  \"period\": \"<integer>\",\n  \"frequency\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"start_date\": \"<string>\",\n  \"end_date\": \"<string>\",\n  \"items_attributes\": [\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"errors\": {\n    \"key_0\": 1928,\n    \"key_1\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a5eff9a6-3871-4b60-9eb1-77935505ee26",
+          "name": "Retrieve a recurring document",
+          "request": {
+            "name": "Retrieve a recurring document",
+            "description": {},
+            "url": {
+              "path": [
+                "recurring",
+                "{{id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Quaderno account subdomain.",
+                  "type": "any",
+                  "value": "{{account}}",
+                  "key": "account"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2e441016-5f12-4e6a-9dfa-a3f69435598e",
+              "name": "The requested recurring document.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recurring",
+                    "{{id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Quaderno account subdomain.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"contact_id\": \"<string>\",\n  \"period\": \"<integer>\",\n  \"frequency\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"start_date\": \"<string>\",\n  \"end_date\": \"<string>\",\n  \"items_attributes\": [\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    }\n  ],\n  \"id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c32ecf3c-6c59-45c0-aae4-bb8970f87eae",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recurring",
+                    "{{id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Quaderno account subdomain.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"errors\": {\n    \"key_0\": 1928,\n    \"key_1\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f28ba3cb-a505-4741-9370-88b2c09c6eed",
+          "name": "Update a recurring document",
+          "request": {
+            "name": "Update a recurring document",
+            "description": {},
+            "url": {
+              "path": [
+                "recurring",
+                "{{id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Quaderno account subdomain.",
+                  "type": "any",
+                  "value": "{{account}}",
+                  "key": "account"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"contact_id\": \"<string>\",\n  \"period\": \"<integer>\",\n  \"frequency\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"start_date\": \"<string>\",\n  \"end_date\": \"<string>\",\n  \"items_attributes\": [\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3f532533-507e-44ae-a04d-98406fa0a836",
+              "name": "The updated recurring document.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recurring",
+                    "{{id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Quaderno account subdomain.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contact_id\": \"<string>\",\n  \"period\": \"<integer>\",\n  \"frequency\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"start_date\": \"<string>\",\n  \"end_date\": \"<string>\",\n  \"items_attributes\": [\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"contact_id\": \"<string>\",\n  \"period\": \"<integer>\",\n  \"frequency\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"start_date\": \"<string>\",\n  \"end_date\": \"<string>\",\n  \"items_attributes\": [\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    }\n  ],\n  \"id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b674114b-2656-4a46-b110-bb52e98a21b0",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recurring",
+                    "{{id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Quaderno account subdomain.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contact_id\": \"<string>\",\n  \"period\": \"<integer>\",\n  \"frequency\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"start_date\": \"<string>\",\n  \"end_date\": \"<string>\",\n  \"items_attributes\": [\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"errors\": {\n    \"key_0\": 1928,\n    \"key_1\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "53156c9f-6352-4051-80fd-c14a07b5f415",
+          "name": "Delete a recurring document",
+          "request": {
+            "name": "Delete a recurring document",
+            "description": {},
+            "url": {
+              "path": [
+                "recurring",
+                "{{id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Quaderno account subdomain.",
+                  "type": "any",
+                  "value": "{{account}}",
+                  "key": "account"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bc70dd16-8aef-4d60-8d72-ce71674f861c",
+              "name": "The recurring document was deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recurring",
+                    "{{id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Quaderno account subdomain.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ad705ee0-609c-4d05-a04c-66c9e3ded1cf",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recurring",
+                    "{{id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Quaderno account subdomain.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"errors\": {\n    \"key_0\": 1928,\n    \"key_1\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Quaderno account subdomain.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "ACCOUNT_NAME",
+      "key": "account"
+    },
+    {
+      "type": "string",
+      "value": "https://{{account}}.quadernoapp.com/api",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) The unique ID of the resource.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "id"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "49d239fb-1521-4dda-a4fd-37b099bc993a",
+    "name": "Quaderno Authentication Recurring API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Quaderno API is a REST API for tax compliance, invoicing, and sales tax / VAT automation. It exposes resources with predictable, account-scoped URLs and uses standard HTTP features - HTTP Basic Authentication, standard methods, and response codes. All requests and responses are JSON, and every endpoint path ends in `.json` to indicate JSON serialization.\nThe base URL is account-scoped: `https://ACCOUNT_NAME.quadernoapp.com/api`, where `ACCOUNT_NAME` is your Quaderno account subdomain. Authenticate with your private API key as the HTTP Basic Auth username (any value for the password). Sandbox testing is available on a separate sandbox host.\nCore resources include Contacts, Items, Invoices, Credits, Estimates, Expenses, Recurring documents, Payments, Transactions, Checkout Sessions, Webhooks, and the tax engine (tax rate calculation, tax jurisdictions, tax codes, and tax ID validation). Endpoint paths and the account-scoped base URL are confirmed against Quaderno's public developer documentation and the official quaderno-ruby SDK; request and response bodies are modeled and should be verified against the live API reference.\n\nContact Support:\n Name: Quaderno",
+      "type": "text/plain"
+    }
+  }
+}

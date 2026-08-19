@@ -1,0 +1,73 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Quaderno Authentication Payments API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Payments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add a payment to an invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{account}.quadernoapp.com/api/invoices/:id/payments.json",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Records a payment against the invoice."
+        },
+        {
+          "info": {
+            "name": "Remove a payment from an invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{account}.quadernoapp.com/api/invoices/:id/payments/:payment_id.json",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the resource."
+              },
+              {
+                "name": "payment_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the payment."
+              }
+            ]
+          },
+          "docs": "Remove a payment from an invoice"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

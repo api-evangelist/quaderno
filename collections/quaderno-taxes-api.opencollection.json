@@ -1,0 +1,129 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Quaderno Authentication Taxes API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Taxes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Calculate a tax rate",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{account}.quadernoapp.com/api/tax_rates/calculate.json",
+            "params": [
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "ISO 3166-1 alpha-2 country code of the customer."
+              },
+              {
+                "name": "postal_code",
+                "value": "",
+                "type": "query",
+                "description": "Customer postal / ZIP code."
+              },
+              {
+                "name": "region",
+                "value": "",
+                "type": "query",
+                "description": "State or region code (required for US sales tax)."
+              },
+              {
+                "name": "tax_id",
+                "value": "",
+                "type": "query",
+                "description": "Customer tax ID / VAT number, when applicable for reverse charge."
+              },
+              {
+                "name": "tax_code",
+                "value": "",
+                "type": "query",
+                "description": "Product tax code identifying the taxability of the item."
+              },
+              {
+                "name": "amount",
+                "value": "",
+                "type": "query",
+                "description": "Transaction amount used for threshold-sensitive determinations."
+              }
+            ]
+          },
+          "docs": "Calculates the applicable tax rate for a sale given the customer's country, region, postal code, tax ID, and optional product tax code. The response includes the rate, the tax name, and a status code explaining the reasoning (for example taxable, non_taxable, or not_registered)."
+        },
+        {
+          "info": {
+            "name": "Validate a tax ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{account}.quadernoapp.com/api/tax_ids/validate.json",
+            "params": [
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "ISO 3166-1 alpha-2 country code."
+              },
+              {
+                "name": "tax_id",
+                "value": "",
+                "type": "query",
+                "description": "The tax ID / VAT number to validate."
+              }
+            ]
+          },
+          "docs": "Validates a customer tax ID / VAT number against the relevant government registry (for example VIES for EU VAT numbers)."
+        },
+        {
+          "info": {
+            "name": "List tax jurisdictions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{account}.quadernoapp.com/api/tax_jurisdictions.json",
+            "params": [
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "Filter jurisdictions by country code."
+              }
+            ]
+          },
+          "docs": "Lists the tax jurisdictions the account is registered in, with the jurisdiction name, country, and region."
+        },
+        {
+          "info": {
+            "name": "List tax codes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{account}.quadernoapp.com/api/tax_codes.json"
+          },
+          "docs": "Lists the product tax codes available for classifying item taxability."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,120 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Quaderno Authentication Estimates API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Estimates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List estimates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{account}.quadernoapp.com/api/estimates.json",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for paginated results (25 records per page)."
+              }
+            ]
+          },
+          "docs": "List estimates"
+        },
+        {
+          "info": {
+            "name": "Create an estimate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{account}.quadernoapp.com/api/estimates.json",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an estimate"
+        },
+        {
+          "info": {
+            "name": "Retrieve an estimate",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{account}.quadernoapp.com/api/estimates/:id.json",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the resource."
+              }
+            ]
+          },
+          "docs": "Retrieve an estimate"
+        },
+        {
+          "info": {
+            "name": "Update an estimate",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{account}.quadernoapp.com/api/estimates/:id.json",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an estimate"
+        },
+        {
+          "info": {
+            "name": "Delete an estimate",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{account}.quadernoapp.com/api/estimates/:id.json",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the resource."
+              }
+            ]
+          },
+          "docs": "Delete an estimate"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

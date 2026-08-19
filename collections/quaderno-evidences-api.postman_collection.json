@@ -1,0 +1,213 @@
+{
+  "item": [
+    {
+      "id": "ca0082e0-ca64-4dc0-967a-b6228a77ef6a",
+      "name": "Evidences",
+      "description": {
+        "content": "Location evidence records supporting tax determination for a transaction.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "71f76c24-fe2d-4913-9f2d-c48a7604c634",
+          "name": "List evidences",
+          "request": {
+            "name": "List evidences",
+            "description": {
+              "content": "Lists location evidence records supporting tax determination.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "evidences.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for paginated results (25 records per page)."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your Quaderno account subdomain.",
+                  "type": "any",
+                  "value": "{{account}}",
+                  "key": "account"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "372899b9-15af-4c78-995b-72cf38196ab8",
+              "name": "A list of evidence records.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "evidences.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Quaderno account subdomain.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"billing_country\": \"string\",\n    \"ip_address\": \"string\",\n    \"bank_country\": \"string\",\n    \"evidence_type\": \"string\"\n  },\n  {\n    \"id\": \"string\",\n    \"billing_country\": \"string\",\n    \"ip_address\": \"string\",\n    \"bank_country\": \"string\",\n    \"evidence_type\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bc447312-01c0-4b77-974f-96cab9996d75",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "evidences.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Quaderno account subdomain.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"errors\": {\n    \"key_0\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Quaderno account subdomain.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "ACCOUNT_NAME",
+      "key": "account"
+    },
+    {
+      "type": "string",
+      "value": "https://{{account}}.quadernoapp.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "dce38f6d-b9fd-4d50-a3c8-63141fa623a2",
+    "name": "Quaderno Authentication Evidences API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Quaderno API is a REST API for tax compliance, invoicing, and sales tax / VAT automation. It exposes resources with predictable, account-scoped URLs and uses standard HTTP features - HTTP Basic Authentication, standard methods, and response codes. All requests and responses are JSON, and every endpoint path ends in `.json` to indicate JSON serialization.\nThe base URL is account-scoped: `https://ACCOUNT_NAME.quadernoapp.com/api`, where `ACCOUNT_NAME` is your Quaderno account subdomain. Authenticate with your private API key as the HTTP Basic Auth username (any value for the password). Sandbox testing is available on a separate sandbox host.\nCore resources include Contacts, Items, Invoices, Credits, Estimates, Expenses, Recurring documents, Payments, Transactions, Checkout Sessions, Webhooks, and the tax engine (tax rate calculation, tax jurisdictions, tax codes, and tax ID validation). Endpoint paths and the account-scoped base URL are confirmed against Quaderno's public developer documentation and the official quaderno-ruby SDK; request and response bodies are modeled and should be verified against the live API reference.\n\nContact Support:\n Name: Quaderno",
+      "type": "text/plain"
+    }
+  }
+}

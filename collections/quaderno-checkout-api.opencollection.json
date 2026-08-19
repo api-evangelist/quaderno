@@ -1,0 +1,59 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Quaderno Authentication Checkout API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Checkout",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a checkout session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{account}.quadernoapp.com/api/checkout/sessions.json",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a hosted checkout session for collecting a tax-compliant payment. The session can be rendered with Quaderno.js or redirected to a hosted checkout page."
+        },
+        {
+          "info": {
+            "name": "Retrieve a checkout session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{account}.quadernoapp.com/api/checkout/sessions/:id.json",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the resource."
+              }
+            ]
+          },
+          "docs": "Retrieve a checkout session"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

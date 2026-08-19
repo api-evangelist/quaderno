@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Quaderno Authentication API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Ping the API",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{account}.quadernoapp.com/api/ping.json"
+          },
+          "docs": "Tests service availability, validates your API key, and returns your remaining request allowance without consuming rate limit."
+        },
+        {
+          "info": {
+            "name": "Get authorization details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{account}.quadernoapp.com/api/authorization.json"
+          },
+          "docs": "Returns the identity and account details associated with the authenticated API key, including the account-scoped API URL to use."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,1032 @@
+{
+  "item": [
+    {
+      "id": "ddff2e6f-5d69-461c-8548-b69c723e84df",
+      "name": "Invoices",
+      "description": {
+        "content": "Sales invoices issued to customers.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a07dffda-d9d2-4b14-8ed3-7f5624ad4352",
+          "name": "List invoices",
+          "request": {
+            "name": "List invoices",
+            "description": {},
+            "url": {
+              "path": [
+                "invoices.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for paginated results (25 records per page)."
+                },
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "Full-text search across invoice fields."
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "Filter by invoice state."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your Quaderno account subdomain.",
+                  "type": "any",
+                  "value": "{{account}}",
+                  "key": "account"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ddb2164d-b0f9-4092-97d1-749e9881d469",
+              "name": "A list of invoices.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Quaderno account subdomain.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"contact_id\": \"string\",\n    \"contact\": {\n      \"kind\": \"person\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"contact_name\": \"string\",\n      \"street_line_1\": \"string\",\n      \"city\": \"string\",\n      \"postal_code\": \"string\",\n      \"region\": \"string\",\n      \"country\": \"string\",\n      \"email\": \"string\",\n      \"tax_id\": \"string\"\n    },\n    \"po_number\": \"string\",\n    \"currency\": \"string\",\n    \"tag_list\": \"string\",\n    \"payment_method\": \"string\",\n    \"items_attributes\": [\n      {\n        \"description\": \"string\",\n        \"quantity\": 598.1654504364664,\n        \"unit_price\": 910.1325187939358,\n        \"discount_rate\": 293.7492943651132,\n        \"tax_1_name\": \"string\",\n        \"tax_1_rate\": 7117.599549992835,\n        \"tax_code\": \"string\",\n        \"reference\": \"string\"\n      },\n      {\n        \"description\": \"string\",\n        \"quantity\": 8704.432539008048,\n        \"unit_price\": 8248.753329901554,\n        \"discount_rate\": 8614.087405045708,\n        \"tax_1_name\": \"string\",\n        \"tax_1_rate\": 5240.781411023405,\n        \"tax_code\": \"string\",\n        \"reference\": \"string\"\n      }\n    ],\n    \"notes\": \"string\",\n    \"id\": \"string\",\n    \"number\": \"string\",\n    \"issue_date\": \"string\",\n    \"state\": \"string\",\n    \"subtotal\": 8002.93153025646,\n    \"taxes\": 4872.997513077122,\n    \"total\": 3641.5262728838616,\n    \"payments\": [\n      {\n        \"amount\": 8949.45792586058,\n        \"payment_method\": \"credit_card\",\n        \"date\": \"string\",\n        \"id\": \"string\"\n      },\n      {\n        \"amount\": 902.6043383436288,\n        \"payment_method\": \"paypal\",\n        \"date\": \"string\",\n        \"id\": \"string\"\n      }\n    ],\n    \"permalink\": \"string\"\n  },\n  {\n    \"contact_id\": \"string\",\n    \"contact\": {\n      \"kind\": \"company\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"contact_name\": \"string\",\n      \"street_line_1\": \"string\",\n      \"city\": \"string\",\n      \"postal_code\": \"string\",\n      \"region\": \"string\",\n      \"country\": \"string\",\n      \"email\": \"string\",\n      \"tax_id\": \"string\"\n    },\n    \"po_number\": \"string\",\n    \"currency\": \"string\",\n    \"tag_list\": \"string\",\n    \"payment_method\": \"string\",\n    \"items_attributes\": [\n      {\n        \"description\": \"string\",\n        \"quantity\": 4749.343807467804,\n        \"unit_price\": 872.8997029328511,\n        \"discount_rate\": 3895.852178191873,\n        \"tax_1_name\": \"string\",\n        \"tax_1_rate\": 688.7545247942761,\n        \"tax_code\": \"string\",\n        \"reference\": \"string\"\n      },\n      {\n        \"description\": \"string\",\n        \"quantity\": 6414.692781490255,\n        \"unit_price\": 5257.473797321471,\n        \"discount_rate\": 5613.442505302668,\n        \"tax_1_name\": \"string\",\n        \"tax_1_rate\": 8782.489484340489,\n        \"tax_code\": \"string\",\n        \"reference\": \"string\"\n      }\n    ],\n    \"notes\": \"string\",\n    \"id\": \"string\",\n    \"number\": \"string\",\n    \"issue_date\": \"string\",\n    \"state\": \"string\",\n    \"subtotal\": 2719.9753143092785,\n    \"taxes\": 211.35084612373123,\n    \"total\": 4714.103933740348,\n    \"payments\": [\n      {\n        \"amount\": 6520.700034313891,\n        \"payment_method\": \"cash\",\n        \"date\": \"string\",\n        \"id\": \"string\"\n      },\n      {\n        \"amount\": 3524.8498892985835,\n        \"payment_method\": \"direct_debit\",\n        \"date\": \"string\",\n        \"id\": \"string\"\n      }\n    ],\n    \"permalink\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e0da8758-c4cf-4e6f-a777-ad4fcffad62e",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Quaderno account subdomain.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"errors\": {\n    \"key_0\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f65c0766-17ef-4745-b6ef-f02910b80ed0",
+          "name": "Create an invoice",
+          "request": {
+            "name": "Create an invoice",
+            "description": {},
+            "url": {
+              "path": [
+                "invoices.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Quaderno account subdomain.",
+                  "type": "any",
+                  "value": "{{account}}",
+                  "key": "account"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"contact_id\": \"<string>\",\n  \"contact\": {\n    \"kind\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"contact_name\": \"<string>\",\n    \"street_line_1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"region\": \"<string>\",\n    \"country\": \"<string>\",\n    \"email\": \"<string>\",\n    \"tax_id\": \"<string>\"\n  },\n  \"po_number\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"tag_list\": \"<string>\",\n  \"payment_method\": \"<string>\",\n  \"items_attributes\": [\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    }\n  ],\n  \"notes\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "42d14d84-b8ba-4005-9a90-1173b73d53fb",
+              "name": "The created invoice.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Quaderno account subdomain.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contact_id\": \"<string>\",\n  \"contact\": {\n    \"kind\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"contact_name\": \"<string>\",\n    \"street_line_1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"region\": \"<string>\",\n    \"country\": \"<string>\",\n    \"email\": \"<string>\",\n    \"tax_id\": \"<string>\"\n  },\n  \"po_number\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"tag_list\": \"<string>\",\n  \"payment_method\": \"<string>\",\n  \"items_attributes\": [\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    }\n  ],\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"contact_id\": \"<string>\",\n  \"contact\": {\n    \"kind\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"contact_name\": \"<string>\",\n    \"street_line_1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"region\": \"<string>\",\n    \"country\": \"<string>\",\n    \"email\": \"<string>\",\n    \"tax_id\": \"<string>\"\n  },\n  \"po_number\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"tag_list\": \"<string>\",\n  \"payment_method\": \"<string>\",\n  \"items_attributes\": [\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    }\n  ],\n  \"notes\": \"<string>\",\n  \"id\": \"string\",\n  \"number\": \"string\",\n  \"issue_date\": \"string\",\n  \"state\": \"string\",\n  \"subtotal\": 6236.567978905043,\n  \"taxes\": 7232.122951107869,\n  \"total\": 5486.575492342268,\n  \"payments\": [\n    {\n      \"amount\": 2153.9257008412637,\n      \"payment_method\": \"wire_transfer\",\n      \"date\": \"string\",\n      \"id\": \"string\"\n    },\n    {\n      \"amount\": 9738.727621261922,\n      \"payment_method\": \"wire_transfer\",\n      \"date\": \"string\",\n      \"id\": \"string\"\n    }\n  ],\n  \"permalink\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1be1eb86-7498-445a-8421-7bc935eacf6b",
+              "name": "The request payload failed validation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Quaderno account subdomain.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contact_id\": \"<string>\",\n  \"contact\": {\n    \"kind\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"contact_name\": \"<string>\",\n    \"street_line_1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"region\": \"<string>\",\n    \"country\": \"<string>\",\n    \"email\": \"<string>\",\n    \"tax_id\": \"<string>\"\n  },\n  \"po_number\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"tag_list\": \"<string>\",\n  \"payment_method\": \"<string>\",\n  \"items_attributes\": [\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    }\n  ],\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"errors\": {\n    \"key_0\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ac1003e4-9a20-4e61-9db4-dd2054bba816",
+          "name": "Retrieve an invoice",
+          "request": {
+            "name": "Retrieve an invoice",
+            "description": {},
+            "url": {
+              "path": [
+                "invoices",
+                "{{id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Quaderno account subdomain.",
+                  "type": "any",
+                  "value": "{{account}}",
+                  "key": "account"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a64f4b5d-48a9-4966-9342-f013bc4ed314",
+              "name": "The requested invoice.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    "{{id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Quaderno account subdomain.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"contact_id\": \"<string>\",\n  \"contact\": {\n    \"kind\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"contact_name\": \"<string>\",\n    \"street_line_1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"region\": \"<string>\",\n    \"country\": \"<string>\",\n    \"email\": \"<string>\",\n    \"tax_id\": \"<string>\"\n  },\n  \"po_number\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"tag_list\": \"<string>\",\n  \"payment_method\": \"<string>\",\n  \"items_attributes\": [\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    }\n  ],\n  \"notes\": \"<string>\",\n  \"id\": \"string\",\n  \"number\": \"string\",\n  \"issue_date\": \"string\",\n  \"state\": \"string\",\n  \"subtotal\": 6236.567978905043,\n  \"taxes\": 7232.122951107869,\n  \"total\": 5486.575492342268,\n  \"payments\": [\n    {\n      \"amount\": 2153.9257008412637,\n      \"payment_method\": \"wire_transfer\",\n      \"date\": \"string\",\n      \"id\": \"string\"\n    },\n    {\n      \"amount\": 9738.727621261922,\n      \"payment_method\": \"wire_transfer\",\n      \"date\": \"string\",\n      \"id\": \"string\"\n    }\n  ],\n  \"permalink\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "547f5f98-083a-4ab1-8976-6c55092abf61",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    "{{id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Quaderno account subdomain.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"errors\": {\n    \"key_0\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2f9df45e-fb7f-428b-a7b2-f0bf9a87adec",
+          "name": "Update an invoice",
+          "request": {
+            "name": "Update an invoice",
+            "description": {},
+            "url": {
+              "path": [
+                "invoices",
+                "{{id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Quaderno account subdomain.",
+                  "type": "any",
+                  "value": "{{account}}",
+                  "key": "account"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"contact_id\": \"<string>\",\n  \"contact\": {\n    \"kind\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"contact_name\": \"<string>\",\n    \"street_line_1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"region\": \"<string>\",\n    \"country\": \"<string>\",\n    \"email\": \"<string>\",\n    \"tax_id\": \"<string>\"\n  },\n  \"po_number\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"tag_list\": \"<string>\",\n  \"payment_method\": \"<string>\",\n  \"items_attributes\": [\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    }\n  ],\n  \"notes\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "96da338a-e838-4d84-a30e-e3444dd39622",
+              "name": "The updated invoice.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    "{{id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Quaderno account subdomain.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contact_id\": \"<string>\",\n  \"contact\": {\n    \"kind\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"contact_name\": \"<string>\",\n    \"street_line_1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"region\": \"<string>\",\n    \"country\": \"<string>\",\n    \"email\": \"<string>\",\n    \"tax_id\": \"<string>\"\n  },\n  \"po_number\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"tag_list\": \"<string>\",\n  \"payment_method\": \"<string>\",\n  \"items_attributes\": [\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    }\n  ],\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"contact_id\": \"<string>\",\n  \"contact\": {\n    \"kind\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"contact_name\": \"<string>\",\n    \"street_line_1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"region\": \"<string>\",\n    \"country\": \"<string>\",\n    \"email\": \"<string>\",\n    \"tax_id\": \"<string>\"\n  },\n  \"po_number\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"tag_list\": \"<string>\",\n  \"payment_method\": \"<string>\",\n  \"items_attributes\": [\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    }\n  ],\n  \"notes\": \"<string>\",\n  \"id\": \"string\",\n  \"number\": \"string\",\n  \"issue_date\": \"string\",\n  \"state\": \"string\",\n  \"subtotal\": 6236.567978905043,\n  \"taxes\": 7232.122951107869,\n  \"total\": 5486.575492342268,\n  \"payments\": [\n    {\n      \"amount\": 2153.9257008412637,\n      \"payment_method\": \"wire_transfer\",\n      \"date\": \"string\",\n      \"id\": \"string\"\n    },\n    {\n      \"amount\": 9738.727621261922,\n      \"payment_method\": \"wire_transfer\",\n      \"date\": \"string\",\n      \"id\": \"string\"\n    }\n  ],\n  \"permalink\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5784c4f0-e67b-4f87-a6be-0040d0006c18",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    "{{id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Quaderno account subdomain.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contact_id\": \"<string>\",\n  \"contact\": {\n    \"kind\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"contact_name\": \"<string>\",\n    \"street_line_1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"region\": \"<string>\",\n    \"country\": \"<string>\",\n    \"email\": \"<string>\",\n    \"tax_id\": \"<string>\"\n  },\n  \"po_number\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"tag_list\": \"<string>\",\n  \"payment_method\": \"<string>\",\n  \"items_attributes\": [\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    }\n  ],\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"errors\": {\n    \"key_0\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8b70002c-4e97-434f-8560-0d2d61848f02",
+          "name": "Delete an invoice",
+          "request": {
+            "name": "Delete an invoice",
+            "description": {},
+            "url": {
+              "path": [
+                "invoices",
+                "{{id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Quaderno account subdomain.",
+                  "type": "any",
+                  "value": "{{account}}",
+                  "key": "account"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c4e5383c-0719-48a3-9429-4696c255aaa5",
+              "name": "The invoice was deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    "{{id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Quaderno account subdomain.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "757bc851-6285-47bd-9f2b-7df8aaa9cd91",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    "{{id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Quaderno account subdomain.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"errors\": {\n    \"key_0\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "79ba84af-9f3d-4b31-900b-6ab1fdef9605",
+          "name": "Deliver an invoice by email",
+          "request": {
+            "name": "Deliver an invoice by email",
+            "description": {
+              "content": "Sends the invoice to the contact's email address.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "invoices",
+                ":id",
+                "deliver.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique ID of the resource."
+                },
+                {
+                  "description": "Your Quaderno account subdomain.",
+                  "type": "any",
+                  "value": "{{account}}",
+                  "key": "account"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "66287ad5-8d15-4e9c-bbd9-1d41224fca54",
+              "name": "Delivery accepted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":id",
+                    "deliver.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique ID of the resource."
+                    },
+                    {
+                      "description": "Your Quaderno account subdomain.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e62080c3-a468-481c-b05b-3de8ce5332f0",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":id",
+                    "deliver.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique ID of the resource."
+                    },
+                    {
+                      "description": "Your Quaderno account subdomain.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"errors\": {\n    \"key_0\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Quaderno account subdomain.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "ACCOUNT_NAME",
+      "key": "account"
+    },
+    {
+      "type": "string",
+      "value": "https://{{account}}.quadernoapp.com/api",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) The unique ID of the resource.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "id"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b53e7679-8cef-4fd5-8218-9e671a06bb38",
+    "name": "Quaderno Authentication Invoices API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Quaderno API is a REST API for tax compliance, invoicing, and sales tax / VAT automation. It exposes resources with predictable, account-scoped URLs and uses standard HTTP features - HTTP Basic Authentication, standard methods, and response codes. All requests and responses are JSON, and every endpoint path ends in `.json` to indicate JSON serialization.\nThe base URL is account-scoped: `https://ACCOUNT_NAME.quadernoapp.com/api`, where `ACCOUNT_NAME` is your Quaderno account subdomain. Authenticate with your private API key as the HTTP Basic Auth username (any value for the password). Sandbox testing is available on a separate sandbox host.\nCore resources include Contacts, Items, Invoices, Credits, Estimates, Expenses, Recurring documents, Payments, Transactions, Checkout Sessions, Webhooks, and the tax engine (tax rate calculation, tax jurisdictions, tax codes, and tax ID validation). Endpoint paths and the account-scoped base URL are confirmed against Quaderno's public developer documentation and the official quaderno-ruby SDK; request and response bodies are modeled and should be verified against the live API reference.\n\nContact Support:\n Name: Quaderno",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,839 @@
+{
+  "item": [
+    {
+      "id": "1c4287f8-0962-4056-83c8-1da5b67d6be9",
+      "name": "Estimates",
+      "description": {
+        "content": "Quotes and estimates issued to customers.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3953fc44-4505-41f4-9149-143c3a653309",
+          "name": "List estimates",
+          "request": {
+            "name": "List estimates",
+            "description": {},
+            "url": {
+              "path": [
+                "estimates.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for paginated results (25 records per page)."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your Quaderno account subdomain.",
+                  "type": "any",
+                  "value": "{{account}}",
+                  "key": "account"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "04cec3fc-203c-4504-a0cf-a723488406bb",
+              "name": "A list of estimates.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "estimates.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Quaderno account subdomain.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"contact_id\": \"string\",\n    \"contact\": {\n      \"kind\": \"company\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"contact_name\": \"string\",\n      \"street_line_1\": \"string\",\n      \"city\": \"string\",\n      \"postal_code\": \"string\",\n      \"region\": \"string\",\n      \"country\": \"string\",\n      \"email\": \"string\",\n      \"tax_id\": \"string\"\n    },\n    \"currency\": \"string\",\n    \"po_number\": \"string\",\n    \"items_attributes\": [\n      {\n        \"description\": \"string\",\n        \"quantity\": 8239.797802999821,\n        \"unit_price\": 5484.5403830118275,\n        \"discount_rate\": 4531.274767931276,\n        \"tax_1_name\": \"string\",\n        \"tax_1_rate\": 8771.574412397862,\n        \"tax_code\": \"string\",\n        \"reference\": \"string\"\n      },\n      {\n        \"description\": \"string\",\n        \"quantity\": 2965.1187817219748,\n        \"unit_price\": 7693.976927943456,\n        \"discount_rate\": 1854.92457786943,\n        \"tax_1_name\": \"string\",\n        \"tax_1_rate\": 6426.835947769752,\n        \"tax_code\": \"string\",\n        \"reference\": \"string\"\n      }\n    ],\n    \"notes\": \"string\",\n    \"id\": \"string\",\n    \"number\": \"string\",\n    \"issue_date\": \"string\",\n    \"state\": \"string\",\n    \"total\": 7015.128475527133\n  },\n  {\n    \"contact_id\": \"string\",\n    \"contact\": {\n      \"kind\": \"person\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"contact_name\": \"string\",\n      \"street_line_1\": \"string\",\n      \"city\": \"string\",\n      \"postal_code\": \"string\",\n      \"region\": \"string\",\n      \"country\": \"string\",\n      \"email\": \"string\",\n      \"tax_id\": \"string\"\n    },\n    \"currency\": \"string\",\n    \"po_number\": \"string\",\n    \"items_attributes\": [\n      {\n        \"description\": \"string\",\n        \"quantity\": 7884.073201915276,\n        \"unit_price\": 868.0903645634563,\n        \"discount_rate\": 9056.503754571535,\n        \"tax_1_name\": \"string\",\n        \"tax_1_rate\": 7776.929373272825,\n        \"tax_code\": \"string\",\n        \"reference\": \"string\"\n      },\n      {\n        \"description\": \"string\",\n        \"quantity\": 7022.756728867271,\n        \"unit_price\": 9788.682671783987,\n        \"discount_rate\": 3734.170056078289,\n        \"tax_1_name\": \"string\",\n        \"tax_1_rate\": 5568.827913505618,\n        \"tax_code\": \"string\",\n        \"reference\": \"string\"\n      }\n    ],\n    \"notes\": \"string\",\n    \"id\": \"string\",\n    \"number\": \"string\",\n    \"issue_date\": \"string\",\n    \"state\": \"string\",\n    \"total\": 4230.865714118203\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4979773f-016c-42ee-904b-5e12e4ec63c1",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "estimates.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Quaderno account subdomain.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"errors\": {\n    \"key_0\": 3840\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d6aa7464-b327-4742-83c4-d1e880325c8a",
+          "name": "Create an estimate",
+          "request": {
+            "name": "Create an estimate",
+            "description": {},
+            "url": {
+              "path": [
+                "estimates.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Quaderno account subdomain.",
+                  "type": "any",
+                  "value": "{{account}}",
+                  "key": "account"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"contact_id\": \"<string>\",\n  \"contact\": {\n    \"kind\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"contact_name\": \"<string>\",\n    \"street_line_1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"region\": \"<string>\",\n    \"country\": \"<string>\",\n    \"email\": \"<string>\",\n    \"tax_id\": \"<string>\"\n  },\n  \"currency\": \"<string>\",\n  \"po_number\": \"<string>\",\n  \"items_attributes\": [\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    }\n  ],\n  \"notes\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a923bfcf-98a4-4076-957d-f4578e7722c4",
+              "name": "The created estimate.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "estimates.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Quaderno account subdomain.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contact_id\": \"<string>\",\n  \"contact\": {\n    \"kind\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"contact_name\": \"<string>\",\n    \"street_line_1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"region\": \"<string>\",\n    \"country\": \"<string>\",\n    \"email\": \"<string>\",\n    \"tax_id\": \"<string>\"\n  },\n  \"currency\": \"<string>\",\n  \"po_number\": \"<string>\",\n  \"items_attributes\": [\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    }\n  ],\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"contact_id\": \"<string>\",\n  \"contact\": {\n    \"kind\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"contact_name\": \"<string>\",\n    \"street_line_1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"region\": \"<string>\",\n    \"country\": \"<string>\",\n    \"email\": \"<string>\",\n    \"tax_id\": \"<string>\"\n  },\n  \"currency\": \"<string>\",\n  \"po_number\": \"<string>\",\n  \"items_attributes\": [\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    }\n  ],\n  \"notes\": \"<string>\",\n  \"id\": \"string\",\n  \"number\": \"string\",\n  \"issue_date\": \"string\",\n  \"state\": \"string\",\n  \"total\": 6953.312234867589\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0f1a559e-c61c-43db-9bb6-90f636a35b94",
+              "name": "The request payload failed validation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "estimates.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Quaderno account subdomain.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contact_id\": \"<string>\",\n  \"contact\": {\n    \"kind\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"contact_name\": \"<string>\",\n    \"street_line_1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"region\": \"<string>\",\n    \"country\": \"<string>\",\n    \"email\": \"<string>\",\n    \"tax_id\": \"<string>\"\n  },\n  \"currency\": \"<string>\",\n  \"po_number\": \"<string>\",\n  \"items_attributes\": [\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    }\n  ],\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"errors\": {\n    \"key_0\": 3840\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "980872a1-0806-4050-9ac6-3eb0ff025c28",
+          "name": "Retrieve an estimate",
+          "request": {
+            "name": "Retrieve an estimate",
+            "description": {},
+            "url": {
+              "path": [
+                "estimates",
+                "{{id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Quaderno account subdomain.",
+                  "type": "any",
+                  "value": "{{account}}",
+                  "key": "account"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "82491f2e-bf2c-4565-9f2c-055c72e41a1d",
+              "name": "The requested estimate.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "estimates",
+                    "{{id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Quaderno account subdomain.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"contact_id\": \"<string>\",\n  \"contact\": {\n    \"kind\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"contact_name\": \"<string>\",\n    \"street_line_1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"region\": \"<string>\",\n    \"country\": \"<string>\",\n    \"email\": \"<string>\",\n    \"tax_id\": \"<string>\"\n  },\n  \"currency\": \"<string>\",\n  \"po_number\": \"<string>\",\n  \"items_attributes\": [\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    }\n  ],\n  \"notes\": \"<string>\",\n  \"id\": \"string\",\n  \"number\": \"string\",\n  \"issue_date\": \"string\",\n  \"state\": \"string\",\n  \"total\": 6953.312234867589\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "182672d7-f3af-4bb9-b77f-5710af9834b8",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "estimates",
+                    "{{id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Quaderno account subdomain.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"errors\": {\n    \"key_0\": 3840\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d9eec5d1-b7e4-4412-88f1-f2af9f5e4380",
+          "name": "Update an estimate",
+          "request": {
+            "name": "Update an estimate",
+            "description": {},
+            "url": {
+              "path": [
+                "estimates",
+                "{{id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Quaderno account subdomain.",
+                  "type": "any",
+                  "value": "{{account}}",
+                  "key": "account"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"contact_id\": \"<string>\",\n  \"contact\": {\n    \"kind\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"contact_name\": \"<string>\",\n    \"street_line_1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"region\": \"<string>\",\n    \"country\": \"<string>\",\n    \"email\": \"<string>\",\n    \"tax_id\": \"<string>\"\n  },\n  \"currency\": \"<string>\",\n  \"po_number\": \"<string>\",\n  \"items_attributes\": [\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    }\n  ],\n  \"notes\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1ef49bcd-a79a-4321-856b-576a9cdbb45a",
+              "name": "The updated estimate.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "estimates",
+                    "{{id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Quaderno account subdomain.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contact_id\": \"<string>\",\n  \"contact\": {\n    \"kind\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"contact_name\": \"<string>\",\n    \"street_line_1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"region\": \"<string>\",\n    \"country\": \"<string>\",\n    \"email\": \"<string>\",\n    \"tax_id\": \"<string>\"\n  },\n  \"currency\": \"<string>\",\n  \"po_number\": \"<string>\",\n  \"items_attributes\": [\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    }\n  ],\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"contact_id\": \"<string>\",\n  \"contact\": {\n    \"kind\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"contact_name\": \"<string>\",\n    \"street_line_1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"region\": \"<string>\",\n    \"country\": \"<string>\",\n    \"email\": \"<string>\",\n    \"tax_id\": \"<string>\"\n  },\n  \"currency\": \"<string>\",\n  \"po_number\": \"<string>\",\n  \"items_attributes\": [\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    }\n  ],\n  \"notes\": \"<string>\",\n  \"id\": \"string\",\n  \"number\": \"string\",\n  \"issue_date\": \"string\",\n  \"state\": \"string\",\n  \"total\": 6953.312234867589\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c92ba075-154d-4b5b-bfec-b9c403e3063e",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "estimates",
+                    "{{id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Quaderno account subdomain.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contact_id\": \"<string>\",\n  \"contact\": {\n    \"kind\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"contact_name\": \"<string>\",\n    \"street_line_1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"region\": \"<string>\",\n    \"country\": \"<string>\",\n    \"email\": \"<string>\",\n    \"tax_id\": \"<string>\"\n  },\n  \"currency\": \"<string>\",\n  \"po_number\": \"<string>\",\n  \"items_attributes\": [\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"discount_rate\": \"<number>\",\n      \"tax_1_name\": \"<string>\",\n      \"tax_1_rate\": \"<number>\",\n      \"tax_code\": \"<string>\",\n      \"reference\": \"<string>\"\n    }\n  ],\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"errors\": {\n    \"key_0\": 3840\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "77bbeb2a-d56b-4cfb-bc25-f65fffce81ea",
+          "name": "Delete an estimate",
+          "request": {
+            "name": "Delete an estimate",
+            "description": {},
+            "url": {
+              "path": [
+                "estimates",
+                "{{id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Quaderno account subdomain.",
+                  "type": "any",
+                  "value": "{{account}}",
+                  "key": "account"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "14761dd2-6de1-49ae-8eb5-c4a17ed3d7eb",
+              "name": "The estimate was deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "estimates",
+                    "{{id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Quaderno account subdomain.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "67be9cb1-cfb4-4b60-a7ee-d91ad7d10fb3",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "estimates",
+                    "{{id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Quaderno account subdomain.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"errors\": {\n    \"key_0\": 3840\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Quaderno account subdomain.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "ACCOUNT_NAME",
+      "key": "account"
+    },
+    {
+      "type": "string",
+      "value": "https://{{account}}.quadernoapp.com/api",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) The unique ID of the resource.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "id"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e2c9b17a-26e2-4c49-8c1c-d729989aef9d",
+    "name": "Quaderno Authentication Estimates API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Quaderno API is a REST API for tax compliance, invoicing, and sales tax / VAT automation. It exposes resources with predictable, account-scoped URLs and uses standard HTTP features - HTTP Basic Authentication, standard methods, and response codes. All requests and responses are JSON, and every endpoint path ends in `.json` to indicate JSON serialization.\nThe base URL is account-scoped: `https://ACCOUNT_NAME.quadernoapp.com/api`, where `ACCOUNT_NAME` is your Quaderno account subdomain. Authenticate with your private API key as the HTTP Basic Auth username (any value for the password). Sandbox testing is available on a separate sandbox host.\nCore resources include Contacts, Items, Invoices, Credits, Estimates, Expenses, Recurring documents, Payments, Transactions, Checkout Sessions, Webhooks, and the tax engine (tax rate calculation, tax jurisdictions, tax codes, and tax ID validation). Endpoint paths and the account-scoped base URL are confirmed against Quaderno's public developer documentation and the official quaderno-ruby SDK; request and response bodies are modeled and should be verified against the live API reference.\n\nContact Support:\n Name: Quaderno",
+      "type": "text/plain"
+    }
+  }
+}
