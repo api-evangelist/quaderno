@@ -31,6 +31,13 @@ tags:
 - VAT
 - Invoicing
 - Billing
+- Fintech
+tags_raw:
+- Tax Compliance
+- Sales Tax
+- VAT
+- Invoicing
+- Billing
 - FinTech
 created: '2026-07-03'
 modified: '2026-07-03'
@@ -218,6 +225,8 @@ apis:
   humanURL: https://developers.quaderno.io/api/
   baseURL: https://ACCOUNT_NAME.quadernoapp.com/api
   tags:
+  - Item
+  tags_raw:
   - Items
   properties:
   - type: OpenAPI
@@ -306,6 +315,8 @@ apis:
   humanURL: https://developers.quaderno.io/api/
   baseURL: https://ACCOUNT_NAME.quadernoapp.com/api
   tags:
+  - Transaction
+  tags_raw:
   - Transactions
   properties:
   - type: OpenAPI
@@ -328,6 +339,8 @@ apis:
   humanURL: https://developers.quaderno.io/api/
   baseURL: https://ACCOUNT_NAME.quadernoapp.com/api
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
