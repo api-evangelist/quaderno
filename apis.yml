@@ -11,6 +11,18 @@ description: Quaderno is a tax compliance, invoicing, and sales-tax / VAT automa
   webhooks, plus a tax engine for rate calculation, jurisdictions, tax codes, and
   tax ID validation. Requests use HTTP Basic Auth with a private API key and return
   JSON; every endpoint path ends in .json.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
