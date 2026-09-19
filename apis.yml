@@ -127,6 +127,8 @@ apis:
   humanURL: https://developers.quaderno.io/api/
   baseURL: https://ACCOUNT_NAME.quadernoapp.com/api
   tags:
+  - Credit
+  tags_raw:
   - Credits
   properties:
   - type: OpenAPI
@@ -305,6 +307,8 @@ apis:
   humanURL: https://developers.quaderno.io/api/
   baseURL: https://ACCOUNT_NAME.quadernoapp.com/api
   tags:
+  - Tax
+  tags_raw:
   - Taxes
   properties:
   - type: OpenAPI
