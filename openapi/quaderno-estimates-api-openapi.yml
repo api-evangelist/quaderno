@@ -1,11 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Quaderno Authentication Estimates API
-  description: 'The Quaderno API is a REST API for tax compliance, invoicing, and sales tax / VAT automation. It exposes resources with predictable, account-scoped URLs and uses standard HTTP features - HTTP Basic Authentication, standard methods, and response codes. All requests and responses are JSON, and every endpoint path ends in `.json` to indicate JSON serialization.
-
-    The base URL is account-scoped: `https://ACCOUNT_NAME.quadernoapp.com/api`, where `ACCOUNT_NAME` is your Quaderno account subdomain. Authenticate with your private API key as the HTTP Basic Auth username (any value for the password). Sandbox testing is available on a separate sandbox host.
-
-    Core resources include Contacts, Items, Invoices, Credits, Estimates, Expenses, Recurring documents, Payments, Transactions, Checkout Sessions, Webhooks, and the tax engine (tax rate calculation, tax jurisdictions, tax codes, and tax ID validation). Endpoint paths and the account-scoped base URL are confirmed against Quaderno''s public developer documentation and the official quaderno-ruby SDK; request and response bodies are modeled and should be verified against the live API reference.'
+  title: Quaderno Estimates API
+  description: The Quaderno API is a REST API for tax compliance, invoicing, and sales tax / VAT automation.
   version: '1.0'
   contact:
     name: Quaderno
@@ -114,25 +110,29 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    EstimateInput:
+    Estimate:
+      allOf:
+      - $ref: '#/components/schemas/EstimateInput'
+      - type: object
+        properties:
+          id:
+            type: string
+          number:
+            type: string
+          issue_date:
+            type: string
+          state:
+            type: string
+          total:
+            type: number
+    Error:
       type: object
-      required:
-      - contact_id
       properties:
-        contact_id:
+        error:
           type: string
-        contact:
-          $ref: '#/components/schemas/ContactInput'
-        currency:
-          type: string
-        po_number:
-          type: string
-        items_attributes:
-          type: array
-          items:
-            $ref: '#/components/schemas/DocumentItem'
-        notes:
-          type: string
+        errors:
+          type: object
+          additionalProperties: true
     DocumentItem:
       type: object
       description: A line item on a document.
@@ -185,30 +185,32 @@ components:
           type: string
         tax_id:
           type: string
-    Error:
+    EstimateInput:
       type: object
+      required:
+      - contact_id
       properties:
-        error:
+        contact_id:
           type: string
-        errors:
-          type: object
-          additionalProperties: true
-    Estimate:
-      allOf:
-      - $ref: '#/components/schemas/EstimateInput'
-      - type: object
-        properties:
-          id:
-            type: string
-          number:
-            type: string
-          issue_date:
-            type: string
-          state:
-            type: string
-          total:
-            type: number
+        contact:
+          $ref: '#/components/schemas/ContactInput'
+        currency:
+          type: string
+        po_number:
+          type: string
+        items_attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentItem'
+        notes:
+          type: string
   responses:
+    ValidationError:
+      description: The request payload failed validation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Missing or invalid API key.
       content:
@@ -221,20 +223,7 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    ValidationError:
-      description: The request payload failed validation.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   parameters:
-    Id:
-      name: id
-      in: path
-      required: true
-      description: The unique ID of the resource.
-      schema:
-        type: string
     Page:
       name: page
       in: query
@@ -243,6 +232,13 @@ components:
       schema:
         type: integer
         default: 1
+    Id:
+      name: id
+      in: path
+      required: true
+      description: The unique ID of the resource.
+      schema:
+        type: string
   securitySchemes:
     basicAuth:
       type: http
