@@ -110,14 +110,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        errors:
-          type: object
-          additionalProperties: true
     Credit:
       allOf:
       - $ref: '#/components/schemas/CreditInput'
@@ -131,24 +123,14 @@ components:
             type: string
           total:
             type: number
-    CreditInput:
+    Error:
       type: object
-      required:
-      - contact_id
       properties:
-        contact_id:
+        error:
           type: string
-        invoice_id:
-          type: string
-          description: The invoice this credit note is issued against.
-        currency:
-          type: string
-        items_attributes:
-          type: array
-          items:
-            $ref: '#/components/schemas/DocumentItem'
-        notes:
-          type: string
+        errors:
+          type: object
+          additionalProperties: true
     DocumentItem:
       type: object
       description: A line item on a document.
@@ -169,25 +151,24 @@ components:
           type: string
         reference:
           type: string
-  responses:
-    ValidationError:
-      description: The request payload failed validation.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    CreditInput:
+      type: object
+      required:
+      - contact_id
+      properties:
+        contact_id:
+          type: string
+        invoice_id:
+          type: string
+          description: The invoice this credit note is issued against.
+        currency:
+          type: string
+        items_attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentItem'
+        notes:
+          type: string
   parameters:
     Page:
       name: page
@@ -204,6 +185,25 @@ components:
       description: The unique ID of the resource.
       schema:
         type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ValidationError:
+      description: The request payload failed validation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     basicAuth:
       type: http

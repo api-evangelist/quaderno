@@ -167,6 +167,15 @@ components:
           type: string
         region:
           type: string
+    TaxCode:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
     Error:
       type: object
       properties:
@@ -202,15 +211,6 @@ components:
           - non_taxable
           - not_registered
           description: Reasoning for the calculated rate.
-    TaxCode:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
   responses:
     Unauthorized:
       description: Missing or invalid API key.

@@ -109,7 +109,56 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  parameters:
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Page number for paginated results (25 records per page).
+      schema:
+        type: integer
+        default: 1
+    Id:
+      name: id
+      in: path
+      required: true
+      description: The unique ID of the resource.
+      schema:
+        type: string
   schemas:
+    DocumentItem:
+      type: object
+      description: A line item on a document.
+      properties:
+        description:
+          type: string
+        quantity:
+          type: number
+        unit_price:
+          type: number
+        discount_rate:
+          type: number
+        tax_1_name:
+          type: string
+        tax_1_rate:
+          type: number
+        tax_code:
+          type: string
+        reference:
+          type: string
+    Expense:
+      allOf:
+      - $ref: '#/components/schemas/ExpenseInput'
+      - type: object
+        properties:
+          id:
+            type: string
+          number:
+            type: string
+          issue_date:
+            type: string
+          total:
+            type: number
     Error:
       type: object
       properties:
@@ -136,39 +185,6 @@ components:
           items:
             $ref: '#/components/schemas/DocumentItem'
         notes:
-          type: string
-    Expense:
-      allOf:
-      - $ref: '#/components/schemas/ExpenseInput'
-      - type: object
-        properties:
-          id:
-            type: string
-          number:
-            type: string
-          issue_date:
-            type: string
-          total:
-            type: number
-    DocumentItem:
-      type: object
-      description: A line item on a document.
-      properties:
-        description:
-          type: string
-        quantity:
-          type: number
-        unit_price:
-          type: number
-        discount_rate:
-          type: number
-        tax_1_name:
-          type: string
-        tax_1_rate:
-          type: number
-        tax_code:
-          type: string
-        reference:
           type: string
     ContactInput:
       type: object
@@ -203,12 +219,6 @@ components:
         tax_id:
           type: string
   responses:
-    ValidationError:
-      description: The request payload failed validation.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Missing or invalid API key.
       content:
@@ -221,22 +231,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  parameters:
-    Page:
-      name: page
-      in: query
-      required: false
-      description: Page number for paginated results (25 records per page).
-      schema:
-        type: integer
-        default: 1
-    Id:
-      name: id
-      in: path
-      required: true
-      description: The unique ID of the resource.
-      schema:
-        type: string
+    ValidationError:
+      description: The request payload failed validation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     basicAuth:
       type: http

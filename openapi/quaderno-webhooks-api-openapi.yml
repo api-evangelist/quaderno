@@ -139,14 +139,14 @@ components:
           items:
             type: string
   responses:
-    ValidationError:
-      description: The request payload failed validation.
+    Unauthorized:
+      description: Missing or invalid API key.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid API key.
+    ValidationError:
+      description: The request payload failed validation.
       content:
         application/json:
           schema:

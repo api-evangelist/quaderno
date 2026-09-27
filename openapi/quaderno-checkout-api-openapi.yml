@@ -63,25 +63,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        errors:
-          type: object
-          additionalProperties: true
-    CheckoutSession:
-      allOf:
-      - $ref: '#/components/schemas/CheckoutSessionInput'
-      - type: object
-        properties:
-          id:
-            type: string
-          url:
-            type: string
-          status:
-            type: string
     CheckoutSessionInput:
       type: object
       properties:
@@ -106,6 +87,14 @@ components:
                 type: number
               tax_code:
                 type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        errors:
+          type: object
+          additionalProperties: true
     ContactInput:
       type: object
       required:
@@ -138,6 +127,17 @@ components:
           type: string
         tax_id:
           type: string
+    CheckoutSession:
+      allOf:
+      - $ref: '#/components/schemas/CheckoutSessionInput'
+      - type: object
+        properties:
+          id:
+            type: string
+          url:
+            type: string
+          status:
+            type: string
   responses:
     ValidationError:
       description: The request payload failed validation.
