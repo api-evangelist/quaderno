@@ -67,6 +67,13 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    Payment:
+      allOf:
+      - $ref: '#/components/schemas/PaymentInput'
+      - type: object
+        properties:
+          id:
+            type: string
     PaymentInput:
       type: object
       required:
@@ -86,13 +93,6 @@ components:
           - other
         date:
           type: string
-    Payment:
-      allOf:
-      - $ref: '#/components/schemas/PaymentInput'
-      - type: object
-        properties:
-          id:
-            type: string
     Error:
       type: object
       properties:

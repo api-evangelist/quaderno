@@ -45,14 +45,26 @@ paths:
         '422':
           $ref: '#/components/responses/ValidationError'
 components:
-  responses:
-    ValidationError:
-      description: The request payload failed validation.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        errors:
+          type: object
+          additionalProperties: true
+    Transaction:
+      allOf:
+      - $ref: '#/components/schemas/TransactionInput'
+      - type: object
+        properties:
+          id:
+            type: string
+          total:
+            type: number
+          taxes:
+            type: number
     TransactionInput:
       type: object
       required:
@@ -95,25 +107,13 @@ components:
         evidence:
           type: object
           additionalProperties: true
-    Transaction:
-      allOf:
-      - $ref: '#/components/schemas/TransactionInput'
-      - type: object
-        properties:
-          id:
-            type: string
-          total:
-            type: number
-          taxes:
-            type: number
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        errors:
-          type: object
-          additionalProperties: true
+  responses:
+    ValidationError:
+      description: The request payload failed validation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     basicAuth:
       type: http

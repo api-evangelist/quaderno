@@ -156,6 +156,15 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    TaxCode:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
     TaxJurisdiction:
       type: object
       properties:
@@ -166,15 +175,6 @@ components:
         country:
           type: string
         region:
-          type: string
-    TaxCode:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
           type: string
     Error:
       type: object

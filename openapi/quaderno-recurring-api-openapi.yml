@@ -125,14 +125,46 @@ components:
       description: The unique ID of the resource.
       schema:
         type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ValidationError:
+      description: The request payload failed validation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Recurring:
-      allOf:
-      - $ref: '#/components/schemas/RecurringInput'
-      - type: object
-        properties:
-          id:
-            type: string
+    DocumentItem:
+      type: object
+      description: A line item on a document.
+      properties:
+        description:
+          type: string
+        quantity:
+          type: number
+        unit_price:
+          type: number
+        discount_rate:
+          type: number
+        tax_1_name:
+          type: string
+        tax_1_rate:
+          type: number
+        tax_code:
+          type: string
+        reference:
+          type: string
     Error:
       type: object
       properties:
@@ -141,6 +173,13 @@ components:
         errors:
           type: object
           additionalProperties: true
+    Recurring:
+      allOf:
+      - $ref: '#/components/schemas/RecurringInput'
+      - type: object
+        properties:
+          id:
+            type: string
     RecurringInput:
       type: object
       required:
@@ -170,45 +209,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/DocumentItem'
-    DocumentItem:
-      type: object
-      description: A line item on a document.
-      properties:
-        description:
-          type: string
-        quantity:
-          type: number
-        unit_price:
-          type: number
-        discount_rate:
-          type: number
-        tax_1_name:
-          type: string
-        tax_1_rate:
-          type: number
-        tax_code:
-          type: string
-        reference:
-          type: string
-  responses:
-    Unauthorized:
-      description: Missing or invalid API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    ValidationError:
-      description: The request payload failed validation.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     basicAuth:
       type: http
