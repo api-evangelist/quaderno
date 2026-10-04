@@ -1,0 +1,63 @@
+slug: quaderno
+provider: Quaderno
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 5
+edges:
+- tag: Taxes
+  spec_file: quaderno-taxes-api-openapi.yml
+  capability_id: BC-220.20
+  capability_id_l1: BC-220
+  capability_name: Indirect Tax Management
+  confidence: 0.9
+  evidence: GET /tax_rates/calculate.json calculateTaxRate 'Calculate a tax rate'; GET /tax_ids/validate.json
+    'Validate a tax ID'; GET /tax_jurisdictions.json; schemas TaxCode, TaxJurisdiction, TaxCalculation
+  reason: Tax rate calculation, tax ID validation, jurisdictions and tax codes are squarely indirect tax
+    (VAT/GST/sales tax) determination.
+- tag: Credits
+  spec_file: quaderno-credits-api-openapi.yml
+  capability_id: BC-200.30
+  capability_id_l1: BC-200
+  capability_name: Accounts Receivable Management
+  confidence: 0.8
+  evidence: POST /credits.json  createCredit  Create a credit note
+  reason: Credit note issuance against customer invoices is accounts receivable document management; the
+    vendor describes issuing 'tax-compliant invoices, credit notes'. Could also sit under invoicing/statement
+    management for the SaaS billing L1.
+- tag: Invoices
+  spec_file: quaderno-invoices-api-openapi.yml
+  capability_id: BC-200.30
+  capability_id_l1: BC-200
+  capability_name: Accounts Receivable Management
+  confidence: 0.8
+  evidence: POST /invoices.json createInvoice 'Create an invoice'; GET /invoices/{id}/deliver.json 'Deliver
+    an invoice by email'; schemas Invoice, Payment
+  reason: Operations create, update and deliver customer invoices and carry payment objects, which is
+    customer invoicing — accounts receivable management.
+- tag: Contacts
+  spec_file: quaderno-contacts-api-openapi.yml
+  capability_id: BC-420.10
+  capability_id_l1: BC-420
+  capability_name: Customer Data Management
+  confidence: 0.75
+  evidence: GET /contacts.json  listContacts  List contacts; POST /contacts.json  createContact
+  reason: CRUD over a contact master record (customers/vendors) on an invoicing platform, matching Customer
+    Data Management. Some ambiguity as these contacts also serve as billing counterparties.
+- tag: Payments
+  spec_file: quaderno-payments-api-openapi.yml
+  capability_id: BC-200.30
+  capability_id_l1: BC-200
+  capability_name: Accounts Receivable Management
+  confidence: 0.75
+  evidence: POST /invoices/{id}/payments.json createInvoicePayment 'Add a payment to an invoice'
+  reason: Recording and removing payments against customer invoices is cash application within accounts
+    receivable.

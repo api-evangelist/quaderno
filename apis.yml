@@ -44,6 +44,7 @@ tags:
 - Invoicing
 - Billing
 - Fintech
+- Tax
 tags_raw:
 - Tax Compliance
 - Sales Tax
@@ -51,6 +52,7 @@ tags_raw:
 - Invoicing
 - Billing
 - FinTech
+- Tax
 created: '2026-07-03'
 modified: '2026-07-03'
 specificationVersion: '0.23'
@@ -374,6 +376,9 @@ apis:
   - type: Documentation
     url: https://developers.quaderno.io/guides/webhooks/
 common:
+- type: CapabilityMap
+  url: capabilities/quaderno-capability-edges.yml
+  name: Quaderno Business Capability Map
 - type: AgenticAccess
   url: agentic-access/quaderno-agentic-access.yml
 - type: DomainSecurity
