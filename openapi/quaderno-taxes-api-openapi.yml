@@ -156,15 +156,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    TaxCode:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
     TaxJurisdiction:
       type: object
       properties:
@@ -176,14 +167,6 @@ components:
           type: string
         region:
           type: string
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        errors:
-          type: object
-          additionalProperties: true
     TaxCalculation:
       type: object
       properties:
@@ -211,6 +194,23 @@ components:
           - non_taxable
           - not_registered
           description: Reasoning for the calculated rate.
+    TaxCode:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        errors:
+          type: object
+          additionalProperties: true
   responses:
     Unauthorized:
       description: Missing or invalid API key.
