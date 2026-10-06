@@ -54,7 +54,7 @@ tags_raw:
 - FinTech
 - Tax
 created: '2026-07-03'
-modified: '2026-07-03'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 apis:
 - aid: quaderno:quaderno-authentication-api
@@ -376,6 +376,8 @@ apis:
   - type: Documentation
     url: https://developers.quaderno.io/guides/webhooks/
 common:
+- url: https://quaderno.io/rss.xml
+  type: BlogRSS
 - type: CapabilityMap
   url: capabilities/quaderno-capability-edges.yml
   name: Quaderno Business Capability Map
