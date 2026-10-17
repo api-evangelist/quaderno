@@ -167,6 +167,14 @@ components:
           type: string
         region:
           type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        errors:
+          type: object
+          additionalProperties: true
     TaxCalculation:
       type: object
       properties:
@@ -203,14 +211,6 @@ components:
           type: string
         description:
           type: string
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        errors:
-          type: object
-          additionalProperties: true
   responses:
     Unauthorized:
       description: Missing or invalid API key.

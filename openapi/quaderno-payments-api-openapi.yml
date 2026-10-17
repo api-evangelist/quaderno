@@ -67,13 +67,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    Payment:
-      allOf:
-      - $ref: '#/components/schemas/PaymentInput'
-      - type: object
-        properties:
-          id:
-            type: string
     PaymentInput:
       type: object
       required:
@@ -93,6 +86,13 @@ components:
           - other
         date:
           type: string
+    Payment:
+      allOf:
+      - $ref: '#/components/schemas/PaymentInput'
+      - type: object
+        properties:
+          id:
+            type: string
     Error:
       type: object
       properties:
@@ -101,6 +101,14 @@ components:
         errors:
           type: object
           additionalProperties: true
+  parameters:
+    Id:
+      name: id
+      in: path
+      required: true
+      description: The unique ID of the resource.
+      schema:
+        type: string
   responses:
     NotFound:
       description: The requested resource was not found.
@@ -114,14 +122,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  parameters:
-    Id:
-      name: id
-      in: path
-      required: true
-      description: The unique ID of the resource.
-      schema:
-        type: string
   securitySchemes:
     basicAuth:
       type: http
