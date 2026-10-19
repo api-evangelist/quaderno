@@ -3,6 +3,7 @@ method: searched
 checked:
 - https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/
 - https://github.com/meltano/hub
+- https://stripe.partners/sitemap.xml
 - https://zapier.com/api/v4/apps/
 - stripe/integrations/stripe-integration-edges.yml
 - woocommerce/integrations/woocommerce-integration-edges.yml
@@ -124,3 +125,36 @@ edges:
     builder: 'community (Meltano Hub variant maintainers: nickleomartin)'
   detected_by: sweep-data-integration.py
   first_seen: '2026-10-18'
+- partner_name: Stripe Partner Ecosystem
+  partner: stripe
+  partner_match: register
+  type: register
+  direction: partner-built
+  channel: standard-directory
+  relationship: standard-participant
+  evidence: https://stripe.partners/directory/quaderno
+  category: billing / subscription partner of Stripe
+  contract_reference:
+    register: Stripe Partner Ecosystem directory (stripe.partners, PartnerPage SSR __NUXT_DATA__)
+    standard: Stripe Partner Ecosystem
+    spec_file: null
+    role: stripe-partner
+    registered_name: Quaderno
+    register_id: quaderno
+    partner_tier: null
+    matched_domain: quaderno.io
+    matched_by: domain
+    identity_source: the directory's own website field for the partner (no lookup)
+    signal_note: listing = participation; Stripe Certified Professional Developers certify PEOPLE at the firm (context,
+      never certified_products); partner_tier, callouts and products are never counted
+    context:
+      callouts:
+      - Accounting
+      - Invoicing and subscriptions
+      - Ecommerce
+      - Automation
+      location: Las Palmas de Gran Canaria, Spain
+    detected_by: sweep-billing-subscriptions.py
+    detected: '2026-10-19'
+  detected_by: sweep-billing-subscriptions.py
+  first_seen: '2026-10-19'
