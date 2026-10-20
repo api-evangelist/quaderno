@@ -1,5 +1,10 @@
-generated: '2026-10-15'
+generated: '2026-10-20'
 method: searched
+source:
+- stripe/integrations/stripe-integration-edges.yml
+- woocommerce/integrations/woocommerce-integration-edges.yml
+- https://zapier.com/apps/quaderno/integrations
+- https://composio.dev/toolkits/quaderno
 checked:
 - https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/
 - https://github.com/PipedreamHQ/pipedream/tree/d5872355ef27b4efa769f05352f2820c299a456e/components/
@@ -8,9 +13,139 @@ checked:
 - https://zapier.com/api/v4/apps/
 - stripe/integrations/stripe-integration-edges.yml
 - woocommerce/integrations/woocommerce-integration-edges.yml
-source:
-- stripe/integrations/stripe-integration-edges.yml
-- woocommerce/integrations/woocommerce-integration-edges.yml
+- https://composio.dev/toolkits/quaderno
+- https://monid.ai/tools/quaderno
+- https://n8n.io/integrations/quaderno/
+- https://zapier.com/apps/quaderno/integrations
+summary: null
+marketplace_apps:
+- marketplace: zapier
+  channel: ipaas-listing
+  app: quaderno
+  url: https://zapier.com/apps/quaderno/integrations
+  external_url: https://quaderno.io/
+  partner_tier: SILVER
+  triggers:
+  - key: abandoned_checkout
+    label: Abandoned Checkout
+  - key: accepted_estimate
+    label: Accepted Estimate
+  - key: declined_estimate
+    label: Declined Estimate
+  - key: failed_checkout
+    label: Failed Checkout
+  - key: new_contact
+    label: New Contact
+  - key: new_credit
+    label: New Refund
+  - key: new_estimate
+    label: New Estimate
+  - key: new_invoice
+    label: New Invoice
+  - key: new_sale
+    label: New Sale
+  - key: successful_checkout
+    label: Successful Checkout
+  actions:
+  - key: create_contact
+    label: Create Contact
+  - key: create_estimate
+    label: Create Estimate
+  - key: create_expense
+    label: Create Expense
+  - key: create_invoice
+    label: Create Invoice
+  - key: create_paid_invoice
+    label: Create Paid Invoice
+  - key: create_sale
+    label: Create Sale
+  searches:
+  - key: find_contact
+    label: Find Contact
+  - key: find_sale
+    label: Find Sale
+- marketplace: composio
+  channel: agent-gateway
+  app: quaderno
+  url: https://composio.dev/toolkits/quaderno
+  identity: action-prefix
+  actions:
+  - key: QUADERNO_ADD_EXPENSE_PAYMENT
+  - key: QUADERNO_CALCULATE_TAX_RATE
+  - key: QUADERNO_CREATE_CONTACT
+  - key: QUADERNO_CREATE_COUPON
+  - key: QUADERNO_CREATE_ESTIMATE
+  - key: QUADERNO_CREATE_EVIDENCE
+  - key: QUADERNO_CREATE_EXPENSE
+  - key: QUADERNO_CREATE_INVOICE
+  - key: QUADERNO_CREATE_PRODUCT
+  - key: QUADERNO_CREATE_RECEIPT
+  - key: QUADERNO_CREATE_RECURRING
+  - key: QUADERNO_CREATE_REPORT_REQUEST
+  - key: QUADERNO_CREATE_TAX_ID
+  - key: QUADERNO_CREATE_TRANSACTION
+  - key: QUADERNO_CREATE_WEBHOOK
+  - key: QUADERNO_DELETE_CONTACT
+  - key: QUADERNO_DELETE_COUPON
+  - key: QUADERNO_DELETE_ESTIMATE
+  - key: QUADERNO_DELETE_EXPENSE
+  - key: QUADERNO_DELETE_PRODUCT
+  - key: QUADERNO_DELETE_RECURRING
+  - key: QUADERNO_DELETE_TAX_ID
+  - key: QUADERNO_DELETE_WEBHOOK
+  - key: QUADERNO_DELIVER_CREDIT_NOTE
+  - key: QUADERNO_DELIVER_ESTIMATE
+  - key: QUADERNO_DELIVER_INVOICE
+  - key: QUADERNO_DELIVER_RECEIPT
+  - key: QUADERNO_GET_AUTHORIZATION
+  - key: QUADERNO_GET_ESTIMATE
+  - key: QUADERNO_LIST_CONTACTS
+  - key: QUADERNO_LIST_COUPONS
+  - key: QUADERNO_LIST_CREDITS
+  - key: QUADERNO_LIST_ESTIMATES
+  - key: QUADERNO_LIST_EVIDENCE
+  - key: QUADERNO_LIST_EXPENSES
+  - key: QUADERNO_LIST_INVOICES
+  - key: QUADERNO_LIST_JURISDICTIONS
+  - key: QUADERNO_LIST_PRODUCTS
+  - key: QUADERNO_LIST_RECEIPTS
+  - key: QUADERNO_LIST_RECURRINGS
+  - key: QUADERNO_LIST_REGISTERED_TAX_I_DS
+  - key: QUADERNO_LIST_REPORTING_REQUESTS
+  - key: QUADERNO_LIST_SESSIONS
+  - key: QUADERNO_LIST_TAX_CODES
+  - key: QUADERNO_LIST_WEBHOOKS
+  - key: QUADERNO_MARK_INVOICE_UNCOLLECTIBLE
+  - key: QUADERNO_PING
+  - key: QUADERNO_RECORD_INVOICE_PAYMENT
+  - key: QUADERNO_REMOVE_INVOICE_PAYMENT
+  - key: QUADERNO_RETRIEVE_CONTACT
+  - key: QUADERNO_RETRIEVE_CONTACT_BY_PROCESSOR_ID
+  - key: QUADERNO_RETRIEVE_COUPON
+  - key: QUADERNO_RETRIEVE_CREDIT
+  - key: QUADERNO_RETRIEVE_EVIDENCE
+  - key: QUADERNO_RETRIEVE_EXPENSE
+  - key: QUADERNO_RETRIEVE_INVOICE
+  - key: QUADERNO_RETRIEVE_JURISDICTION
+  - key: QUADERNO_RETRIEVE_PRODUCT
+  - key: QUADERNO_RETRIEVE_RECEIPT
+  - key: QUADERNO_RETRIEVE_RECURRING
+  - key: QUADERNO_RETRIEVE_REPORTING_REQUEST
+  - key: QUADERNO_RETRIEVE_TAX_CODE
+  - key: QUADERNO_RETRIEVE_TAX_ID
+  - key: QUADERNO_UPDATE_CONTACT
+  - key: QUADERNO_UPDATE_COUPON
+  - key: QUADERNO_UPDATE_CREDIT_NOTE
+  - key: QUADERNO_UPDATE_ESTIMATE
+  - key: QUADERNO_UPDATE_EVIDENCE
+  - key: QUADERNO_UPDATE_EXPENSE
+  - key: QUADERNO_UPDATE_INVOICE
+  - key: QUADERNO_UPDATE_PRODUCT
+  - key: QUADERNO_UPDATE_RECURRING
+  - key: QUADERNO_UPDATE_TAX_ID
+  - key: QUADERNO_UPDATE_WEBHOOK
+  - key: QUADERNO_VALIDATE_TAX_ID
+  - key: QUADERNO_VOID_CREDIT_NOTE
 edges:
 - partner_name: Stripe (own)
   partner: stripe
@@ -159,3 +294,425 @@ edges:
     builder: Pipedream repo (component)
   detected_by: sweep-workflow-automation.py
   first_seen: '2026-10-15'
+- partner_name: Kajabi
+  partner: kajabi
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/quaderno/integrations/kajabi
+  direction: third-party
+  category: eCommerce
+  partner_url: http://kajabi.com/
+- partner_name: Mailchimp
+  partner: mailchimp
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/quaderno/integrations/mailchimp
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://mailchimp.com/
+- partner_name: ThriveCart
+  partner: thrivecart
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/quaderno/integrations/thrivecart
+  direction: third-party
+  category: eCommerce
+  partner_url: https://thrivecart.com/
+- partner_name: Thinkific
+  partner: thinkific
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/quaderno/integrations/thinkific
+  direction: third-party
+  category: Online Courses
+  partner_url: http://www.thinkific.com/
+- partner_name: ActiveCampaign
+  partner: activecampaign
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/quaderno/integrations/activecampaign
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://www.activecampaign.com/?utm_source=unpaid_syndication_website&utm_medium=referral&utm_campaign=zapier_listing
+- partner_name: systeme.io
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/quaderno/integrations/systemeio
+  direction: third-party
+  category: Marketing
+  partner_url: https://systeme.io/
+- partner_name: HubSpot
+  partner: hubspot
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/quaderno/integrations/hubspot
+  direction: third-party
+  category: Marketing Automation
+  partner_url: http://www.hubspot.com/
+- partner_name: Airtable
+  partner: airtable
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/quaderno/integrations/airtable
+  direction: third-party
+  category: Databases
+  partner_url: https://airtable.com/
+- partner_name: Teachable
+  partner: teachable
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/quaderno/integrations/teachable
+  direction: third-party
+  category: Online Courses
+  partner_url: https://teachable.com/
+- partner_name: LeadConnector
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/quaderno/integrations/leadconnector
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://www.leadconnectorhq.com/
+- partner_name: Dropbox
+  partner: dropbox
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/quaderno/integrations/dropbox
+  direction: third-party
+  category: File Management & Storage
+  partner_url: https://dropbox.com/
+- partner_name: Qonto
+  partner: qonto
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/quaderno/integrations/qonto
+  direction: third-party
+  category: Payment Processing
+  partner_url: https://qonto.eu/en
+- partner_name: ClickFunnels Classic
+  partner: clickfunnels
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/quaderno/integrations/clickfunnels-classic
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://www.clickfunnels.com/
+- partner_name: Podia
+  partner: podia
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/quaderno/integrations/podia
+  direction: third-party
+  category: Online Courses
+  partner_url: https://www.podia.com/
+- partner_name: Google Drive
+  partner: google-drive
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/quaderno/integrations/google-drive
+  direction: third-party
+  category: File Management & Storage
+  partner_url: https://www.google.com/drive/
+- partner_name: Facebook Conversions
+  partner: facebook
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/quaderno/integrations/facebook-conversions
+  direction: third-party
+  category: Ads & Conversion
+  partner_url: https://developers.facebook.com/docs/marketing-api/server-side-api/guides/zapier-integration
+- partner_name: Drip
+  partner: drip
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/quaderno/integrations/drip
+  direction: third-party
+  category: Drip Emails
+  partner_url: https://www.getdrip.com/
+- partner_name: AWeber
+  partner: aweber
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/quaderno/integrations/aweber
+  direction: third-party
+  category: Email Newsletters
+  partner_url: http://zpr.io/6S2qW
+- partner_name: Hotmart
+  partner: hotmart
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/quaderno/integrations/hotmart-7006
+  direction: third-party
+  category: Online Courses
+  partner_url: https://www.hotmart.com/
+- partner_name: SamCart
+  partner: samcart
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/quaderno/integrations/samcart
+  direction: third-party
+  category: eCommerce
+  partner_url: https://samcart.com/
+- partner_name: Kartra
+  partner: kartra
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/quaderno/integrations/kartra
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://home.kartra.com/
+- partner_name: MySQL
+  partner: mysql
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/quaderno/integrations/mysql
+  direction: third-party
+  category: Databases
+  partner_url: https://www.mysql.com/
+- partner_name: Holded
+  partner: holded
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/quaderno/integrations/holded
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: http://holded.com/
+- partner_name: Brevo
+  partner: brevo
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/quaderno/integrations/brevo
+  direction: third-party
+  category: Email Newsletters
+  partner_url: https://www.sendinblue.com/?utm_medium=plugin&utm_source=zapier
+- partner_name: VBOUT
+  partner: vbout
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/quaderno/integrations/vbout
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://www.vbout.com/
+- partner_name: Google Sheets
+  partner: google-sheets
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/quaderno/integrations/google-sheets
+  direction: third-party
+  category: Google
+  partner_url: http://sheets.google.com/
+- partner_name: Slack
+  partner: slack
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/quaderno/integrations/slack
+  direction: third-party
+  category: Team Chat
+  partner_url: https://slack.com/
+- partner_name: Keap
+  partner: keap
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/quaderno/integrations/keap
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://keap.com/
+- partner_name: Calendly
+  partner: calendly
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/quaderno/integrations/calendly
+  direction: third-party
+  category: Scheduling & Booking
+  partner_url: https://calendly.com/?utm_medium=partner&utm_source=zapier&utm_campaign=main_partner_page&utm_content=main_inbound_link
+- partner_name: Facebook Conversions (for Business admins)
+  partner: facebook
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/quaderno/integrations/facebook-conversions-business
+  direction: third-party
+  category: Ads & Conversion
+  partner_url: https://developers.facebook.com/docs/marketing-api/server-side-api/guides/zapier-integration
+templates:
+- title: Save new Quaderno invoices into Dropbox
+  url: https://zapier.com/apps/dropbox/integrations/quaderno/9777/save-a-new-quaderno-invoice-into-dropbox
+  apps:
+  - quaderno
+  - dropbox
+- title: Save new Quaderno invoices to Google Drive
+  url: https://zapier.com/apps/google-drive/integrations/quaderno/9778/save-new-quaderno-invoices-to-google-drive
+  apps:
+  - quaderno
+  - google-drive
+- title: Grant Quaderno customers access to an offer on Kajabi
+  url: https://zapier.com/apps/kajabi/integrations/quaderno/13926/grant-quaderno-customers-access-to-an-offer-on-kajabi
+  apps:
+  - quaderno
+  - kajabi
+- title: Send Slack messages for Quaderno invoices
+  url: https://zapier.com/apps/quaderno/integrations/slack/9925/send-slack-messages-for-quaderno-invoices
+  apps:
+  - quaderno
+  - slack
+- title: Add new Quaderno invoices to Xero as new invoices
+  url: https://zapier.com/apps/quaderno/integrations/xero/9799/add-new-quaderno-invoices-to-xero-as-new-invoices
+  apps:
+  - quaderno
+  - xero
+- title: Create Quaderno paid invoices for new Kajabi purchases
+  url: https://zapier.com/apps/kajabi/integrations/quaderno/1330278/create-quaderno-paid-invoices-for-new-kajabi-purchases
+  apps:
+  - kajabi
+  - quaderno
+- title: Get Slack notifications when a Quaderno checkout is abandoned
+  url: https://zapier.com/apps/quaderno/integrations/slack/20039/get-slack-notifications-when-a-quaderno-checkout-is-abandoned
+  apps:
+  - quaderno
+  - slack
+- title: Enroll new Quaderno customers to Thinkific courses
+  url: https://zapier.com/apps/quaderno/integrations/thinkific/124613/enroll-new-quaderno-customers-to-thinkific-courses
+  apps:
+  - quaderno
+  - thinkific
+- title: Create invoices in Quaderno for new orders in Thinkific
+  url: https://zapier.com/apps/quaderno/integrations/thinkific/1745027/create-invoices-in-quaderno-for-new-orders-in-thinkific
+  apps:
+  - thinkific
+  - quaderno
+- title: Create Quaderno invoices for new Kajabi purchases
+  url: https://zapier.com/apps/kajabi/integrations/quaderno/1387706/create-quaderno-invoices-for-new-kajabi-purchases
+  apps:
+  - kajabi
+  - quaderno
+- title: Generate invoices in Quaderno for every new sale in systeme.io
+  url: https://zapier.com/apps/quaderno/integrations/systemeio/255564050/generate-invoices-in-quaderno-for-every-new-sale-in-systemeio
+  apps:
+  - systemeio
+  - quaderno
+- title: Subscribe Quaderno customers to a Mailchimp list
+  url: https://zapier.com/apps/mailchimp/integrations/quaderno/9798/subscribe-quaderno-customers-to-a-mailchimp-list
+  apps:
+  - quaderno
+  - mailchimp
+template_total: 121
