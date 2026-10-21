@@ -17,6 +17,9 @@ checked:
 - https://monid.ai/tools/quaderno
 - https://n8n.io/integrations/quaderno/
 - https://zapier.com/apps/quaderno/integrations
+- https://advertising.amazon.com/partners/directory
+- https://sellercentral.amazon.com/gspn
+- https://sellercentral.amazon.com/selling-partner-appstore
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -654,6 +657,21 @@ edges:
   direction: third-party
   category: Ads & Conversion
   partner_url: https://developers.facebook.com/docs/marketing-api/server-side-api/guides/zapier-integration
+- partner_name: Amazon Selling Partner Appstore
+  partner: amazon-seller-central
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://sellercentral.amazon.com/selling-partner-appstore/dp/amzn1.sellerapps.app.e60e45d4-5bb0-4904-bb2e-06a165c7aaa7
+  mirror_of: amazon-seller-central/integrations/amazon-seller-central-integration-edges.yml
+  apps:
+  - Quaderno Tax & Receipts Automation
+  detected: '2026-10-21'
+  detected_by: sweep-amazon-sp-api-appstore.py
 templates:
 - title: Save new Quaderno invoices into Dropbox
   url: https://zapier.com/apps/dropbox/integrations/quaderno/9777/save-a-new-quaderno-invoice-into-dropbox
