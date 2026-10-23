@@ -167,32 +167,6 @@
   relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
-- slug: quaderno-stripe-own
-  label: Stripe (own)
-  partner: stripe
-  partner_name: Stripe (own)
-  category: tax
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://marketplace.stripe.com/apps/quaderno
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
-- slug: quaderno-woocommerce-own
-  label: WooCommerce (own)
-  partner: woocommerce
-  partner_name: WooCommerce (own)
-  category: extension
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://woocommerce.com/products/quaderno/
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
 - slug: quaderno-stripe-partner-ecosystem
   label: Stripe Partner Ecosystem
   partner: stripe
@@ -613,6 +587,45 @@
   marketplace: own
   channel: partner-built
   evidence: https://sellercentral.amazon.com/selling-partner-appstore/dp/amzn1.sellerapps.app.e60e45d4-5bb0-4904-bb2e-06a165c7aaa7
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: quaderno-stripe-own
+  label: Stripe (own)
+  partner: stripe
+  partner_name: Stripe (own)
+  category: tax
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://marketplace.stripe.com/apps/quaderno
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: quaderno-woocommerce-own
+  label: WooCommerce (own)
+  partner: woocommerce
+  partner_name: WooCommerce (own)
+  category: extension
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://woocommerce.com/products/quaderno/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: quaderno-xero-own
+  label: Xero (own)
+  partner: xero
+  partner_name: Xero (own)
+  category: Tax and compliance
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://apps.xero.com/nz/app/quaderno
   source: edge
   relationship: platform-app
   status: not-a-workflow

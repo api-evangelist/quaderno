@@ -20,6 +20,7 @@ checked:
 - https://advertising.amazon.com/partners/directory
 - https://sellercentral.amazon.com/gspn
 - https://sellercentral.amazon.com/selling-partner-appstore
+- xero/integrations/xero-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -150,40 +151,6 @@ marketplace_apps:
   - key: QUADERNO_VALIDATE_TAX_ID
   - key: QUADERNO_VOID_CREDIT_NOTE
 edges:
-- partner_name: Stripe (own)
-  partner: stripe
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://marketplace.stripe.com/apps/quaderno
-  mirror_of: stripe/integrations/stripe-integration-edges.yml
-  apps:
-  - Quaderno
-  listing_count: 1
-  detected: '2026-10-15'
-  detected_by: mirror-platform-listings.py
-  category: tax
-- partner_name: WooCommerce (own)
-  partner: woocommerce
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://woocommerce.com/products/quaderno/
-  mirror_of: woocommerce/integrations/woocommerce-integration-edges.yml
-  apps:
-  - 'Quaderno: Global Tax & Invoicing Automation'
-  listing_count: 1
-  detected: '2026-10-15'
-  detected_by: mirror-platform-listings.py
-  category: extension
 - partner_name: Stripe Partner Ecosystem
   partner: stripe
   partner_match: register
@@ -672,6 +639,59 @@ edges:
   - Quaderno Tax & Receipts Automation
   detected: '2026-10-21'
   detected_by: sweep-amazon-sp-api-appstore.py
+- partner_name: Stripe (own)
+  partner: stripe
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://marketplace.stripe.com/apps/quaderno
+  mirror_of: stripe/integrations/stripe-integration-edges.yml
+  apps:
+  - Quaderno
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+  category: tax
+- partner_name: WooCommerce (own)
+  partner: woocommerce
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://woocommerce.com/products/quaderno/
+  mirror_of: woocommerce/integrations/woocommerce-integration-edges.yml
+  apps:
+  - 'Quaderno: Global Tax & Invoicing Automation'
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+  category: extension
+- partner_name: Xero (own)
+  partner: xero
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://apps.xero.com/nz/app/quaderno
+  mirror_of: xero/integrations/xero-integration-edges.yml
+  apps:
+  - Quaderno
+  listing_count: 1
+  detected: '2026-10-23'
+  detected_by: mirror-platform-listings.py
+  category: Tax and compliance
+  features:
+  - Sign Up with Xero
 templates:
 - title: Save new Quaderno invoices into Dropbox
   url: https://zapier.com/apps/dropbox/integrations/quaderno/9777/save-a-new-quaderno-invoice-into-dropbox
