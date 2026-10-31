@@ -1,4 +1,4 @@
-# Quaderno (quaderno)
+# Quaderno
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,122 +64,143 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Quaderno is a tax compliance, invoicing, and sales-tax / VAT automation platform. Its REST API calculates the correct sales tax, VAT, and GST in real time for any jurisdiction, then issues tax-compliant invoices, credit notes, estimates, and receipts. The account-scoped API (`https://ACCOUNT_NAME.quadernoapp.com/api`) covers contacts, items, invoices, credits, estimates, expenses, recurring documents, payments, unified sales transactions, hosted Checkout sessions, and webhooks, plus a tax engine for rate calculation, jurisdictions, tax codes, and tax ID validation. Requests use HTTP Basic Auth with a private API key and return JSON; every endpoint path ends in `.json`.
+Quaderno is a tax compliance, invoicing, and sales-tax / VAT automation platform. Its REST API calculates the correct sales tax, VAT, and GST in real time for any jurisdiction, then issues tax-compliant invoices, credit notes, estimates, and receipts. The account-scoped API (https://ACCOUNT_NAME.quadernoapp.com/api) covers contacts, items, invoices, credits, estimates, expenses, recurring documents, payments, unified sales transactions, hosted Checkout sessions, and webhooks, plus a tax engine for rate calculation, jurisdictions, tax codes, and tax ID validation. Requests use HTTP Basic Auth with a private API key and return JSON; every endpoint path ends in .json.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/quaderno/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/quaderno/refs/heads/main/apis.yml)
+**Areas:** Tax Compliance · Sales Tax · VAT · Invoicing · Billing · Fintech · Tax
 
-## Tags
+## Quaderno on APIs.io
 
-- Tax Compliance
-- Sales Tax
-- VAT
-- Invoicing
-- Billing
-- FinTech
+Everything profiled for Quaderno is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/quaderno/](https://apis.io/providers/quaderno/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (14)
 
-- **Created:** 2026-07-03
-- **Modified:** 2026-07-03
+- [Quaderno Authentication API](https://apis.io/apis/quaderno/quaderno-authentication-api/) — Ping the API and inspect the authenticated account and rate-limit state.
+- [Quaderno Checkout API](https://apis.io/apis/quaderno/quaderno-checkout-api/) — Hosted checkout sessions for collecting tax-compliant payments.
+- [Quaderno Contacts API](https://apis.io/apis/quaderno/quaderno-contacts-api/) — Customers and vendors.
+- [Quaderno Credits API](https://apis.io/apis/quaderno/quaderno-credits-api/) — Credit notes issued against invoices.
+- [Quaderno Estimates API](https://apis.io/apis/quaderno/quaderno-estimates-api/) — Quotes and estimates issued to customers.
+- [Quaderno Evidences API](https://apis.io/apis/quaderno/quaderno-evidences-api/) — Location evidence records supporting tax determination for a transaction.
+- [Quaderno Expenses API](https://apis.io/apis/quaderno/quaderno-expenses-api/) — Purchases and vendor bills recorded against the account.
+- [Quaderno Invoices API](https://apis.io/apis/quaderno/quaderno-invoices-api/) — Sales invoices issued to customers.
+- [Quaderno Items API](https://apis.io/apis/quaderno/quaderno-items-api/) — Reusable products and services used as document line items.
+- [Quaderno Payments API](https://apis.io/apis/quaderno/quaderno-payments-api/) — Payments recorded against invoices, credits, and expenses.
+- [Quaderno Recurring API](https://apis.io/apis/quaderno/quaderno-recurring-api/) — Recurring document templates that auto-generate invoices.
+- [Quaderno Taxes API](https://apis.io/apis/quaderno/quaderno-taxes-api/) — Real-time tax rate calculation, jurisdictions, tax codes, and tax ID validation.
+- [Quaderno Transactions API](https://apis.io/apis/quaderno/quaderno-transactions-api/) — Unified sales transactions that both record a sale and calculate tax.
+- [Quaderno Webhooks API](https://apis.io/apis/quaderno/quaderno-webhooks-api/) — Subscriptions that deliver real-time event notifications to your app.
 
-## APIs
+### Published properties
 
-### Quaderno Invoices API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Create, list, retrieve, update, delete, and deliver tax-compliant sales invoices, each with line items, taxes, discounts, currency, and a public permalink. Invoices carry nested payments and can be emailed to the contact.
+#### Agentic access (1)
 
-- **Human URL:** [https://developers.quaderno.io/api/](https://developers.quaderno.io/api/)
-- **Base URL:** `https://ACCOUNT_NAME.quadernoapp.com/api`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-### Quaderno Credits API
+- [Quaderno Agentic Access](https://apis.io/agentic-access/quaderno/quaderno-agentic-access/)
 
-Issue and manage credit notes against invoices - create, list, retrieve, update, and delete credits with their own line items, taxes, and totals for refunds and corrections.
+#### Collections (15)
 
-- **Human URL:** [https://developers.quaderno.io/api/](https://developers.quaderno.io/api/)
-- **Base URL:** `https://ACCOUNT_NAME.quadernoapp.com/api`
+Postman and Open Collection request collections.
 
-### Quaderno Estimates API
+- [Quaderno API](https://apis.io/collections/quaderno/open-quaderno/)
+- [Quaderno Authentication API](https://apis.io/collections/quaderno/open-quaderno-authentication-api/)
+- [Quaderno Authentication Checkout API](https://apis.io/collections/quaderno/open-quaderno-checkout-api/)
+- [Quaderno Authentication Contacts API](https://apis.io/collections/quaderno/open-quaderno-contacts-api/)
+- [Quaderno Authentication Credits API](https://apis.io/collections/quaderno/open-quaderno-credits-api/)
+- [Quaderno Authentication Estimates API](https://apis.io/collections/quaderno/open-quaderno-estimates-api/)
+- [Quaderno Authentication Evidences API](https://apis.io/collections/quaderno/open-quaderno-evidences-api/)
+- [Quaderno Authentication Expenses API](https://apis.io/collections/quaderno/open-quaderno-expenses-api/)
+- [Quaderno Authentication Invoices API](https://apis.io/collections/quaderno/open-quaderno-invoices-api/)
+- [Quaderno Authentication Items API](https://apis.io/collections/quaderno/open-quaderno-items-api/)
+- [Quaderno Authentication Payments API](https://apis.io/collections/quaderno/open-quaderno-payments-api/)
+- [Quaderno Authentication Recurring API](https://apis.io/collections/quaderno/open-quaderno-recurring-api/)
+- [Quaderno Authentication Taxes API](https://apis.io/collections/quaderno/open-quaderno-taxes-api/)
+- [Quaderno Authentication Transactions API](https://apis.io/collections/quaderno/open-quaderno-transactions-api/)
+- [Quaderno Authentication Webhooks API](https://apis.io/collections/quaderno/open-quaderno-webhooks-api/)
 
-Create, list, retrieve, update, and delete estimates and quotes issued to customers, with line items, taxes, and state tracking - convertible into invoices once accepted.
+#### Security (2)
 
-- **Human URL:** [https://developers.quaderno.io/api/](https://developers.quaderno.io/api/)
-- **Base URL:** `https://ACCOUNT_NAME.quadernoapp.com/api`
+Authentication, trust centre, and vulnerability disclosure.
 
-### Quaderno Expenses API
+- [Quaderno Authentication](https://apis.io/security/quaderno/quaderno-authentication/)
+- [Quaderno Domain Security](https://apis.io/security/quaderno/quaderno-domain-security/)
 
-Record and manage vendor bills and purchases - create, list, retrieve, update, and delete expenses with line items, taxes, and payment methods for input-tax tracking and reporting.
+#### Plans and pricing (1)
 
-- **Human URL:** [https://developers.quaderno.io/api/](https://developers.quaderno.io/api/)
-- **Base URL:** `https://ACCOUNT_NAME.quadernoapp.com/api`
+Published plans, tiers and prices.
 
-### Quaderno Contacts API
+- [Quaderno Plans Pricing](https://apis.io/plans/quaderno/quaderno-plans-pricing/)
 
-Manage customers and vendors - create, list, search, retrieve, update, and delete contacts (companies or people) with billing address, country, email, and tax ID used for tax determination.
+#### Rate limits (1)
 
-- **Human URL:** [https://developers.quaderno.io/api/](https://developers.quaderno.io/api/)
-- **Base URL:** `https://ACCOUNT_NAME.quadernoapp.com/api`
+Published request limits.
 
-### Quaderno Items API
+- [Quaderno Rate Limits](https://apis.io/rate-limits/quaderno/quaderno-rate-limits/)
 
-Maintain the catalog of reusable products and services - create, list, retrieve, update, and delete items with unit cost, code, stock, and a tax code that drives taxability on documents.
+#### FinOps (1)
 
-- **Human URL:** [https://developers.quaderno.io/api/](https://developers.quaderno.io/api/)
-- **Base URL:** `https://ACCOUNT_NAME.quadernoapp.com/api`
+What the API costs to run, by operation.
 
-### Quaderno Taxes API
+- [Quaderno Finops](https://apis.io/finops/quaderno/quaderno-finops/)
 
-The tax engine - calculate the correct sales tax, VAT, or GST rate in real time (`tax_rates/calculate`) with a reasoning status of taxable, non_taxable, or not_registered; list the tax jurisdictions you are registered in; list product tax codes; and validate customer tax IDs / VAT numbers.
+## Where to find this API
 
-- **Human URL:** [https://developers.quaderno.io/api/](https://developers.quaderno.io/api/)
-- **Base URL:** `https://ACCOUNT_NAME.quadernoapp.com/api`
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-### Quaderno Payments API
-
-Record and remove payments against invoices, credits, and expenses - add a payment with amount, method, and date to mark a document paid, or delete a payment to reverse it.
-
-- **Human URL:** [https://developers.quaderno.io/api/](https://developers.quaderno.io/api/)
-- **Base URL:** `https://ACCOUNT_NAME.quadernoapp.com/api`
-
-### Quaderno Transactions API
-
-Record a sale and calculate its tax in a single call - the transactions endpoint determines tax from customer location evidence and item tax codes and creates the corresponding tax-compliant document.
-
-- **Human URL:** [https://developers.quaderno.io/api/](https://developers.quaderno.io/api/)
-- **Base URL:** `https://ACCOUNT_NAME.quadernoapp.com/api`
-
-### Quaderno Checkout API
-
-Create and retrieve hosted Checkout sessions that collect tax-compliant payments - rendered client-side with Quaderno.js or as a hosted page - and surface checkout.succeeded, checkout.failed, and checkout.abandoned events.
-
-- **Human URL:** [https://developers.quaderno.io/guides/checkout/](https://developers.quaderno.io/guides/checkout/)
-- **Base URL:** `https://ACCOUNT_NAME.quadernoapp.com/api`
-
-### Quaderno Webhooks API
-
-Subscribe URLs to real-time event notifications delivered as JSON over HTTPS - create, list, retrieve, update, and delete webhooks for document and checkout events, with automatic hourly retries for up to 72 hours on failure.
-
-- **Human URL:** [https://developers.quaderno.io/guides/webhooks/](https://developers.quaderno.io/guides/webhooks/)
-- **Base URL:** `https://ACCOUNT_NAME.quadernoapp.com/api`
-
-## Authentication
-
-HTTP Basic Authentication. Use your private API key as the username; any value works for the password. All requests and responses are JSON, and every endpoint path ends in `.json`.
-
-## Rate Limits
-
-100 requests per 15 seconds per account. Exceeding the limit returns HTTP 429 (Too Many Requests). The `/ping` endpoint checks availability and remaining allowance without consuming rate limit. See [rate-limits/quaderno-rate-limits.yml](rate-limits/quaderno-rate-limits.yml).
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/quaderno)
-- [LinkedIn](https://www.linkedin.com/company/quaderno)
 - [Website](https://quaderno.io)
 - [Documentation](https://developers.quaderno.io)
-- [Plans](plans/quaderno-plans-pricing.yml)
-- [Rate Limits](rate-limits/quaderno-rate-limits.yml)
-- [Fin Ops](finops/quaderno-finops.yml)
+- [GitHub](https://github.com/quaderno)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 27.2** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 51.4 |
+| Contract governance | 0.0 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 29.8 |
+| Access clarity | 7.9 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 11.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/quaderno/](https://apis.io/providers/quaderno/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Quaderno: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/quaderno/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
